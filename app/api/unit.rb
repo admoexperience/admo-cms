@@ -23,7 +23,7 @@ class Unit < Grape::API
     end
 
 
-    desc "Checkin" :nickname => 'checkin'
+    desc "Checkin", :nickname => 'checkin'
     get :checkin, :rabl => "unit" do
       authenticate!
       Rails.logger.info current_user
