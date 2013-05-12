@@ -35,6 +35,12 @@ gem 'rails_admin'
 
 gem 'mongoid'
 
+gem 'grape'
+gem 'grape-swagger'
+gem 'grape-rabl'
+
+
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
