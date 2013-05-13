@@ -5,6 +5,7 @@ class AdmoUnit
 
   field :api_key,          type: String,   :default => lambda {SecureRandom.uuid}
   field :name,             type: String
+  field :current_app,      type: String
   field :last_checkin,     type: Time,     :default => nil
 
   validates_uniqueness_of :api_key
@@ -13,6 +14,7 @@ class AdmoUnit
 
   def checkin
     self.last_checkin = Time.now()
+    self.save
   end
 
 end

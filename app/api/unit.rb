@@ -8,10 +8,9 @@ class Unit < Grape::API
     end
 
     def current_user
-      # find token. Check if valid.
-      user_token = params[:api_key]
-      token = AdmoUnit.where(:api_key => user_token).first
-      token
+      api_key = params[:api_key] || headers['Api-Key']
+      @unit = AdmoUnit.where(:api_key => api_key).first
+      @unit
     end
   end
 
@@ -19,18 +18,25 @@ class Unit < Grape::API
   resource :unit do
     desc "Ping", :nickname => 'ping'
     get :ping do
-      { :ping => "pong", :ding => 'david' }
+      { :ping => "pong" }
     end
 
 
     desc "Checkin", :nickname => 'checkin'
     get :checkin, :rabl => "unit" do
       authenticate!
-      Rails.logger.info current_user
-      @unit = current_user
       @unit.checkin
     end
 
+    desc "Set App", :nickname => 'app'
+     params do
+        requires :app, type: String, desc: "App to set"
+      end
+    put :app, :rabl => "unit" do
+      authenticate!
+      @unit.current_app = params[:app]
+      @unit.save!
+    end
 
   end
 end
