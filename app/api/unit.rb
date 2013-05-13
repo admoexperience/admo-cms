@@ -34,8 +34,7 @@ class Unit < Grape::API
       end
     put :app, :rabl => "unit" do
       authenticate!
-      @unit.current_app = params[:app]
-      @unit.save!
+      @unit.set_app(params[:app])
     end
 
   end
