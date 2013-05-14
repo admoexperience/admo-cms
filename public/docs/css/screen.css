@@ -170,8 +170,8 @@ ol li {
 
 .markdown pre {
     font-family: "Anonymous Pro", "Menlo", "Consolas", "Bitstream Vera Sans Mono", "Courier New", monospace;
-    background-color: #fcf6db;
-    border: 1px solid #e5e0c6;
+    background-color: #ffffff;
+    border: 1px solid #CCCCCC;
     padding: 10px;
     margin: 0 0 10px 0;
 }
@@ -233,8 +233,8 @@ b, strong {
 
 pre {
     font-family: "Anonymous Pro", "Menlo", "Consolas", "Bitstream Vera Sans Mono", "Courier New", monospace;
-    background-color: #fcf6db;
-    border: 1px solid #e5e0c6;
+    background-color: #ffffff;
+    border: 1px solid #CCCCCC;
     padding: 10px;
 }
 
@@ -284,7 +284,7 @@ form.form_box {
 }
 
 form.form_box label {
-    color: #0f6ab4 !important;
+    color: #0099FF !important;
 }
 
 form.form_box input[type=submit] {
@@ -464,7 +464,7 @@ body p#colophon {
     margin: 0 15px 40px 15px;
     padding: 10px 0;
     font-size: 0.8em;
-    border-top: 1px solid #dddddd;
+    border-top: 1px solid #CCCCCC;
     font-family: "Droid Sans", sans-serif;
     color: #999999;
     font-style: italic;
@@ -481,7 +481,7 @@ body ul#resources {
 }
 
 body ul#resources li.resource {
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid #CCCCCC;
 }
 
 body ul#resources li.resource:last-child {
@@ -528,7 +528,7 @@ body ul#resources li.resource div.heading ul.options li {
     clear: none;
     margin: 0;
     padding: 2px 10px;
-    border-right: 1px solid #dddddd;
+    border-right: 1px solid #CCCCCC;
 }
 
 body ul#resources li.resource div.heading ul.options li:first-child, body ul#resources li.resource div.heading ul.options li.first {
@@ -601,7 +601,7 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.get div.heading h3 span.http_method a {
     text-transform: uppercase;
-    background-color: #0f6ab4;
+    background-color: #0099FF;
     text-decoration: none;
     color: white;
     display: inline-block;
@@ -644,7 +644,7 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
     clear: none;
     margin: 0;
     padding: 2px 10px;
-    border-right: 1px solid #dddddd;
+    border-right: 1px solid #CCCCCC;
 }
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.get div.heading ul.options li:first-child, body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.get div.heading ul.options li.first {
@@ -658,12 +658,12 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.get div.heading ul.options li {
     border-right-color: #c3d9ec;
-    color: #0f6ab4;
+    color: #0099FF;
     font-size: 0.9em;
 }
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.get div.heading ul.options li a {
-    color: #0f6ab4;
+    color: #0099FF;
     text-decoration: none;
 }
 
@@ -692,7 +692,7 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
 }
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.get div.content h4 {
-    color: #0f6ab4;
+    color: #0099FF;
     font-size: 1.1em;
     margin: 0;
     padding: 15px 0 5px;
@@ -819,7 +819,7 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
     clear: none;
     margin: 0;
     padding: 2px 10px;
-    border-right: 1px solid #dddddd;
+    border-right: 1px solid #CCCCCC;
 }
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.post div.heading ul.options li:first-child, body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.post div.heading ul.options li.first {
@@ -929,8 +929,8 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
     display: block;
     margin: 0;
     padding: 0;
-    background-color: #f9f2e9;
-    border: 1px solid #f0e0ca;
+    background-color: #EEEEEE;
+    border: 1px solid #CCCCCC;
 }
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.put div.heading h3 {
@@ -951,7 +951,7 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.put div.heading h3 span.http_method a {
     text-transform: uppercase;
-    background-color: #c5862b;
+    background-color: #333333;
     text-decoration: none;
     color: white;
     display: inline-block;
@@ -994,7 +994,7 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
     clear: none;
     margin: 0;
     padding: 2px 10px;
-    border-right: 1px solid #dddddd;
+    border-right: 1px solid #CCCCCC;
 }
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.put div.heading ul.options li:first-child, body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.put div.heading ul.options li.first {
@@ -1007,13 +1007,13 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
 }
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.put div.heading ul.options li {
-    border-right-color: #f0e0ca;
-    color: #c5862b;
+    border-right-color: #CCCCCC;
+    color: #333333;
     font-size: 0.9em;
 }
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.put div.heading ul.options li a {
-    color: #c5862b;
+    color: #333333;
     text-decoration: none;
 }
 
@@ -1022,8 +1022,8 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
 }
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.put div.content {
-    background-color: #faf5ee;
-    border: 1px solid #f0e0ca;
+    background-color: #ebf3f9;
+    border: 1px solid #c3d9ec;
     border-top: none;
     padding: 10px;
     -moz-border-radius-bottomleft: 6px;
@@ -1042,7 +1042,7 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
 }
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.put div.content h4 {
-    color: #c5862b;
+    color: #333333;
     font-size: 1.1em;
     margin: 0;
     padding: 15px 0 5px;
@@ -1169,7 +1169,7 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
     clear: none;
     margin: 0;
     padding: 2px 10px;
-    border-right: 1px solid #dddddd;
+    border-right: 1px solid #CCCCCC;
 }
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.patch div.heading ul.options li:first-child, body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.patch div.heading ul.options li.first {
@@ -1348,7 +1348,7 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
     clear: none;
     margin: 0;
     padding: 2px 10px;
-    border-right: 1px solid #dddddd;
+    border-right: 1px solid #CCCCCC;
 }
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.head div.heading ul.options li:first-child, body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.head div.heading ul.options li.first {
@@ -1437,9 +1437,9 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
 }
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.head div.content div.response div.block {
-    background-color: #fcf6db;
+    background-color: #ffffff;
     border: 1px solid black;
-    border-color: #e5e0c6;
+    border-color: #CCCCCC;
 }
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.head div.content div.response div.block pre {
@@ -1531,7 +1531,7 @@ body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operatio
     clear: none;
     margin: 0;
     padding: 2px 10px;
-    border-right: 1px solid #dddddd;
+    border-right: 1px solid #CCCCCC;
 }
 
 body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.delete div.heading ul.options li:first-child, body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.delete div.heading ul.options li.first {
@@ -1728,7 +1728,7 @@ pre code {
 .content > .content-type > div > label {
   clear: both;
   display: block;
-  color: #0F6AB4;
+  color: #0099FF;
   font-size: 1.1em;
   margin: 0;
   padding: 15px 0 5px;
