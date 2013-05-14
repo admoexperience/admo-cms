@@ -1,4 +1,5 @@
 class Unit < Grape::API
+  rescue_from :all
   format :json
   formatter :json, Grape::Formatter::Rabl
 
@@ -16,26 +17,56 @@ class Unit < Grape::API
 
   desc "My system api"
   resource :unit do
-    desc "Ping", :nickname => 'ping'
+
+    desc "Ping", :nickname => 'ping', :notes => <<-NOTE
+    Method simply returns a hash with a single key __ping => pong__ .
+    This method is not authenticated and such can be used for testing access to the api
+    NOTE
     get :ping do
       { :ping => "pong" }
     end
 
 
-    desc "Checkin", :nickname => 'checkin'
+    desc "Checkin", :nickname => 'checkin',:notes => <<-NOTE
+    Used to inform the CMS of the online status of the unit.
+    Should be called every 5mins.
+    NOTE
     get :checkin, :rabl => "unit" do
       authenticate!
       @unit.checkin
     end
 
-    desc "Set App", :nickname => 'app'
+    desc "Sets an config option", :nickname => 'config', :notes => <<-NOTE
+    Allows updating of configuration options for AdmoUnits
+    a change here will be pushed down (in close to real time) to the spesific unit provided it is online
+
+    Configration options include the following options. Trying to set any thing else will fail.
+
+    |Key                  |DefaultValue|Description|
+    |**app**              |demo        |The current AdmoApp this unit should run|
+    |**kinect_elevation** |1           |The elevation of the kinnect used to configure correct angle|
+    |||
+
+    NOTE
      params do
-        requires :app, type: String, desc: "App to set"
+        requires :key, type: String, desc: "Config Key"
+        requires :value, type: String, desc: "Config Value"
       end
-    put :app, :rabl => "unit" do
+    put :config, :rabl => "config" do
       authenticate!
-      @unit.set_app(params[:app])
+      key = params[:key]
+      value = params[:value]
+      #TODO: Move logic into model
+      # error!("Invalid config key please use allowed values") unless AdmoUnit::CONFIG_KEYS.include? key
+      @unit.set_config(key,value)
     end
+
+    desc "Gets configuration for the unit", :nickname => 'config'
+    get :config, :rabl => "config" do
+      authenticate!
+    end
+
+
 
   end
 end
