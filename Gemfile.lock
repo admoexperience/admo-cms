@@ -1,3 +1,12 @@
+GIT
+  remote: git@github.com:drubin/grape-swagger
+  revision: 93608a55d9f375dc6fb161a80d03df44623b0aef
+  branch: suffix-base-path
+  specs:
+    grape-swagger (0.5.0)
+      grape (>= 0.2.0)
+      kramdown
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -74,9 +83,6 @@ GEM
       i18n
       rabl
       tilt
-    grape-swagger (0.5.0)
-      grape (>= 0.2.0)
-      kramdown
     haml (4.0.2)
       tilt
     hashie (2.0.3)
@@ -240,7 +246,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   grape
   grape-rabl
-  grape-swagger
+  grape-swagger!
   jquery-rails
   mongoid
   pg

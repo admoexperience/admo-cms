@@ -7,5 +7,5 @@ AdmoCms::Application.routes.draw do
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   end
 
- mount RootApi => '/'
+ mount RootApi => '/api/'
 end
