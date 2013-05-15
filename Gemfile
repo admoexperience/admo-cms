@@ -40,6 +40,8 @@ gem 'grape'
 gem 'grape-swagger'
 gem 'grape-rabl'
 
+gem 'pubnub'
+
 
 
 

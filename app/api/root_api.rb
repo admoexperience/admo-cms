@@ -1,13 +1,16 @@
 require 'grape-swagger'
 
-  class RootApi < Grape::API
-    format :json
-    #version 'v1', using: :path
-    mount Unit
-    add_swagger_documentation({
-      :api_version=>'v1',
-      :hide_documentation_path=>true, 
-      :markdown=>true
-      }
-    )
-  end
+class RootApi < Grape::API
+  format :json
+ # prefix 'api'
+  version 'v1', using: :path
+  mount Unit
+
+  add_swagger_documentation({
+    #:base_path=>Proc.new {return request.base_path + '/api'},
+    :api_version=>'v1',
+    :hide_documentation_path=>true,
+    :markdown=>true
+    }
+  )
+end
