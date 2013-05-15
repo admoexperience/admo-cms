@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:drubin/grape-swagger
+  remote: git://github.com/drubin/grape-swagger.git
   revision: 93608a55d9f375dc6fb161a80d03df44623b0aef
   branch: suffix-base-path
   specs:

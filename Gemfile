@@ -37,7 +37,7 @@ gem 'rails_admin'
 gem 'mongoid'
 
 gem 'grape'
-gem 'grape-swagger', :git => 'git@github.com:drubin/grape-swagger', :branch => 'suffix-base-path'
+gem 'grape-swagger', :git => 'git://github.com/drubin/grape-swagger.git', :branch => 'suffix-base-path'
 gem 'grape-rabl'
 
 gem 'pubnub'
