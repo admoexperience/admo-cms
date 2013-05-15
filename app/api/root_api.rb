@@ -7,7 +7,7 @@ class RootApi < Grape::API
   mount Unit
 
   add_swagger_documentation({
-    #:base_path=>Proc.new {return request.base_path + '/api'},
+    :base_path_suffix=> '/api',
     :api_version=>'v1',
     :hide_documentation_path=>true,
     :markdown=>true
