@@ -1,12 +1,12 @@
 class MobileSiteController < ApplicationController
-  
+
   def units
     @units = AdmoUnit.all
   end
 
   def apps
-    @apps = ['demo','trailers','zerogravity','adscandemo','trailerdemo','flightcentre','traveldemo']
-    
+    @apps = ['demo','trailers','zerogravity','adscandemo','flightcentre','traveldemo']
+
     @unit = AdmoUnit.find(params[:unit])
     redirect_to :units unless @unit
 
