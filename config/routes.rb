@@ -5,6 +5,9 @@ AdmoCms::Application.routes.draw do
 
   constraints SimpleAdminAuth::Authenticate do
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
+    get '/m/units', controller: "mobile_site", action: 'units'
+    get '/m/apps', controller: "mobile_site", action: 'apps'
   end
 
  mount RootApi => '/api/'

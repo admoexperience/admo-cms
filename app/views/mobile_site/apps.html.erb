@@ -1,0 +1,10 @@
+<div id="controls">
+
+  <h2>Apps for <%= @unit.name%></h2>
+
+  <div class="buttons">
+    <% @apps.each do |app|%>
+      <button class="button" onclick="window.location ='/m/apps/?unit=<%=@unit.id %>&amp;app=<%=app%>'"> <%= app %></button> <br/>  
+    <% end %> 
+  </div>
+</div>

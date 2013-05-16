@@ -1,0 +1,14 @@
+<% if flash[:info] %>
+  <h2><%= flash[:info] %></h2>
+<% end %>
+
+<div id="controls">
+
+  <h2>Units</h2>
+
+  <div class="buttons">
+    <% @units.each do |unit|%>
+      <button class="button" onclick="window.location ='/m/apps/?unit=<%=unit.id %>'"> <%= unit.name %></button> <br/>  
+    <% end %> 
+  </div>
+</div>
