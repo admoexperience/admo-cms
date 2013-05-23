@@ -1,8 +1,64 @@
 # RailsAdmin config file. Generated on May 10, 2013 11:11
 # See github.com/sferik/rails_admin for more informations
 
+
+require 'rails_admin/config/actions'
+require 'rails_admin/config/actions/base'
+
+module RailsAdminPublish
+end
+
+module RailsAdmin
+  module Config
+    module Actions
+      class Publish < RailsAdmin::Config::Actions::Base
+
+       RailsAdmin::Config::Actions.register(self)
+       register_instance_option :visible? do
+          true
+        end
+
+        register_instance_option :member do
+         true
+        end
+
+        register_instance_option :link_icon do
+          'icon-publish'
+        end
+
+        register_instance_option :controller do
+         Proc.new do
+           @object.publish_change
+           flash[:notice] = "You have published #{@object.name}."
+           redirect_to back_or_index
+         end
+       end
+     end
+    end
+  end
+end
+
+
 RailsAdmin.config do |config|
 
+
+config.actions do
+   # root actions
+    dashboard                     # mandatory
+    # collection actions
+    index                         # mandatory
+    new
+    export
+    history_index
+    bulk_delete
+    # member actions
+    show
+    edit
+    delete
+    history_show
+    show_in_app
+    publish
+end
 
   ################  Global configuration  ################
 
@@ -51,3 +107,5 @@ RailsAdmin.config do |config|
   # Anyway, here is how RailsAdmin saw your application's models when you ran the initializer:
 
 end
+
+
