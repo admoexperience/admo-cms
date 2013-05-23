@@ -5,7 +5,8 @@ class MobileSiteController < ApplicationController
   end
 
   def apps
-    @apps = ['demo','trailers','zerogravity','adscandemo','flightcentre','traveldemo']
+    @apps = AdmoApp.all.map(&:name)
+    #@apps = ['demo','trailers','zerogravity','adscandemo','flightcentre','traveldemo']
 
     @unit = AdmoUnit.find(params[:unit])
     redirect_to :units unless @unit
