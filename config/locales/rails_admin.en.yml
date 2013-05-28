@@ -1,0 +1,7 @@
+en:
+  admin:
+    actions:
+      publish:
+        title: "Publish"
+        menu: "Publish"
+        breadcrumb: "Publish"
