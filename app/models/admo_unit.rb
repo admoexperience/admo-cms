@@ -4,7 +4,9 @@ class AdmoUnit
 
   CONFIG_KEYS = %w(
     app
-    kinnect_elevation
+    kinect_elevation
+    environment
+    web_ui_server
   ).freeze
 
 
