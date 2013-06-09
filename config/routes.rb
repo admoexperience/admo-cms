@@ -10,5 +10,9 @@ AdmoCms::Application.routes.draw do
     get '/m/apps', controller: "mobile_site", action: 'apps'
   end
 
- mount RootApi => '/api/'
+  match '/media/*other', :to => Dragonfly[:images]
+
+  mount RootApi => '/api/'
+
+  root :to => redirect('/docs/')
 end

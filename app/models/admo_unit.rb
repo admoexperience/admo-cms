@@ -15,6 +15,8 @@ class AdmoUnit
   field :config,           type: Hash,     :default => {}
   field :last_checkin,     type: Time,     :default => nil
 
+  has_many :admo_screenshots
+
   validates_uniqueness_of :api_key
   validates_uniqueness_of :name
   validates_presence_of :name
@@ -31,6 +33,17 @@ class AdmoUnit
     self.config = hash
     self.save
     self.publish_change
+  end
+
+  #Function cleans up older screenshots
+  def clean_up
+    #Delete every thing but the most recent 5 screenshots
+    screenshots = self.admo_screenshots.order_by("updated_at DESC").limit(5)
+    self.admo_screenshots.each  do |screen|
+      unless screenshots.include? screen
+        screen.destroy
+      end
+    end
   end
 
 

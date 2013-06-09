@@ -34,7 +34,7 @@ gem 'thin'
 gem 'simple_status'
 gem 'simple_admin_auth', '0.0.2'
 
-gem 'rails_admin'
+
 
 gem 'mongoid'
 
@@ -44,8 +44,10 @@ gem 'grape-rabl'
 
 gem 'pubnub'
 
+gem 'fog'
+gem 'dragonfly'
 
-
+gem 'rails_admin'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
