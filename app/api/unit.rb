@@ -1,5 +1,5 @@
 class Unit < Grape::API
-  rescue_from :all
+  #rescue_from :all
   format :json
   formatter :json, Grape::Formatter::Rabl
 
@@ -67,6 +67,19 @@ class Unit < Grape::API
     end
 
 
+    desc "Uploads a screenshot to a unit", :notes=> <<-NOTE
+    This method can NOT be called from swagger you need to do something like
 
+        curl --form image_file=image.jpg http://$server/$baseUrl/screenshot
+
+    NOTE
+    post "screenshot" , :rabl => "screenshot" do
+      authenticate!
+      raise "Screenshot is required" unless params[:screenshot]
+      screenshot = @unit.admo_screenshots.create(:image=>params[:screenshot][:tempfile],:image_name=>params[:screenshot][:filename])
+      screenshot.save!
+      @unit.clean_up
+      @screenshot = screenshot
+    end
   end
 end
