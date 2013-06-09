@@ -1,5 +1,5 @@
 class Unit < Grape::API
-  #rescue_from :all
+  rescue_from :all
   format :json
   formatter :json, Grape::Formatter::Rabl
 
