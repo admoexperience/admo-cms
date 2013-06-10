@@ -69,6 +69,8 @@ GEM
     excon (0.22.1)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    faraday (0.8.7)
+      multipart-post (~> 1.1)
     fog (1.11.1)
       builder
       excon (~> 0.20)
@@ -102,6 +104,7 @@ GEM
     hashie (2.0.3)
     hike (1.2.3)
     http_parser.rb (0.5.3)
+    httpauth (0.2.0)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (3.0.1)
@@ -111,6 +114,8 @@ GEM
       jquery-rails
       railties (>= 3.1.0)
     json (1.8.0)
+    jwt (0.1.8)
+      multi_json (>= 1.5)
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -129,12 +134,19 @@ GEM
     moped (1.4.5)
     multi_json (1.7.6)
     multi_xml (0.5.3)
+    multipart-post (1.2.0)
     nested_form (0.3.2)
     net-scp (1.1.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.6.7)
     newrelic_rpm (3.6.2.96)
     nokogiri (1.5.10)
+    oauth2 (0.8.1)
+      faraday (~> 0.8)
+      httpauth (~> 0.1)
+      jwt (~> 0.1.4)
+      multi_json (~> 1.0)
+      rack (~> 1.2)
     omniauth (1.1.4)
       hashie (>= 1.2, < 3)
       rack
@@ -142,6 +154,12 @@ GEM
       omniauth (~> 1.0)
       omniauth-openid (~> 1.0)
       ruby-openid-apps-discovery (~> 1.2.0)
+    omniauth-google-oauth2 (0.1.17)
+      omniauth (~> 1.0)
+      omniauth-oauth2
+    omniauth-oauth2 (1.1.1)
+      oauth2 (~> 0.8.0)
+      omniauth (~> 1.0)
     omniauth-openid (1.0.1)
       omniauth (~> 1.0)
       rack-openid (~> 1.3.1)
@@ -273,12 +291,13 @@ DEPENDENCIES
   jquery-rails
   mongoid
   newrelic_rpm
+  omniauth-google-oauth2
   pg
   pubnub
   rails (= 3.2.13)
   rails_admin
   sass-rails (~> 3.2.3)
-  simple_admin_auth (= 0.0.2)
+  simple_admin_auth
   simple_status
   sqlite3
   thin

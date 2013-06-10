@@ -32,7 +32,8 @@ gem 'jquery-rails'
 
 gem 'thin'
 gem 'simple_status'
-gem 'simple_admin_auth', '0.0.2'
+gem 'simple_admin_auth'
+gem 'omniauth-google-oauth2'
 
 
 
