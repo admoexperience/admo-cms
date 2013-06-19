@@ -40,7 +40,7 @@ gem 'omniauth-google-oauth2'
 gem 'mongoid'
 
 gem 'grape'
-gem 'grape-swagger', :git => 'git://github.com/drubin/grape-swagger.git', :branch => 'suffix-base-path'
+gem 'grape-swagger', '~>0.6.0'
 gem 'grape-rabl'
 
 gem 'pubnub'
