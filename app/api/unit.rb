@@ -17,6 +17,11 @@ class Unit < Grape::API
     end
   end
 
+  #Allows the requests to be made from with in JS
+  before do
+    header "Access-Control-Allow-Origin", "*"
+  end
+
   desc "My system api"
   resource :unit do
 
