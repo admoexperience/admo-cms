@@ -1,5 +1,7 @@
 class Unit < Grape::API
-  rescue_from :all
+  if Rails.env.production?
+    rescue_from :all
+  end
   format :json
   formatter :json, Grape::Formatter::Rabl
 
@@ -79,6 +81,28 @@ class Unit < Grape::API
       screenshot = @unit.admo_screenshots.create(:image=>params[:screenshot][:tempfile],:image_name=>params[:screenshot][:filename])
       screenshot.save!
       @unit.clean_up
+      @screenshot = screenshot
+    end
+
+
+    desc "Uploads a content", :notes=> <<-NOTE
+    This method can NOT be called from swagger you need to do something like
+
+        curl --form image=image.jpg http://$server/$baseUrl/image
+
+    NOTE
+    post "image" , :rabl => "screenshot" do
+      authenticate!
+      raise "image is required" unless params[:image]
+
+      tempfile = params[:image][:tempfile]
+      file_name = params[:image][:filename]
+      screenshot = @unit.admo_images.create({:image=>tempfile, :image_name=> file_name})
+      screenshot.save!
+      unless @unit.dropbox_session_info.empty?
+        #Push to dropbox
+        screenshot.upload_to_dropbox(tempfile)
+      end
       @screenshot = screenshot
     end
   end

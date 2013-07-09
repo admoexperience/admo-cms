@@ -47,6 +47,8 @@ GEM
     dragonfly (0.9.15)
       multi_json (~> 1.0)
       rack
+    dropbox-sdk (1.6.1)
+      json
     em-http-request (1.0.3)
       addressable (>= 2.2.3)
       cookiejar
@@ -278,6 +280,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   dragonfly
+  dropbox-sdk (~> 1.6.1)
   fog
   grape
   grape-rabl
