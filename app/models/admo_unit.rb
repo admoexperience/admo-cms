@@ -12,10 +12,12 @@ class AdmoUnit
 
   field :api_key,          type: String,   :default => lambda {SecureRandom.uuid}
   field :name,             type: String
+  field :dropbox_session_info,   type: String,   :default=> ''
   field :config,           type: Hash,     :default => {}
   field :last_checkin,     type: Time,     :default => nil
 
   has_many :admo_screenshots
+  has_many :admo_images
 
   validates_uniqueness_of :api_key
   validates_uniqueness_of :name

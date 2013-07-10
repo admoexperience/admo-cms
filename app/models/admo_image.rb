@@ -1,4 +1,4 @@
-class AdmoScreenshot
+class AdmoImage
   include Mongoid::Document
   include Mongoid::Timestamps
 
@@ -21,6 +21,11 @@ class AdmoScreenshot
   before_destroy do
     image.destroy!
   end
+
+  #Not super nice
+  def upload_to_dropbox(imagefile)
+    dbox = DropboxUploader.new(self.admo_unit.dropbox_session_info)
+    folder = self.admo_unit.config['dropbox_path'] || raise("Missing dropbox_path config variable")
+    dbox.upload_file(folder, imagefile, self.image_name)
+  end
 end
-
-
