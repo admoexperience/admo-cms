@@ -40,6 +40,6 @@ gem 'pubnub'
 gem 'fog'
 gem 'dragonfly'
 
-gem 'rails_admin'
+gem 'rails_admin', '~> 0.5.0'
 
 gem 'dropbox-sdk', '~> 1.6.1', require: 'dropbox_sdk'
