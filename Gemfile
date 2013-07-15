@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-gem 'rails', '3.2.13'
+gem 'rails', '~> 4.0.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -13,19 +13,10 @@ group :production do
   gem 'pg'
 end
 
+gem 'sass-rails',   '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
-  gem 'uglifier', '>= 1.0.3'
-  gem 'turbo-sprockets-rails3'
-end
+gem 'uglifier', '~> 2.1.2'
 
 gem 'newrelic_rpm'
 gem 'jquery-rails'
@@ -37,7 +28,8 @@ gem 'omniauth-google-oauth2'
 
 
 
-gem 'mongoid'
+gem 'bson_ext'
+gem 'mongoid', github: 'mongoid/mongoid'
 
 gem 'grape'
 gem 'grape-swagger', '~>0.6.0'
