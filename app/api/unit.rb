@@ -93,7 +93,7 @@ class Unit < Grape::API
     desc "Uploads a content", :notes=> <<-NOTE
     This method can NOT be called from swagger you need to do something like
 
-        curl --form image=image.jpg http://$server/$baseUrl/image
+        curl --form image=@image.jpg --form tags=testing,mytag,newtag  http://$server/$baseUrl/image
 
     NOTE
     post "image" , :rabl => "screenshot" do
@@ -102,7 +102,8 @@ class Unit < Grape::API
 
       tempfile = params[:image][:tempfile]
       file_name = params[:image][:filename]
-      screenshot = @unit.admo_images.create({:image=>tempfile, :image_name=> file_name})
+      tags = params[:tags] || ''
+      screenshot = @unit.admo_images.create({:image=>tempfile, :image_name=> file_name, :tags=> tags })
       screenshot.save!
       unless @unit.dropbox_session_info.empty?
         #Push to dropbox
