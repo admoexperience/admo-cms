@@ -8,14 +8,19 @@ gem 'rails', '~> 4.0.0'
 
 group :development, :test do
   gem 'sqlite3'
+  gem 'foreman'
+  gem 'rb-fsevent'
+  gem 'guard-livereload'
+  gem 'rack-livereload'
 end
+
+
 group :production do
   gem 'pg'
 end
 
 gem 'sass-rails',   '~> 4.0.0'
 gem 'coffee-rails', '~> 4.0.0'
-
 gem 'uglifier', '~> 2.1.2'
 
 gem 'newrelic_rpm'
