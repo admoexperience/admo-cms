@@ -1,3 +1,3 @@
 pubnub:
-  publish_key: <%= ENV['PUB_NUB_PUBLISH_KEY'] || "pub-c-806ef41c-8fdb-45c9-8ddd-da053b45a04a" %>
-  subscribe_key: <%= ENV['PUB_NUB_SUBSCRIBE_KEY'] || "sub-c-5811c59e-bbce-11e2-846b-02ee2ddab7fe" %>
+  publish_key: <%= ENV['PUBNUB_PUBLISH_KEY'] || "pub-c-806ef41c-8fdb-45c9-8ddd-da053b45a04a" %>
+  subscribe_key: <%= ENV['PUBNUB_SUBSCRIBE_KEY'] || "sub-c-5811c59e-bbce-11e2-846b-02ee2ddab7fe" %>
