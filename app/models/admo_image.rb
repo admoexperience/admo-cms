@@ -7,6 +7,7 @@ class AdmoImage
 
   field :image_uid
   field :image_name
+  field :tags
   image_accessor :image
 
   validates_size_of :image, :maximum =>  5.megabytes
