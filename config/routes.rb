@@ -7,7 +7,7 @@ AdmoCms::Application.routes.draw do
     mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   end
 
-  match '/media/*other', :to => Dragonfly[:images]
+  get '/media/*other', :to => Dragonfly[:images]
 
   mount RootApi => '/api/'
 
