@@ -54,8 +54,8 @@ class AdmoUnit
     return if Rails.env.development?
 
     pubnub = Pubnub.new(
-      :publish_key=> 'pub-c-806ef41c-8fdb-45c9-8ddd-da053b45a04a',
-      :subscribe_key=>'sub-c-5811c59e-bbce-11e2-846b-02ee2ddab7fe',
+      :publish_key=> Settings.pubnub.publish_key,
+      :subscribe_key=> Settings.pubnub.subscribe_key,
       :secret_key    => nil,    # optional, if used, message signing is enabled
       :cipher_key    => nil,    # optional, if used, encryption is enabled
       :ssl           => false     # true or default is false)
