@@ -7,6 +7,8 @@ class AdmoUnit
     kinect_elevation
     environment
     web_ui_server
+    pod_file
+
   ).freeze
 
 
