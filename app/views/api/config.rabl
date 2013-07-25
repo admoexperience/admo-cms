@@ -1,5 +1,5 @@
 object false
 node :config do
-  @unit.config
+  @config
 end
 

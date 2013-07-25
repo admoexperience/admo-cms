@@ -38,6 +38,14 @@ class AdmoUnit
     self.publish_change
   end
 
+  #Function is used to generate config based on the unit + global + account status
+  def get_config
+    global_config = {
+      'pubnub_subscribe_key'=> Settings.pubnub.subscribe_key
+    }
+    global_config.merge(self.config)
+  end
+
   #Function cleans up older screenshots
   def clean_up
     #Delete every thing but the most recent 5 screenshots

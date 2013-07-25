@@ -66,11 +66,13 @@ class Unit < Grape::API
       #TODO: Move logic into model
       # error!("Invalid config key please use allowed values") unless AdmoUnit::CONFIG_KEYS.include? key
       @unit.set_config(key,value)
+      @config = @unit.get_config
     end
 
     desc "Gets configuration for the unit", :nickname => 'config'
     get :config, :rabl => "config" do
       authenticate!
+      @config = @unit.get_config
     end
 
 
