@@ -10,10 +10,12 @@ group :development, :test do
   gem 'sqlite3'
   gem 'foreman'
   gem 'rb-fsevent'
+  gem 'rspec-rails', '~> 2.0'
   gem 'guard-livereload'
   gem 'rack-livereload'
+  gem 'timecop'
+  gem 'factory_girl'
 end
-
 
 group :production do
   gem 'pg'

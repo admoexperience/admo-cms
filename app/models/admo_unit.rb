@@ -8,7 +8,6 @@ class AdmoUnit
     environment
     web_ui_server
     pod_file
-
   ).freeze
 
 
