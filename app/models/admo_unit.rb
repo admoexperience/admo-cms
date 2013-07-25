@@ -8,7 +8,6 @@ class AdmoUnit
     environment
     web_ui_server
     pod_file
-
   ).freeze
 
 
@@ -37,6 +36,14 @@ class AdmoUnit
     self.config = hash
     self.save
     self.publish_change
+  end
+
+  #Function is used to generate config based on the unit + global + account status
+  def get_config
+    global_config = {
+      'pubnub_subscribe_key'=> Settings.pubnub.subscribe_key
+    }
+    global_config.merge(self.config)
   end
 
   #Function cleans up older screenshots
