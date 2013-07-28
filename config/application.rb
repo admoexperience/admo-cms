@@ -38,6 +38,7 @@ module AdmoCms
 
     config.paths.add "app/api", glob: "**/*.rb"
     config.autoload_paths += Dir["#{Rails.root}/app/api/*"]
+    config.autoload_paths += Dir["#{Rails.root}/app/jobs/*"]
     config.autoload_paths += %W(#{config.root}/lib)
 
     # Configure sensitive parameters which will be filtered from the log file.

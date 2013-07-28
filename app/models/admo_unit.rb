@@ -59,21 +59,6 @@ class AdmoUnit
 
 
   def publish_change
-    #Only send push notifications in prod mode
-    return if Rails.env.development?
-
-    pubnub = Pubnub.new(
-      :publish_key=> Settings.pubnub.publish_key,
-      :subscribe_key=> Settings.pubnub.subscribe_key,
-      :secret_key    => nil,    # optional, if used, message signing is enabled
-      :cipher_key    => nil,    # optional, if used, encryption is enabled
-      :ssl           => false     # true or default is false)
-    )
-
-    pubnub.publish({
-      :channel => self.api_key,
-      :message => 'update',
-      :callback => lambda { |message| }
-    })
+    PubnubPushJob.new.async.perform(self.api_key, 'update')
   end
 end
