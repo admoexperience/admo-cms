@@ -34,7 +34,7 @@ gem 'simple_admin_auth'
 gem 'omniauth-google-oauth2'
 
 
-
+gem 'sucker_punch', '~> 1.0.1'
 gem 'bson_ext'
 gem 'mongoid', github: 'mongoid/mongoid'
 
