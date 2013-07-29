@@ -59,6 +59,6 @@ class AdmoUnit
 
 
   def publish_change
-    PubnubPushJob.new.async.perform(self.api_key, 'update')
+    PubnubPushJob.new.proccess(self.api_key, 'update')
   end
 end

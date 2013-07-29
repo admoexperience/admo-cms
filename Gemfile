@@ -49,6 +49,8 @@ gem 'dragonfly'
 
 gem 'bugsnag'
 
+gem 'hipchat', '~> 0.11.0'
+
 gem 'rails_admin', '~> 0.5.0'
 
 gem 'dropbox-sdk', '~> 1.6.1', require: 'dropbox_sdk'
