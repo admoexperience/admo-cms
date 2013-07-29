@@ -23,6 +23,11 @@ class AdmoImage
     image.destroy!
   end
 
+  def thumbnail_url
+    #doesn't include hostname, also append the filename at the end to get the original name + ext
+    self.image.thumb('100x100>').url + '/' + self.image_name
+  end
+
   #Not super nice
   def upload_to_dropbox(imagefile)
     dbox = DropboxUploader.new(self.admo_unit.dropbox_session_info)
