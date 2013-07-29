@@ -109,7 +109,7 @@ class Unit < Grape::API
       img = @unit.admo_images.create({:image=>tempfile, :image_name=> file_name, :tags=> tags })
       img.save!
       hipchat_message = "New image uploaded to #{@unit.name} #{request.base_url}#{img.thumbnail_url}"
-      HipchatNotifyJob.new.async.perform(hipchat_message, 'text')
+      HipchatNotifyJob.new.proccess(hipchat_message, 'text')
       unless @unit.dropbox_session_info.empty?
         #Push to dropbox
         img.upload_to_dropbox(tempfile)
