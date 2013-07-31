@@ -31,7 +31,17 @@ class AdmoUnit
   end
 
   def push_to_dashboard(requestbase,screenshot)
-     DashboardNotifyJob.new.proccess(self.name, {:checkedinAt=>self.last_checkin,:screenshotUrl=> "#{requestbase}#{screenshot.image.url}", :screenshotCreatedAt=> screenshot.created_at})
+     return unless self.dashboard_enabled
+     #Hack to get it working better, if screenshots aren't there :/ this is horrid coding
+     url = ""
+     url = "#{requestbase}#{screenshot.image.url}" if screenshot and screenshot.image
+     screenshot_created_at = ""
+     screenshot_created_at = screenshot.created_at if screenshot
+     DashboardNotifyJob.new.proccess(self.name, {:checkedinAt=>self.last_checkin,:screenshotUrl=> url, :screenshotCreatedAt=> screenshot_created_at})
+  end
+
+  def dashboard_enabled
+    return (self.config.has_key? 'dashboard_enabled' and self.config['dashboard_enabled'])
   end
 
   def create_screenshot(requestbase, hash)
