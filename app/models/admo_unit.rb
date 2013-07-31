@@ -24,9 +24,21 @@ class AdmoUnit
   validates_uniqueness_of :name
   validates_presence_of :name
 
-  def checkin
+  def checkin(requestbase)
     self.last_checkin = Time.now()
     self.save
+    self.push_to_dashboard(requestbase,self.admo_screenshots.last)
+  end
+
+  def push_to_dashboard(requestbase,screenshot)
+     DashboardNotifyJob.new.proccess(self.name, {:checkedinAt=>self.last_checkin,:screenshotUrl=> "#{requestbase}#{screenshot.image.url}", :screenshotCreatedAt=> screenshot.created_at})
+  end
+
+  def create_screenshot(requestbase, hash)
+    screenshot = self.admo_screenshots.create!(hash)
+    self.clean_up
+    self.push_to_dashboard(requestbase,screenshot)
+    return screenshot
   end
 
   def set_config(key,value)

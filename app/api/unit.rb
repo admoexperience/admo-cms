@@ -40,7 +40,7 @@ class Unit < Grape::API
     NOTE
     get :checkin, :rabl => "unit" do
       authenticate!
-      @unit.checkin
+      @unit.checkin(request.base_url)
     end
 
     desc "Sets an config option", :nickname => 'config', :notes => <<-NOTE
@@ -85,10 +85,7 @@ class Unit < Grape::API
     post "screenshot" , :rabl => "screenshot" do
       authenticate!
       raise "Screenshot is required" unless params[:screenshot]
-      screenshot = @unit.admo_screenshots.create(:image=>params[:screenshot][:tempfile],:image_name=>params[:screenshot][:filename])
-      screenshot.save!
-      @unit.clean_up
-      @screenshot = screenshot
+      @screenshot = @unit.create_screenshot(request.base_url, :image=>params[:screenshot][:tempfile],:image_name=>params[:screenshot][:filename])
     end
 
 

@@ -4,8 +4,8 @@ class BaseJob
   def proccess(*args, &block)
     #Only send push notifications in prod mode
     Rails.logger.debug "Added #{self.class.to_s} job"
-    return unless Rails.env.production?
- 
+    #return unless Rails.env.production?
+
     begin
      async.perform(*args, &block)
     rescue Exception => e
