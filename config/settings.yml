@@ -5,3 +5,7 @@ pubnub:
 hipchat:
   api_key: <%= ENV['HIPCHAT_API_KEY'] %>
   room: <%= ENV['HIPCHAT_ROOM'] || 'Admo Dev' %>
+
+dashboard:
+  uri: <%= ENV['DASHBOARD_URI'] || 'http://localhost:3030/widgets/' %>
+  api_key: <%= ENV['DASHBOARD_API_KEY'] || 'YOUR_AUTH_TOKEN' %>
