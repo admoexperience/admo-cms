@@ -24,9 +24,31 @@ class AdmoUnit
   validates_uniqueness_of :name
   validates_presence_of :name
 
-  def checkin
+  def checkin(requestbase)
     self.last_checkin = Time.now()
     self.save
+    self.push_to_dashboard(requestbase,self.admo_screenshots.last)
+  end
+
+  def push_to_dashboard(requestbase,screenshot)
+     return unless self.dashboard_enabled
+     #Hack to get it working better, if screenshots aren't there :/ this is horrid coding
+     url = ""
+     url = "#{requestbase}#{screenshot.image.url}" if screenshot and screenshot.image
+     screenshot_created_at = ""
+     screenshot_created_at = screenshot.created_at if screenshot
+     DashboardNotifyJob.new.proccess(self.name, {:checkedinAt=>self.last_checkin,:screenshotUrl=> url, :screenshotCreatedAt=> screenshot_created_at})
+  end
+
+  def dashboard_enabled
+    return (self.config.has_key? 'dashboard_enabled' and self.config['dashboard_enabled'])
+  end
+
+  def create_screenshot(requestbase, hash)
+    screenshot = self.admo_screenshots.create!(hash)
+    self.clean_up
+    self.push_to_dashboard(requestbase,screenshot)
+    return screenshot
   end
 
   def set_config(key,value)
