@@ -19,6 +19,8 @@ end
 
 group :production do
   gem 'pg'
+  #Used by heroku to enable logging and other magic
+  gem 'rails_12factor'
 end
 
 gem 'sass-rails',   '~> 4.0.0'
