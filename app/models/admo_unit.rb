@@ -20,6 +20,10 @@ class AdmoUnit
   has_many :admo_screenshots
   has_many :admo_images
 
+  belongs_to :admo_account
+
+  validates_presence_of :admo_account
+
   validates_uniqueness_of :api_key
   validates_uniqueness_of :name
   validates_presence_of :name
@@ -65,7 +69,9 @@ class AdmoUnit
     global_config = {
       'pubnub_subscribe_key'=> Settings.pubnub.subscribe_key
     }
-    global_config.merge(self.config)
+
+    account_config = self.admo_account.try(:config) || {}
+    global_config.merge(account_config).merge(self.config)
   end
 
   #Function cleans up older screenshots
