@@ -91,6 +91,17 @@ end
   # Label methods for model instances:
   # config.label_methods << :description # Default is [:name, :title]
 
+  config.model 'AdmoUnit' do
+    edit do
+      configure :admo_screenshots do
+        hide
+      end
+      configure :admo_images do
+        hide
+      end
+    end
+  end
+
 
   ################  Model configuration  ################
 
