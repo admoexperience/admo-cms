@@ -44,4 +44,19 @@ describe AdmoUnit do
     @unit.config = {'1' => 'value', 'pubnub_subscribe_key'=> 'value2','account'=> 'unitaccount'}
     @unit.get_config.should eq({'1' => 'value','pubnub_subscribe_key'=> 'value2','account'=> 'unitaccount'})
   end
+
+
+  it " dashboard_enabled feature" do
+    @unit.dashboard_enabled.should eq false
+
+    @unit.config = {'dashboard_enabled' => true}
+    @unit.dashboard_enabled.should eq true
+  end
+
+  it " dashboard_enabled feature should carry over from account" do
+    account = create(:admo_account)
+    account.config = config = {'dashboard_enabled' => true}
+    @unit.admo_account = account
+    @unit.dashboard_enabled.should eq true
+  end
 end
