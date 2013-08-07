@@ -136,6 +136,8 @@ GEM
     haml (4.0.3)
       tilt
     hashie (2.0.5)
+    heroku_rails_deflate (0.2.0)
+      rack (~> 1.5.0)
     hike (1.2.3)
     hipchat (0.11.0)
       httparty
@@ -351,6 +353,7 @@ DEPENDENCIES
   grape-rabl
   grape-swagger (~> 0.6.0)
   guard-livereload
+  heroku_rails_deflate
   hipchat (~> 0.11.0)
   jquery-rails
   mongoid!

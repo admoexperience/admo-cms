@@ -5,6 +5,11 @@ FactoryGirl.define do
 
   factory :admo_unit do
     config({'key1'=> 'value1', 'key2'=>'value2'})
-    name 
+    name
+    admo_account
+  end
+
+  factory :admo_account do
+    name
   end
 end
