@@ -28,6 +28,9 @@ class AdmoUnit
   validates_uniqueness_of :name
   validates_presence_of :name
 
+  #Indexes
+  index({ api_key: 1 }, { unique: true, name: "api_key_index" })
+
   def checkin(requestbase)
     self.last_checkin = Time.now()
     self.save

@@ -11,4 +11,6 @@ class AdmoAccount
   validates_uniqueness_of :api_key
   validates_uniqueness_of :name
   validates_presence_of :name
+
+  index({ api_key: 1 }, { unique: true, name: "api_key_index" })
 end
