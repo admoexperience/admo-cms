@@ -48,7 +48,8 @@ class AdmoUnit
   end
 
   def dashboard_enabled
-    return (self.config.has_key? 'dashboard_enabled' and self.config['dashboard_enabled'])
+    conf = self.get_config
+    return (conf.has_key? 'dashboard_enabled' and conf['dashboard_enabled'])
   end
 
   def create_screenshot(requestbase, hash)
