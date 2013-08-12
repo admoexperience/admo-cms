@@ -57,6 +57,10 @@ gem 'hipchat', '~> 0.11.0'
 
 gem 'rails_admin', '~> 0.5.0'
 
+gem 'codemirror-rails'
+
+gem 'devise'
+
 gem 'dropbox-sdk', '~> 1.6.1', require: 'dropbox_sdk'
 
 gem "rails_config", "~> 0.3.3"

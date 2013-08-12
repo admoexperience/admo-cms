@@ -1,6 +1,5 @@
 AdmoCms::Application.routes.draw do
-
-
+  devise_for :users
   mount SimpleStatus::Application =>'/status/'
 
   constraints SimpleAdminAuth::Authenticate do

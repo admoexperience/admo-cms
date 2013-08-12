@@ -9,3 +9,15 @@ hipchat:
 dashboard:
   uri: <%= ENV['DASHBOARD_URI'] || 'http://localhost:3030/widgets/' %>
   api_key: <%= ENV['DASHBOARD_API_KEY'] || 'YOUR_AUTH_TOKEN' %>
+
+
+email:
+  # (host_name used when generating link URLs included in a mail)
+  host_name: <%= ENV['EMAIL_HOST_NAME'] || 'http://localhost:3002/' %>
+  from: test@test.com
+  user_name: test@test.com
+  password:
+  smtp_hostname:
+  smtp_port:
+  smtp_domain:
+

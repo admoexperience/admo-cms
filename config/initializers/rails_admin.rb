@@ -15,11 +15,11 @@ module RailsAdmin
 
        RailsAdmin::Config::Actions.register(self)
        register_instance_option :visible? do
-          true
+          bindings[:object].respond_to? :publish_change
         end
 
         register_instance_option :member do
-         true
+          true
         end
 
         register_instance_option :link_icon do
@@ -68,7 +68,7 @@ end
   # config.main_app_name = Proc.new { |controller| [Rails.application.engine_name.titleize, controller.params['action'].titleize] }
 
   # RailsAdmin may need a way to know who the current user is]
-  config.current_user_method { current_user } # auto-generated
+  #config.current_user_method { current_admin_user } # auto-generated
 
   # If you want to track changes on your models:
   # config.audit_with :history, 'User'
@@ -98,6 +98,31 @@ end
       end
       configure :admo_images do
         hide
+      end
+    end
+  end
+
+  config.model 'AdmoContent' do
+    edit do
+      configure :value, :code_mirror do
+        config do
+           {
+              theme: 'night',
+              lineNumbers: true,
+              gutter: true,
+              lineWrapping: true,
+              mode: "javascript",
+              #gutters: "CodeMirror-lint-markers",
+              #lint: true
+            }
+        end
+
+        assets  do
+         {
+             :mode => '/assets/codemirror/modes/javascript.js',
+             :theme => '/assets/codemirror/themes/night.css'
+          }
+        end
       end
     end
   end
