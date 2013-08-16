@@ -1,7 +1,0 @@
-%ul.nav.pull-right.root_links
-  - actions(:root).each do |action|
-    %li{:class => "#{action.action_name}_root_link"}= link_to wording_for(:menu, action), { :action => action.action_name, :controller => 'rails_admin/main' }, :class => "pjax"
-  - if main_app_root_path = (main_app.root_path rescue false)
-    %li= link_to t('admin.home.name').capitalize, main_app_root_path
-  - if _current_user && _current_user.respond_to?(:email) && _current_user.email.present?
-    %li= image_tag "#{(request.ssl? ? 'https://secure' : 'http://www')}.gravatar.com/avatar/#{Digest::MD5.hexdigest _current_user.email}?s=30", :style => 'padding-top:5px'

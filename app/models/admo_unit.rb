@@ -44,7 +44,7 @@ class AdmoUnit
      url = "#{requestbase}#{screenshot.image.url}" if screenshot and screenshot.image
      screenshot_created_at = ""
      screenshot_created_at = screenshot.created_at if screenshot
-     DashboardNotifyJob.new.proccess(self.name, {:checkedinAt=>self.last_checkin,:screenshotUrl=> url, :screenshotCreatedAt=> screenshot_created_at})
+     DashboardNotifyJob.new.process(self.name, {:checkedinAt=>self.last_checkin,:screenshotUrl=> url, :screenshotCreatedAt=> screenshot_created_at})
   end
 
   def dashboard_enabled
@@ -91,6 +91,6 @@ class AdmoUnit
 
 
   def publish_change
-    PubnubPushJob.new.proccess(self.api_key, 'update')
+    PubnubPushJob.new.process(self.api_key, 'update')
   end
 end

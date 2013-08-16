@@ -9,6 +9,7 @@ gem 'rails', '~> 4.0.0'
 group :development, :test do
   gem 'sqlite3'
   gem 'foreman'
+  gem 'pry'
   gem 'rb-fsevent'
   gem 'rspec-rails', '~> 2.0'
   gem 'guard-livereload'
@@ -60,6 +61,8 @@ gem 'rails_admin', '~> 0.5.0'
 gem 'codemirror-rails'
 
 gem 'devise'
+
+gem 'twitter-bootstrap-rails'
 
 gem 'dropbox-sdk', '~> 1.6.1', require: 'dropbox_sdk'
 

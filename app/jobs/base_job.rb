@@ -1,7 +1,7 @@
 class BaseJob
   include SuckerPunch::Job
 
-  def proccess(*args, &block)
+  def process(*args, &block)
     #Only send push notifications in prod mode
     Rails.logger.debug "Added #{self.class.to_s} job"
     #return unless Rails.env.production?

@@ -335,6 +335,11 @@ GEM
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
+    twitter-bootstrap-rails (2.2.8)
+      actionpack (>= 3.1)
+      execjs
+      rails (>= 3.1)
+      railties (>= 3.1)
     tzinfo (0.3.37)
     uglifier (2.1.2)
       execjs (>= 0.3.0)
@@ -373,6 +378,7 @@ DEPENDENCIES
   newrelic_rpm
   omniauth-google-oauth2
   pg
+  pry
   pubnub
   rack-livereload
   rails (~> 4.0.0)
@@ -388,4 +394,5 @@ DEPENDENCIES
   sucker_punch (~> 1.0.1)
   thin
   timecop
+  twitter-bootstrap-rails
   uglifier (~> 2.1.2)

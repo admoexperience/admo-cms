@@ -36,6 +36,7 @@ AdmoCms::Application.configure do
 
   config.eager_load = false
 
+  config.middleware.insert_after(ActionDispatch::Static, Rack::LiveReload)
 end
 #Force ouptut to be flushed directly after write for foreman
 $stdout.sync = true

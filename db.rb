@@ -3,11 +3,11 @@
 require 'dropbox_sdk'
 
 # Get your app key and secret from the Dropbox developer website
-APP_KEY = ENV['DBOX_APP_KEY'] || (raise 'Please set the DBOX_APP_KEY env var')
-APP_SECRET = ENV['DBOX_APP_SECRET']|| (raise 'Please set the DBOX_APP_SECRET env var')
+APP_KEY = 'ddbe08yio5cleof'   || ENV['DBOX_APP_KEY'] || (raise 'Please set the DBOX_APP_KEY env var')
+APP_SECRET ='5eabmvyak389bgp' || ENV['DBOX_APP_SECRET']|| (raise 'Please set the DBOX_APP_SECRET env var')
 
 # ACCESS_TYPE should be ':dropbox' or ':app_folder' as configured for your app
-ACCESS_TYPE = :dropbox
+ACCESS_TYPE = :app_folder
 
 session = DropboxSession.new(APP_KEY, APP_SECRET)
 
