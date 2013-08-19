@@ -19,4 +19,12 @@ class AdmoAccount
   validates_presence_of :name
 
   index({ api_key: 1 }, { unique: true, name: "api_key_index" })
+
+
+  def publish_change
+    #If the account config changes publish it to all units
+    self.admo_units.each do |unit|
+      unit.publish_change
+    end
+  end
 end
