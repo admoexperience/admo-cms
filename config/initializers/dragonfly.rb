@@ -7,6 +7,7 @@ app.configure do |c|
   c.log = Logger.new($stdout)
   if Rails.env.production?
     c.datastore = Dragonfly::DataStorage::S3DataStore.new(
+      :region=>ENV['S3_REGION'],
       :bucket_name => ENV['S3_BUCKET'],
       :access_key_id => ENV['S3_KEY'],
       :secret_access_key => ENV['S3_SECRET']
