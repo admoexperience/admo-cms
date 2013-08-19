@@ -4,6 +4,7 @@ class AppController < ApplicationController
 
 
   def index
+    @apps = current_user.admo_account.apps
   end
 
   def update
@@ -20,7 +21,7 @@ class AppController < ApplicationController
   end
 
   def show
-   @template = @app.compiled_template
+   @template = @app.config_as_json
   end
 
   def edit

@@ -1,0 +1,6 @@
+<ul class="nav nav-list">
+  <li class="nav-header">My Apps</li>
+  <% @apps.each do |c| %>
+  <li><%= link_to c.name, app_path(c) %></li>
+  <% end %>
+</ul>

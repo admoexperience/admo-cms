@@ -44,17 +44,4 @@ class User
 
   belongs_to :admo_account
   field :admin,   :type => Boolean, :default => false
-
-
-  def home_path
-    #Try redirect them to their content path
-    #This is horrid :/
-    app = self.try(:admo_account).try(:apps).try(:first)
-    if app
-
-      Rails.application.routes.url_helpers.app_content_path(app.id,app.contents.first.id)
-    else
-      '/docs/'
-    end
-  end
 end

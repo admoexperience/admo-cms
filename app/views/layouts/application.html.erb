@@ -46,7 +46,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">AdmoCms</a>
+          <a class="brand" href="/">AdmoCms</a>
           <div class="container-fluid nav-collapse">
             <ul class="nav">
             </ul>
@@ -67,7 +67,7 @@
          <% if @app %>
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header"><%= link_to @app.name, app_path(@app)  %></li>
+              <li class="nav-header"><%= link_to @app.name+' (edit)', app_path(@app) %></li>
               <% @app.contents.each do |c| %>
                 <li><%= link_to File.basename(c.key), edit_app_content_path(@app.id,c) %></li>
               <% end %>

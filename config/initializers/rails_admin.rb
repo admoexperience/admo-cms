@@ -103,13 +103,6 @@ end
       end
     end
   end
-
-  config.model 'App' do
-    edit do
-      configure :template, :code_mirror do
-      end
-    end
-  end
 end
 
 
