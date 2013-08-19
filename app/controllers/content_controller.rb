@@ -16,7 +16,7 @@ class ContentController < ApplicationController
     if @content.update_attributes(content_params)
       @content.last_edited_at = Time.now
       @content.save!
-      @content.admo_app.publish_change
+      @content.app.publish_change
       flash[:notice] = 'Content was successfully updated.'
       redirect_to :action=> :show
     else
