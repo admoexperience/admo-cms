@@ -81,3 +81,8 @@ display: none;
   margin-bottom: 15px;
   padding: 7px 9px;
 }
+
+/*Class added to selected links*/
+.selected{
+  background-color: #dddddd;
+}

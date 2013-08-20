@@ -5,7 +5,7 @@
 </script>
 
 <%= form_for @content, :url => app_content_path(:app_id=>@app.id, :id=>@content.id), :html => {:multipart => true} do |f| %>
-  <%= image_tag @content.value.thumb('100x100').url if @content.value %>
+  <%= content_thumbnail(@content) %>
   <%= f.file_field :value%>
   <%= f.submit :save, :class=>'btn btn-primary btn-block btn-large' %>
 <% end %>

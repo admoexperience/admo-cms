@@ -4,7 +4,6 @@ class Content
 
   field :last_published_at,    type: Time, :default => lambda {Time.now}
   field :last_edited_at,       type: Time, :default => lambda {Time.now}
-  field :mimetype,             type: String
   field :key,                  type: String
 
 
@@ -18,16 +17,6 @@ class Content
   file_accessor :value
 
   index({ app: 1 }, {name: "app_index" })
-
-
-  def mimetype_enum
-    all_status = {
-      'application/javascript' => 'Javascript',
-      'application/json' => 'Json',
-      'x-admo/db-content' => 'Content Reference'
-    }
-    all_status.map{|key, val| [val, key]}
-  end
 
   def publish_change
     ContentUploaderJob.new.process(self)
@@ -43,4 +32,15 @@ class Content
     end
   end
 
+  def is_image
+    File.extname(self.value_name) =~ /jpg|jpeg|png|gif/i
+  end
+
+  def thumb_url
+    if self.is_image
+      self.value.thumb('100x100').url
+    else
+      nil
+    end
+  end
 end
