@@ -99,6 +99,6 @@ class AdmoUnit
 
 
   def publish_change
-    push_event('configUpdate')
+    push_event('updateConfig')
   end
 end
