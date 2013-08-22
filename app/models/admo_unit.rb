@@ -89,8 +89,16 @@ class AdmoUnit
     end
   end
 
+  def push_event(command, params ={})
+    event = {
+      command: command,
+      params: params
+    }
+    PubnubPushJob.new.process(self.api_key, event.to_json)
+  end
+
 
   def publish_change
-    PubnubPushJob.new.process(self.api_key, 'update')
+    push_event('configUpdate')
   end
 end

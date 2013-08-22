@@ -75,6 +75,26 @@ class Unit < Grape::API
       @config = @unit.get_config
     end
 
+    desc "Pushes an event down to the unit", :nickname => 'event',:notes => <<-NOTE
+    Allows sending ONE time events down to the units.
+
+    **Note** if the unit is offline the event will be ignored!
+
+    |Command          |Description|
+    |**checkin**      |Tells the unit to checkin now, mostly can be used as a ping|
+    |**screenshot**   |Tells the unit to take a screenshot and send it to the cms|
+    |**updateConfig** |Tells the unit to update its config|
+    |**calibrate**    |Calibrate the unit|
+    |||
+    NOTE
+    params do
+      requires :command, type: String, desc: "Command you want to send"
+    end
+    put :event, :rabl => "event" do
+      authenticate!
+      @unit.push_event(params[:command])
+    end
+
 
     desc "Uploads a screenshot to a unit", :notes=> <<-NOTE
     This method can NOT be called from swagger you need to do something like
