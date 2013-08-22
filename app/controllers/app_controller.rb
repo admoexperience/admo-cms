@@ -4,7 +4,11 @@ class AppController < ApplicationController
 
 
   def index
-    @apps = current_user.admo_account.apps
+    if current_user.admo_account
+      @apps = current_user.admo_account.apps
+    else
+      @apps = []
+    end
   end
 
   def update
