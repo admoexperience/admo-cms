@@ -15,11 +15,11 @@ module RailsAdmin
 
        RailsAdmin::Config::Actions.register(self)
        register_instance_option :visible? do
-          true
+          bindings[:object].respond_to? :publish_change
         end
 
         register_instance_option :member do
-         true
+          true
         end
 
         register_instance_option :link_icon do
@@ -28,8 +28,9 @@ module RailsAdmin
 
         register_instance_option :controller do
          Proc.new do
+           name = @object.try(:name) || @object.class.to_s
            @object.publish_change
-           flash[:notice] = "You have published #{@object.name}."
+           flash[:notice] = "You have published #{name}."
            redirect_to back_or_index
          end
        end
@@ -63,12 +64,13 @@ end
   ################  Global configuration  ################
 
   # Set the admin name here (optional second array element will appear in red). For example:
-  config.main_app_name = ['Admo Cms', 'Admin']
+  #config.main_app_name = ['Admo Cms', 'Admin']
   # or for a more dynamic name:
-  # config.main_app_name = Proc.new { |controller| [Rails.application.engine_name.titleize, controller.params['action'].titleize] }
+  config.main_app_name = Proc.new { |controller| [Rails.application.engine_name.titleize, controller.params['action'].titleize] }
 
   # RailsAdmin may need a way to know who the current user is]
-  config.current_user_method { current_user } # auto-generated
+  config.current_user_method { current_admin } # auto-generated
+
 
   # If you want to track changes on your models:
   # config.audit_with :history, 'User'
@@ -101,22 +103,6 @@ end
       end
     end
   end
-
-
-  ################  Model configuration  ################
-
-  # Each model configuration can alternatively:
-  #   - stay here in a `config.model 'ModelName' do ... end` block
-  #   - go in the model definition file in a `rails_admin do ... end` block
-
-  # This is your choice to make:
-  #   - This initializer is loaded once at startup (modifications will show up when restarting the application) but all RailsAdmin configuration would stay in one place.
-  #   - Models are reloaded at each request in development mode (when modified), which may smooth your RailsAdmin development workflow.
-
-
-  # Now you probably need to tour the wiki a bit: https://github.com/sferik/rails_admin/wiki
-  # Anyway, here is how RailsAdmin saw your application's models when you ran the initializer:
-
 end
 
 

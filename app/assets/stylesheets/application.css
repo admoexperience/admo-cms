@@ -9,6 +9,9 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require codemirror
+  *= require codemirror/themes/night
+ *= require codemirror/addons/lint/lint
  *= require_tree .
  */
 
@@ -54,4 +57,32 @@ h2 {
 
 .out-of-order {
 display: none;
+}
+
+
+/**Devise*/
+/* User sign in and sign forms. */
+.border-form-div {
+  max-width: 300px;
+  padding: 19px 29px 29px;
+  margin: 0 auto 20px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+}
+.border-form-div .form-signin-heading,
+.border-form-div .checkbox {
+  margin-bottom: 10px;
+}
+.border-form-div input[type="text"],
+.border-form-div input[type="email"],
+.border-form-div input[type="password"] {
+  font-size: 16px;
+  height: auto;
+  margin-bottom: 15px;
+  padding: 7px 9px;
+}
+
+/*Class added to selected links*/
+.selected{
+  background-color: #dddddd;
 }

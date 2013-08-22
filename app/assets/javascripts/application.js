@@ -12,4 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
+//= require codemirror
+//= require codemirror/modes/javascript
+//= require codemirror/addons/lint/lint
+//= require codemirror/addons/lint/javascript-lint
+//= require codemirror/addons/lint/json-lint
 //= require_tree .
+

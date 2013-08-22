@@ -1,15 +1,21 @@
 AdmoCms::Application.routes.draw do
+  devise_for :admins
+  devise_for :users
 
 
   mount SimpleStatus::Application =>'/status/'
 
-  constraints SimpleAdminAuth::Authenticate do
-    mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-  end
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
   get '/media/*other', :to => Dragonfly[:images]
 
-  mount RootApi => '/api/'
 
-  root :to => redirect('/docs/')
+ resources :app do
+    resources :content
+ end
+
+ mount RootApi => '/api/'
+
+ root :to => "index#index"
+
 end

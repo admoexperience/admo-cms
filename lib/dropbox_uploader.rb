@@ -7,6 +7,11 @@ class DropboxUploader
     @client = DropboxClient.new(@session, ACCESS_TYPE)
   end
 
+  def upload(path, file)
+     response = @client.put_file(path, file, true) #overwrite=true
+     Rails.logger.info response.inspect
+  end
+
 
   def upload_file(path,file,name)
     date = Time.now.strftime("%Y-%m-%d")

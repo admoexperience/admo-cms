@@ -1,0 +1,10 @@
+<% require "ostruct" %>
+<%= form_for(@app) do |f| %>
+  <% @app.config.each do |key, value|%>
+  <%= key %>
+   Title <%= text_field_tag "app[config][#{key}][title]",  @app.config[key]['title'] %>
+   Description<%= text_field_tag "app[config][#{key}][description]",  @app.config[key]['description'] %>
+  <br/>
+  <% end%>
+   <%= f.submit :save, :class=>'btn btn-primary btn-block btn-large' %>
+<% end%>
