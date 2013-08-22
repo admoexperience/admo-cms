@@ -1,14 +1,3 @@
-<script>
-  $(function(){
-var editor = CodeMirror.fromTextArea(document.getElementById("app_template"), {
-        lineNumbers: true,
-        theme: 'night',
-        mode: 'application/json',
-        readOnly: true,
-      });
-  });
-
-</script>
 <% require "ostruct" %>
 <%= form_for(@app) do |f| %>
   <% @app.config.each do |key, value|%>
@@ -19,8 +8,3 @@ var editor = CodeMirror.fromTextArea(document.getElementById("app_template"), {
   <% end%>
    <%= f.submit :save, :class=>'btn btn-primary btn-block btn-large' %>
 <% end%>
-
-
-<textarea id="app_template">
-<%= @template%>
-</textarea>
