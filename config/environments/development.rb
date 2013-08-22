@@ -25,7 +25,7 @@ AdmoCms::Application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :file
 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'localhost', :port=>'3002' }
 
 
   # Do not compress assets

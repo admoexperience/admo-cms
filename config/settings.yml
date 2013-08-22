@@ -10,14 +10,15 @@ dashboard:
   uri: <%= ENV['DASHBOARD_URI'] || 'http://localhost:3030/widgets/' %>
   api_key: <%= ENV['DASHBOARD_API_KEY'] || 'YOUR_AUTH_TOKEN' %>
 
+general:
+  hostname: <%= ENV['GENERAL_HOSTNAME'] || 'localhost' %>
+
 
 email:
-  # (host_name used when generating link URLs included in a mail)
-  host_name: <%= ENV['EMAIL_HOST_NAME'] || 'http://localhost:3002/' %>
-  from: test@test.com
-  user_name: test@test.com
-  password:
-  smtp_hostname:
-  smtp_port:
-  smtp_domain:
+  from: <%= ENV['EMAIL_FROM'] || 'system@admo.co' %>
+  user_name: <%= ENV['EMAIL_USER_NAME'] || 'system@admo.co' %>
+  password: <%= ENV['EMAIL_PASSWORD'] || '' %>
+  smtp_hostname: <%= ENV['EMAIL_SMTP_HOSTNAME'] || 'smtp.gmail.com' %>
+  smtp_port: <%= ENV['EMAIL_SMTP_PORT'] || '587' %>
+  smtp_domain: <%= ENV['EMAIL_DOMAIN'] || 'admo.co' %>
 
