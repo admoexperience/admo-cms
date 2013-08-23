@@ -8,6 +8,13 @@ GIT
       origin (~> 1.0)
       tzinfo (~> 0.3.22)
 
+GIT
+  remote: git@github.com:drubin/rails_admin_map_field.git
+  revision: 44d0986add164145fd5acbc2fc5d1d8f2f7d9cdb
+  specs:
+    rails_admin_map_field (0.0.1)
+      rails (>= 3.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -51,8 +58,6 @@ GEM
     builder (3.1.4)
     celluloid (0.14.1)
       timers (>= 1.0.0)
-    codemirror-rails (3.15)
-      railties (>= 3.0, < 5)
     coderay (1.0.9)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
@@ -359,7 +364,6 @@ PLATFORMS
 DEPENDENCIES
   bson_ext
   bugsnag
-  codemirror-rails
   coffee-rails (~> 4.0.0)
   devise
   dragonfly
@@ -384,6 +388,7 @@ DEPENDENCIES
   rails (~> 4.0.0)
   rails_12factor
   rails_admin (~> 0.5.0)
+  rails_admin_map_field!
   rails_config (~> 0.3.3)
   rb-fsevent
   rspec-rails (~> 2.0)

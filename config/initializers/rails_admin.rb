@@ -152,6 +152,20 @@ end
       configure :admo_images do
         hide
       end
+
+      configure :longitude do
+        hide
+      end
+
+      configure :latitude, :map do
+        label "Location"
+        google_api_key "AIzaSyAuEhwdsqjl8kjyCWrtZLkpvzOEJIulVtc"
+        default_latitude -33.9149861
+        default_longitude 18.6560594
+        default_zoom_level 6
+        map_width '500px'
+        map_height '400px'
+      end
     end
   end
 end
