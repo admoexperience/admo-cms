@@ -159,7 +159,7 @@ end
 
       configure :latitude, :map do
         label "Location"
-        google_api_key "AIzaSyAuEhwdsqjl8kjyCWrtZLkpvzOEJIulVtc"
+        google_api_key Settings.gmaps.api_key
         default_latitude -33.9149861
         default_longitude 18.6560594
         default_zoom_level 6
