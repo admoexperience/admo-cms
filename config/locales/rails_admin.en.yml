@@ -5,3 +5,7 @@ en:
         title: "Publish"
         menu: "Publish"
         breadcrumb: "Publish"
+      push_event:
+        title: "PushEvent"
+        menu: "PushEvent"
+        breadcrumb: "PushEvent"

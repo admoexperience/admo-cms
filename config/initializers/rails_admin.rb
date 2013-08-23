@@ -8,6 +8,8 @@ require 'rails_admin/config/actions/base'
 module RailsAdminPublish
 end
 
+module RailsAdminPushEvent
+end
 module RailsAdmin
   module Config
     module Actions
@@ -39,6 +41,54 @@ module RailsAdmin
   end
 end
 
+module RailsAdmin
+  module Config
+    module Actions
+      class PushEvent < RailsAdmin::Config::Actions::Base
+
+       RailsAdmin::Config::Actions.register(self)
+       register_instance_option :visible? do
+          bindings[:object].respond_to? :push_event
+        end
+
+        register_instance_option :member do
+          true
+        end
+
+        register_instance_option :route_fragment do
+          'push_event'
+        end
+
+        register_instance_option :http_methods do
+          [:get,:post]
+        end
+
+        register_instance_option :link_icon do
+          'icon-cog'
+        end
+
+        register_instance_option :controller do
+          Proc.new do
+            if request.get? # EDIT
+              Rails.logger.info @action.template_name
+              respond_to do |format|
+              format.html { render @action.template_name }
+              format.js   { render @action.template_name, :layout => false }
+            end
+            elsif request.post? # UPDATE
+              @object.push_event(params[:command])
+              flash[:notice] = "You have sent #{params[:command]} to #{@object.name}."
+              redirect_to back_or_index
+            end
+          end
+        end
+      end
+    end
+  end
+end
+
+
+
 
 RailsAdmin.config do |config|
 
@@ -59,6 +109,7 @@ config.actions do
     history_show
     show_in_app
     publish
+    push_event
 end
 
   ################  Global configuration  ################
