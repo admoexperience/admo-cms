@@ -1,0 +1,6 @@
+<%=  rails_admin_form_for @object, :url => push_event_path(:model_name => @abstract_model.to_param, :id => @object.id), :as => @abstract_model.param_key,:method => :post ,:html => { :class => "form-horizontal denser", :data => { :title => "Mark" } } do |form| %>
+
+  <%= text_field_tag "command"%>
+
+  <%= form.submit "Push Event", :class=>'btn btn-info' %>
+<%end%>
