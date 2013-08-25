@@ -9,9 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require codemirror
-  *= require codemirror/themes/night
- *= require codemirror/addons/lint/lint
  *= require_tree .
  */
 
