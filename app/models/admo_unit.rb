@@ -17,6 +17,9 @@ class AdmoUnit
   field :config,           type: Hash,     :default => {}
   field :last_checkin,     type: Time,     :default => nil
 
+  field :latitude, type: Float
+  field :longitude, type: Float
+
   has_many :admo_screenshots
   has_many :admo_images
 

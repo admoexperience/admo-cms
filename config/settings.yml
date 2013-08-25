@@ -13,6 +13,9 @@ dashboard:
 general:
   hostname: <%= ENV['GENERAL_HOSTNAME'] || 'localhost' %>
 
+gmaps:
+  api_key: AIzaSyAuEhwdsqjl8kjyCWrtZLkpvzOEJIulVtc
+
 
 email:
   from: <%= ENV['EMAIL_FROM'] || 'system@admo.co' %>
