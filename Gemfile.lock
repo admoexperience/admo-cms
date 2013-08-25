@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/drubin/rails_admin_map_field.git
+  revision: 44d0986add164145fd5acbc2fc5d1d8f2f7d9cdb
+  specs:
+    rails_admin_map_field (0.0.1)
+      rails (>= 3.0.0)
+
+GIT
   remote: git://github.com/mongoid/mongoid.git
   revision: 5d8397e24b673724f4b70ca2923a62bfe20e6e79
   specs:
@@ -7,13 +14,6 @@ GIT
       moped (~> 1.5)
       origin (~> 1.0)
       tzinfo (~> 0.3.22)
-
-GIT
-  remote: git@github.com:drubin/rails_admin_map_field.git
-  revision: 44d0986add164145fd5acbc2fc5d1d8f2f7d9cdb
-  specs:
-    rails_admin_map_field (0.0.1)
-      rails (>= 3.0.0)
 
 GEM
   remote: https://rubygems.org/

@@ -60,7 +60,7 @@ gem 'rails_admin', '~> 0.5.0'
 
 #Had to run my own fork because the jquery load function wasn't happening
 #Also wanted the maxwidth/maxheight feature
-gem "rails_admin_map_field", :git => "git@github.com:drubin/rails_admin_map_field.git"
+gem 'rails_admin_map_field',  github: 'drubin/rails_admin_map_field'
 
 gem 'devise'
 
