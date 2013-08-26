@@ -1,6 +1,7 @@
 class AdmoAccount
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Slug
 
   field :api_key,          type: String,   :default => lambda {SecureRandom.uuid}
   field :name,             type: String
@@ -10,6 +11,8 @@ class AdmoAccount
   #We need a generic blob of auth info that can be encrypted
   #It also needs to be different for TVR/scala and stuff but setup that when know that info
   field :dropbox_session_info,   type: String,   :default=> ''
+
+  slug :name
 
   has_many :admo_units
   has_many :apps

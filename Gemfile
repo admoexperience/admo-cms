@@ -58,6 +58,8 @@ gem 'hipchat', '~> 0.11.0'
 
 gem 'rails_admin', '~> 0.5.0'
 
+gem 'mongoid_slug'
+
 #Had to run my own fork because the jquery load function wasn't happening
 #Also wanted the maxwidth/maxheight feature
 gem 'rails_admin_map_field',  github: 'drubin/rails_admin_map_field'
