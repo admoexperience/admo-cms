@@ -1,6 +1,7 @@
 class App
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Slug
 
   field :name,              type: String
   field :description,       type: String
@@ -14,11 +15,20 @@ class App
   field :last_published_at, type: Time
   field :base_path, type: String
 
+  slug do |obj|
+    #Make the slug in the format  $account-$name
+    x = obj.name.to_url
+    x = obj.admo_account.name.to_url+'-'+x if obj.admo_account
+    x
+  end
+
   belongs_to :admo_account
   has_many :contents
 
   validates_uniqueness_of :name
   validates_presence_of :name
+
+  validates_presence_of :admo_account
 
   def publish_change
     ContentUploaderJob.new.process(self)

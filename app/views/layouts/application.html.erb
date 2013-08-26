@@ -69,7 +69,7 @@
             <ul class="nav nav-list">
               <li class="nav-header"><%= link_to @app.name+' (edit)', app_path(@app) %></li>
               <% @app.contents.each do |c|
-                path = edit_app_content_path(@app.id,c)
+                path = edit_app_content_path(@app,c)
                 cp = current_page?(path) ? 'selected': ''
               %>
 
