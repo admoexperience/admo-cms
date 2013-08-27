@@ -10,6 +10,10 @@ class DashboardController < ApplicationController
     end
   end
 
+  def content
+
+  end
+
   def update
     #TODO: Figure out rails4 mass assignment provention,
     #but this is only for the hash it is should be ok
