@@ -6,9 +6,9 @@
     <title><%= content_for?(:title) ? yield(:title) : "Admo Content Management System" %></title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag "cms", :media => "all" %>
+    <%= stylesheet_link_tag "application", :media => "all" %>
 
-    <%= javascript_include_tag "cms" %>
+    <%= javascript_include_tag "application" %>
 
     <%= favicon_link_tag 'favicon.png', :rel => 'shortcut icon' %>
   </head>
