@@ -13,19 +13,27 @@
 
 /***** Colours *****/
 $white: #fff;
-$background: #f1f1f2;
-$grey: #6d6e70;
-$lightgrey: #e6e7e8;
 $darkgrey: #404041;
+$middarkgrey: #58585b;
+$grey: #6d6e70;
 $midgrey: #808284;
+$lightmidgrey: #939597;
+$lightgrey3: #a7a9ab;
+$lightgrey2: #bbbdc0;
+$lightgrey: #e6e7e8;
+$backgroundgrey: #f1f1f2;
+$lightbackgroundgrey: #fbfbfb;
 $blue: #49a8de;
 $lightblue: #6abfe5;
 
 /***** Sizes *****/
 $headerHeight: 75px;
-$pageWidth: 1000px;
-$navWidth: 130px;
-$navHeight: 110px;
+$pageWidth: 1200px;
+$navWidth: round($pageWidth * 0.12);
+$itemHeight: round($navWidth * 0.4);
+$navHeight: $itemHeight * 2;
+$sectionWidth: round($pageWidth * 0.3);
+$contentWidth: $pageWidth - $navWidth - $sectionWidth;
 
 /***** Fonts *****/
 @font-face{
@@ -58,6 +66,15 @@ a {
 }
 input {
   font-family: $defaultFontFamily;
+
+  &:focus {
+    outline: 2px solid $blue;
+  }
+}
+
+@mixin transition($property) {
+  transition: $property 150ms;
+  -webkit-transition: $property 150ms;
 }
 
 /***** Body *****/
@@ -67,7 +84,12 @@ html, body {
   font-family: $defaultFontFamily;
   font-size: 16px;
   color: $grey;
-  background-color: $background;
+}
+body {
+  background-color: $white;
+}
+body.login {
+  background-color: $backgroundgrey !important;
 }
 
 
@@ -110,7 +132,7 @@ html, body {
       &.password { background-image: url(login-password.png); }
     }
     input {
-      background-color: $background;
+      background-color: $backgroundgrey;
       border: none;
       height: 40px;
       width: 178px;
@@ -145,7 +167,7 @@ header {
       width: 200px;
       height: 75px;
       float: left;
-      margin: 0;
+      margin: 0 0 0 20px;
       span {
         display: none;
       }
@@ -156,7 +178,7 @@ header {
       color: $midgrey;
       height: 35px;
       line-height: 35px;
-      margin: 20px 0;
+      margin: 20px 20px 20px 0;
       cursor: pointer;
 
       &:hover {
@@ -197,21 +219,20 @@ nav {
     li {
       margin: 0;
       padding: 0;
-      border-bottom: 1px solid $background;
+      border-bottom: 1px solid $backgroundgrey;
       text-align: center;
 
       a {
         display: block;
         width: $navWidth;
-        height: $navHeight;
+        height: $navHeight - 1px;
         overflow: hidden;
         color: $white;
         text-transform: uppercase;
         font-size: 12px;
         position: relative;
 
-        transition: background-color 150ms;
-        -webkit-transition: background-color 150ms;
+        @include transition(background-color);
 
         &:hover {
           background-color: $lightblue;
@@ -232,7 +253,7 @@ nav {
           width: 30px;
           height: 30px;
           display: block;
-          margin: 30px auto 10px auto;
+          margin: 28px auto 10px auto;
           background: center no-repeat;
         }
 
@@ -243,4 +264,120 @@ nav {
       }
     }
   }
+}
+
+section {
+  position: absolute;
+  left: $navWidth; top: 0; bottom: 0;
+  width: $sectionWidth;
+  background-color: $white;
+
+  a.new {
+    float: right;
+    height: $itemHeight - 1px;
+    line-height: $itemHeight - 1px;
+    width: $itemHeight;
+    text-align: center;
+    color: $lightmidgrey;
+    font-size: 22px;
+    font-family: $heavyFontFamily;
+    border-left: 1px solid $lightgrey2;
+    border-bottom: 1px solid $lightgrey2;
+    @include transition(background-color);
+
+    &:hover {
+      background-color: $lightbackgroundgrey;
+    }
+  }
+  h2 {
+    height: $itemHeight - 3px; /* 2px for padding, 1px for border */
+    line-height: $itemHeight - 3px;
+    margin: 0;
+    padding: 2px 30px 0 30px;
+    color: $lightmidgrey;
+    font-size: 16px;
+    border-bottom: 1px solid $lightgrey2;
+    text-indent: 20px;
+    background-image: url(location.png);
+    background-repeat: no-repeat;
+    background-position: 15px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      height: $itemHeight - 28px;
+      line-height: $itemHeight - 28px;
+      padding: 14px 25px; 
+      cursor: pointer;
+      font-size: 14px;
+
+      @include transition(background-color);
+
+      .number {
+        float: right;
+        width: 15px;
+        height: 15px;
+        margin-top: ($itemHeight - 28px - 15px) / 2;
+        border: 1px solid $lightgrey2;
+        border-radius: 2px;
+        color: $lightmidgrey;
+        font-size: 9px;
+        line-height: 15px;
+        text-align: center;
+      }
+
+      strong {
+        line-height: 1;
+        display: block;
+        font-size: 14px;
+        font-weight: normal;
+        color: $middarkgrey;
+      }
+      em {
+        line-height: 1;
+        display: block;
+        font-size: 11px;
+        font-style: normal;
+        color: $lightgrey3;
+        margin-top: 3px;
+
+        strong {
+          display: inline;
+          color: $blue;
+          font-size: 11px;
+        }
+      }
+
+      &:hover {
+        background-color: $lightbackgroundgrey;
+      }
+
+      &.active {
+        background-color: $backgroundgrey;
+      }     
+    }
+  }
+}
+
+#content {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: $contentWidth;
+  background-color: $backgroundgrey;
+
+  h2 {
+    height: $itemHeight - 6px;
+    line-height: $itemHeight - 6px;
+    margin: 0;
+    padding: 0 30px;
+    color: $darkgrey;
+    font-size: 16px;
+    border-top: 5px solid $blue;
+    border-bottom: 1px solid $lightgrey2;
+  }
+
 }

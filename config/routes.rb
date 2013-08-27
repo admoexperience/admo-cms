@@ -16,6 +16,7 @@ AdmoCms::Application.routes.draw do
 
   get '/html/login' => 'html#login'
   get '/html/home' => 'html#home'
+  get '/html/content' => 'html#content'
 
   mount RootApi => '/api/'
 

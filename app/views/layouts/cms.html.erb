@@ -9,8 +9,10 @@
     <%= stylesheet_link_tag "cms", :media => "all" %>
 
     <%= javascript_include_tag "cms" %>
+
+    <%= favicon_link_tag 'favicon.png', :rel => 'shortcut icon' %>
   </head>
-  <body>
+  <body <%= @login ? 'class="login"'.html_safe : '' %>>
 
     <% unless @login %>
       <header>
@@ -26,8 +28,8 @@
       <div id="page">
         <nav>
           <ul>
-            <li><a href="#" class="home"><span class="icon"></span>Home</a></li>
-            <li><a href="#" class="content active"><span class="icon"></span>Content</a></li>
+            <li><a href="/html/home" class="home"><span class="icon"></span>Home</a></li>
+            <li><a href="/html/content" class="content active"><span class="icon"></span>Content</a></li>
             <li><a href="#" class="analytics"><span class="icon"></span>Analytics</a></li>
             <li><a href="#" class="support"><span class="icon"></span>Support</a></li>
           </ul>
