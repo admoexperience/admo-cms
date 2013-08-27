@@ -162,7 +162,7 @@ end
         google_api_key Settings.gmaps.api_key
         default_latitude -33.9149861
         default_longitude 18.6560594
-        default_zoom_level 6
+        default_zoom_level 12
         map_width '500px'
         map_height '400px'
       end
