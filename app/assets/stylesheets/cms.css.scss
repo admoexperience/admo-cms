@@ -97,7 +97,7 @@ body.login {
 
 
 /***** Login *****/
-#login {
+.auth-block {
   background: $white;
   position: absolute;
   left: 0; top: 0; right: 0; bottom: 0;
@@ -146,7 +146,7 @@ body.login {
     }
   }
 
-  button {
+  .button {
     background: $blue;
     color: $white;
     border: none;
@@ -314,7 +314,7 @@ section {
     li {
       height: $itemHeight - 28px;
       line-height: $itemHeight - 28px;
-      padding: 14px 25px; 
+      padding: 14px 25px;
       cursor: pointer;
       font-size: 14px;
 
@@ -361,7 +361,7 @@ section {
 
       &.active {
         background-color: $backgroundgrey;
-      }     
+      }
     }
   }
 }
@@ -435,7 +435,7 @@ section {
       margin: 5px 0 15px 0;
     }
     input, .input {
-      height: 35px;      
+      height: 35px;
       padding: 0 10px;
     }
     textarea, .textarea {
