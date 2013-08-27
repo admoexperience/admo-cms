@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/drubin/rails_admin_map_field.git
-  revision: 1094938b9977209a0ef8509a232039a903cafef5
+  revision: 4654daed58d8ec8103ff99ff94497046b9bf16ec
   specs:
     rails_admin_map_field (0.0.1)
       rails (>= 3.0.0)

@@ -20,6 +20,12 @@ class AdmoUnit
   field :latitude, type: Float
   field :longitude, type: Float
 
+  field :address, type: String
+  field :city, type: String
+  field :state, type: String
+
+
+
   has_many :admo_screenshots
   has_many :admo_images
 
