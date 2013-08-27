@@ -28,7 +28,7 @@ $lightblue: #6abfe5;
 
 /***** Sizes *****/
 $headerHeight: 75px;
-$pageWidth: 1200px;
+$pageWidth: 1150px;
 $navWidth: round($pageWidth * 0.12);
 $itemHeight: round($navWidth * 0.4);
 $navHeight: $itemHeight * 2;
@@ -232,7 +232,7 @@ nav {
         overflow: hidden;
         color: $white;
         text-transform: uppercase;
-        font-size: 12px;
+        font-size: 13px;
         position: relative;
 
         @include transition(background-color);
