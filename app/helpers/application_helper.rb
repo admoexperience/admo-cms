@@ -8,4 +8,8 @@ module ApplicationHelper
       link_to(image_tag('video-icon.png'),content.value.url)
     end
   end
+
+  def active_class?(active)
+    active ? 'active' : nil
+  end
 end

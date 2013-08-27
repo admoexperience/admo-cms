@@ -1,0 +1,21 @@
+<section>
+  <a href="#" class="new">+</a>
+  <h2>Locations</h2>
+
+  <ul>
+    <%- @units.each do |unit|%>
+      <%= content_tag :li, :class=>active_class?(@current_unit == unit) do %>
+      <%= link_to '/dashboard/home/'+unit.id do %>
+        <span class="number"><%= unit.config.size%></span>
+        <strong><%= unit.name%></strong>
+        <em><%= unit.city %>, <strong>LIVE</strong></em>
+        <%- end%>
+      <%- end%>
+    <%- end%>
+  </ul>
+</section>
+<div id="content">
+  <h2><%= @current_unit.name%></h2>
+  <%= image_tag @current_unit.admo_screenshots.try(:first).try(:image).try(:url) %>
+</div>
+

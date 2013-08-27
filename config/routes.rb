@@ -10,12 +10,19 @@ AdmoCms::Application.routes.draw do
   get '/media/*other', :to => Dragonfly[:images]
 
 
- resources :app do
+  resources :app do
     resources :content
- end
+  end
 
- mount RootApi => '/api/'
+  get '/dashboard/home' => 'dashboard#home'
+  get '/dashboard/home/:unit_id' => 'dashboard#home'
 
- root :to => "index#index"
+  get '/html/login' => 'html#login'
+  get '/html/home' => 'html#home'
+  get '/html/content' => 'html#content'
+
+  mount RootApi => '/api/'
+
+  root :to => "index#index"
 
 end

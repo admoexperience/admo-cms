@@ -1,0 +1,490 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ */
+
+/***** Colours *****/
+$white: #fff;
+$darkgrey: #404041;
+$middarkgrey: #58585b;
+$grey: #6d6e70;
+$midgrey: #808284;
+$lightmidgrey: #939597;
+$lightgrey3: #a7a9ab;
+$lightgrey2: #bbbdc0;
+$lightgrey: #e6e7e8;
+$backgroundgrey: #f1f1f2;
+$lightbackgroundgrey: #fbfbfb;
+$blue: #49a8de;
+$lightblue: #6abfe5;
+
+/***** Sizes *****/
+$headerHeight: 75px;
+$pageWidth: 1150px;
+$navWidth: round($pageWidth * 0.12);
+$itemHeight: round($navWidth * 0.4);
+$navHeight: $itemHeight * 2;
+$sectionWidth: round($pageWidth * 0.27);
+$contentWidth: $pageWidth - $navWidth - $sectionWidth;
+
+$portletWidth: floor($contentWidth / 2);
+$portletInnerWidth: $portletWidth - 90px;
+
+/***** Fonts *****/
+@font-face{
+  font-family:"Avenir LT W01 55 Roman";
+  src:url(font-path("avenir-lt-w01-55-roman.eot")+ "?#iefix");
+  src:url(font-path("avenir-lt-w01-55-roman.eot")+ "?#iefix") format("eot"),
+      url(font-path("avenir-lt-w01-55-roman.woff")) format("woff"),
+      url(font-path("avenir-lt-w01-55-roman.ttf")) format("truetype"),
+      url(font-path("avenir-lt-w01-55-roman.svg")+ "#avenir-lt-w01-55-roman") format("svg");
+}
+@font-face{
+  font-family:"Avenir LT W01 85 Heavy";
+  src:url(font-path("avenir-lt-w01-85-roman.eot")+ "?#iefix");
+  src:url(font-path("avenir-lt-w01-85-roman.eot")+ "?#iefix") format("eot"),
+      url(font-path("avenir-lt-w01-85-roman.woff")) format("woff"),
+      url(font-path("avenir-lt-w01-85-roman.ttf")) format("truetype"),
+      url(font-path("avenir-lt-w01-85-roman.svg")+ "#avenir-lt-w01-85-roman") format("svg");
+}
+$defaultFontFamily: 'Avenir LT W01 55 Roman', Futura, Helvetica, sans-serif;
+$heavyFontFamily: 'Avenir LT W01 85 Heavy', Futura, Helvetica, sans-serif;
+
+
+/***** General styles *****/
+button {
+  cursor: pointer;
+  font-family: $defaultFontFamily;
+}
+a {
+  text-decoration: none;
+}
+input, textarea {
+  font-family: $defaultFontFamily;
+
+  &:focus {
+    outline: 2px solid $blue;
+  }
+}
+
+@mixin transition($property) {
+  transition: $property 150ms;
+  -webkit-transition: $property 150ms;
+}
+
+/***** Body *****/
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: $defaultFontFamily;
+  font-size: 16px;
+  color: $grey;
+}
+body {
+  background-color: $white;
+}
+body.login {
+  background-color: $backgroundgrey !important;
+}
+
+
+/***** Login *****/
+.auth-block {
+  background: $white;
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+  margin: auto;
+  width: 240px;
+  height: 220px;
+  padding: 30px;
+  text-align: center;
+
+  h1 {
+    background: url(logo-login.png) center no-repeat;
+    width: 150px;
+    height: 36px;
+    margin: 0 auto 30px auto;
+
+    span {
+      display: none;
+    }
+  }
+
+  div.input-block {
+    clear: both;
+    margin: 15px 0;
+    height: 42px;
+
+    label {
+      background: $lightgrey center no-repeat;
+      height: 42px;
+      width: 42px;
+      float: left;
+      overflow: hidden;
+      text-indent: 100px;
+
+      &.email { background-image: url(login-email.png); }
+      &.password { background-image: url(login-password.png); }
+    }
+    input {
+      background-color: $backgroundgrey;
+      border: none;
+      height: 40px;
+      width: 178px;
+      float: left;
+      padding: 2px 10px 0 10px;
+      line-height: 40px;
+      font-size: 14px;
+    }
+  }
+
+  .button {
+    background: $blue;
+    color: $white;
+    border: none;
+    width: 100%;
+    height: 42px;
+    line-height: 40px;
+    font-size: 14px;
+  }
+}
+
+header {
+  background-color: $darkgrey;
+  height: $headerHeight;
+
+  .wrapper {
+    width: $pageWidth;
+    margin: 0 auto;
+
+    h1 {
+      background: url(logo.png) center no-repeat;
+      width: 200px;
+      height: 75px;
+      float: left;
+      margin: 0 0 0 20px;
+      span {
+        display: none;
+      }
+    }
+
+    .profile {
+      float: right;
+      color: $midgrey;
+      height: 35px;
+      line-height: 35px;
+      margin: 20px 20px 20px 0;
+      cursor: pointer;
+
+      &:hover {
+        color: $lightgrey;
+      }
+
+      .more {
+        background: url(more.png) center no-repeat;
+        width: 15px;
+        height: 15px;
+        float: right;
+        margin: 10px 0 0 20px;
+      }
+    }
+  }
+}
+
+#page {
+  width: $pageWidth;
+  margin: 0 auto;
+  position: fixed;
+  top: $headerHeight; bottom: 0; left: 0; right: 0;
+  background-color: $white;
+}
+
+nav {
+  background-color: $blue;
+  width: $navWidth;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin: 0;
+      padding: 0;
+      border-bottom: 1px solid $backgroundgrey;
+      text-align: center;
+
+      a {
+        display: block;
+        width: $navWidth;
+        height: $navHeight - 1px;
+        overflow: hidden;
+        color: $white;
+        text-transform: uppercase;
+        font-size: 13px;
+        position: relative;
+
+        @include transition(background-color);
+
+        &:hover {
+          background-color: $lightblue;
+        }
+
+        &.active::before {
+          content: '';
+          border: 10px solid transparent;
+          border-right-color: $white;
+          width: 0;
+          height: 0;
+          position: absolute;
+          margin: auto;
+          top: 0; bottom: 0; right: 0;
+        }
+
+        .icon {
+          width: 30px;
+          height: 30px;
+          display: block;
+          margin: 28px auto 10px auto;
+          background: center no-repeat;
+        }
+
+        &.home .icon { background-image: url(nav-home.png) }
+        &.content .icon { background-image: url(nav-content.png) }
+        &.analytics .icon { background-image: url(nav-analytics.png) }
+        &.support .icon { background-image: url(nav-support.png) }
+      }
+    }
+  }
+}
+
+section {
+  position: absolute;
+  left: $navWidth; top: 0; bottom: 0;
+  width: $sectionWidth;
+  background-color: $white;
+
+  a.new {
+    float: right;
+    height: $itemHeight - 1px;
+    line-height: $itemHeight - 1px;
+    width: $itemHeight;
+    text-align: center;
+    color: $lightmidgrey;
+    font-size: 22px;
+    font-family: $heavyFontFamily;
+    border-left: 1px solid $lightgrey2;
+    border-bottom: 1px solid $lightgrey2;
+    @include transition(background-color);
+
+    &:hover {
+      background-color: $lightbackgroundgrey;
+    }
+  }
+  h2 {
+    height: $itemHeight - 3px; /* 2px for padding, 1px for border */
+    line-height: $itemHeight - 3px;
+    margin: 0;
+    padding: 2px 30px 0 30px;
+    color: $lightmidgrey;
+    font-size: 16px;
+    border-bottom: 1px solid $lightgrey2;
+    text-indent: 20px;
+    background-image: url(location.png);
+    background-repeat: no-repeat;
+    background-position: 15px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      height: $itemHeight - 28px;
+      line-height: $itemHeight - 28px;
+      padding: 14px 25px;
+      cursor: pointer;
+      font-size: 14px;
+
+      @include transition(background-color);
+
+      .number {
+        float: right;
+        width: 15px;
+        height: 15px;
+        margin-top: ($itemHeight - 28px - 15px) / 2;
+        border: 1px solid $lightgrey2;
+        border-radius: 2px;
+        color: $lightmidgrey;
+        font-size: 9px;
+        line-height: 15px;
+        text-align: center;
+      }
+
+      strong {
+        line-height: 1;
+        display: block;
+        font-size: 14px;
+        font-weight: normal;
+        color: $middarkgrey;
+      }
+      em {
+        line-height: 1;
+        display: block;
+        font-size: 11px;
+        font-style: normal;
+        color: $lightgrey3;
+        margin-top: 3px;
+
+        strong {
+          display: inline;
+          color: $blue;
+          font-size: 11px;
+        }
+      }
+
+      &:hover {
+        background-color: $lightbackgroundgrey;
+      }
+
+      &.active {
+        background-color: $backgroundgrey;
+      }
+    }
+  }
+}
+
+#content {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: $contentWidth;
+  background-color: $backgroundgrey;
+  overflow: auto;
+
+  h2 {
+    height: $itemHeight - 6px;
+    line-height: $itemHeight - 6px;
+    margin: 0;
+    padding: 0 30px;
+    color: $darkgrey;
+    font-size: 16px;
+    border-top: 5px solid $blue;
+    border-bottom: 1px solid $lightgrey2;
+  }
+
+  .portlet {
+    width: $portletInnerWidth;
+    float: left;
+    background-color: $white;
+    margin: 30px 10px 30px 30px;
+    padding: 20px;
+    border-top: 5px solid $white;
+
+    &.active {
+      border-top-color: $blue;
+    }
+
+    .links {
+      text-align: right;
+      height: 32px;
+      margin: 10px 0;
+
+      a {
+        height: 30px;
+        width: 30px;
+        border: 1px solid $lightgrey;
+        border-radius: 2px;
+        margin-left: 3px;
+        display: inline-block;
+        background: no-repeat center;
+        @include transition(background-color);
+
+        &.edit { background-image: url(edit.png) }
+        &.delete { background-image: url(delete.png) }
+
+        &.disabled { -webkit-filter: grayscale(100%); }
+
+        &:hover {
+          background-color: $lightbackgroundgrey;
+        }
+      }
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+    }
+
+    input, textarea, .input, .textarea {
+      width: $portletInnerWidth - 20px;
+      background-color: $backgroundgrey;
+      border: none;
+      font-size: 16px;
+      margin: 5px 0 15px 0;
+    }
+    input, .input {
+      height: 35px;
+      padding: 0 10px;
+    }
+    textarea, .textarea {
+      height: 3*35px;
+      padding: 5px 10px;
+    }
+    textarea {
+      margin-bottom: 10px;
+    }
+
+    .input-block.left, .input-block.right {
+      width: $portletInnerWidth / 2 - 10px;
+
+      &.left {
+        float: left;
+      }
+      &.right {
+        float: right;
+      }
+    }
+
+    .video, .image {
+      width: 100%;
+      height: 100px;
+      border: none;
+      margin: 5px 0 15px 0;
+      background: $backgroundgrey no-repeat center;
+
+      &.image { background-image: url(image.png) }
+      &.video { background-image: url(video.png) }
+    }
+
+    button.cancel, button.proceed {
+      width: $portletInnerWidth / 2 - 10px;
+      border: none;
+      color: $white;
+      font-size: 14px;
+      height: 35px;
+      margin-top: 10px;
+
+      &.cancel {
+        background-color: $lightmidgrey;
+        float: left;
+      }
+      &.proceed {
+        background-color: $blue;
+        float: right;
+      }
+    }
+  }
+
+}
