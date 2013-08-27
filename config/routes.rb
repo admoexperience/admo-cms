@@ -14,6 +14,9 @@ AdmoCms::Application.routes.draw do
     resources :content
   end
 
+  get '/dashboard/home' => 'dashboard#home'
+  get '/dashboard/home/:unit_id' => 'dashboard#home'
+
   get '/html/login' => 'html#login'
   get '/html/home' => 'html#home'
   get '/html/content' => 'html#content'
