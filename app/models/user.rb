@@ -44,4 +44,12 @@ class User
 
   belongs_to :admo_account
   field :admin,   :type => Boolean, :default => false
+
+
+
+  #Hack for now, we dont store name
+  def email_to_name
+    name = self.email[/[^@]+/]
+    name.split(".").map {|n| n.capitalize }.join(" ")
+  end
 end

@@ -19,3 +19,43 @@
   <%= image_tag @current_unit.admo_screenshots.try(:first).try(:image).try(:url) %>
 </div>
 
+<div id="content">
+  <h2><%= @current_unit.city%></h2>
+
+  <div class="portlet wide">
+    <div class="map" data-longitude="<%= @current_unit.longitude%>" data-latitude="<%= @current_unit.latitude%>"><%= image_tag "//maps.googleapis.com/maps/api/staticmap?center=#{@current_unit.latitude},#{@current_unit.longitude}&zoom=12&size=150x150&sensor=false&markers=#{@current_unit.latitude},#{@current_unit.longitude}"%></div>
+
+    <div class="info">
+      <h3><%= @current_unit.name%></h3>
+
+      <!--<div class="tel">t | <a href="tel:0219879821">021 987 9821</a></div>-->
+
+      <ul class="status">
+        <li class="active online">Online</li>
+        <li class="active up-to-date">Up to date</li>
+      </ul>
+
+
+      <p>
+        Screenshot last updated<br />
+        <em>
+          <% if @current_unit.current_screenshot %>
+          <abbr class="timeago" title="<%=  @current_unit.current_screenshot.created_at.iso8601 %>">
+          <%= @current_unit.current_screenshot.created_at.to_s %>
+          </abbr>
+          <% else %>
+          Never
+          <% end %>
+      </em>
+      </p>
+
+    </div>
+
+    <% if @current_unit.current_screenshot %>
+    <div class="screenshot">
+      <%= image_tag @current_unit.admo_screenshots.try(:first).try(:image).try(:url), :width=>'600', :height=>340 %>
+    </div>
+    <% end %>
+
+  </div>
+</div>

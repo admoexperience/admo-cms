@@ -37,6 +37,9 @@ $contentWidth: $pageWidth - $navWidth - $sectionWidth;
 $portletWidth: floor($contentWidth / 2);
 $portletInnerWidth: $portletWidth - 90px;
 
+$widePortletWidth: $contentWidth;
+$widePortletInnerWidth: $widePortletWidth - 100px;
+
 /***** Fonts *****/
 @font-face{
   font-family:"Avenir LT W01 55 Roman";
@@ -74,9 +77,14 @@ input, textarea {
   }
 }
 
-@mixin transition($property) {
-  transition: $property 150ms;
-  -webkit-transition: $property 150ms;
+@mixin transition($property, $time:150ms) {
+  transition: $property $time;
+  -webkit-transition: $property $time;
+}
+
+@mixin rotate($angle) {
+  transform: rotate($angle);
+  -webkit-transform: rotate($angle);
 }
 
 /***** Body *****/
@@ -177,22 +185,60 @@ header {
 
     .profile {
       float: right;
-      color: $midgrey;
-      height: 35px;
+      min-height: 35px;
       line-height: 35px;
+      min-width: 120px;
       margin: 20px 20px 20px 0;
       cursor: pointer;
+      position: relative;
+      background-color: $darkgrey;
+      border: 1px solid transparent;
+      font-size: 14px;
 
-      &:hover {
-        color: $lightgrey;
+      a {
+        color: $midgrey;
+        display: block;
+        padding: 0 10px;
+
+        @include transition(color);
+
+        &:hover {
+          color: $lightgrey;
+        }
       }
 
       .more {
-        background: image-url("more.png") center no-repeat;
         width: 15px;
-        height: 15px;
+        height: 31px;
         float: right;
-        margin: 10px 0 0 20px;
+        margin: 2px 0 0 20px;
+        overflow: hidden;
+        @include transition(-webkit-transform, 350ms);
+      }
+
+      ul {
+        display: none;
+      }
+
+      &.expanded {
+        z-index: 1000;
+        border-color: $midgrey;
+
+        .more {
+          @include rotate(180deg);
+        }
+
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: block;
+
+          li {
+            border-top: 1px solid $midgrey;
+            text-align: center;
+          }
+        }
       }
     }
   }
@@ -391,8 +437,23 @@ section {
     padding: 20px;
     border-top: 5px solid $white;
 
+    &.wide {
+      width: $widePortletInnerWidth;
+      float: none;
+    }
+
     &.active {
       border-top-color: $blue;
+    }
+
+    h3 {
+      font-size: 16px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid $lightgrey2;
+      margin: 0 0 15px 0;
+    }
+    .info {
+      width: $widePortletInnerWidth - 170px;
     }
 
     .links {
@@ -482,6 +543,63 @@ section {
       &.proceed {
         background-color: $blue;
         float: right;
+      }
+    }
+
+    .screenshot {
+      filter: gray; /* IE6-9 */
+      -webkit-filter: grayscale(1);
+    }
+
+    .map {
+      float: right;
+      background-color: $lightgrey;
+      width: 150px;
+      height: 150px;
+      line-height: 150px;
+      text-align: center;
+      margin: 0 0 20px 20px;
+    }
+
+    .status {
+      list-style: none;
+      margin: 0 0 20px 0;
+      padding: 0;
+      font-size: 14px;
+
+      li {
+        padding-left: 30px;
+        margin: 8px 0;
+        background: top left no-repeat;
+
+        &.online { background-image: image-url("online.png"); }
+        &.up-to-date { background-image: image-url("up-to-date.png"); }
+
+        &.active {
+          color: $blue;
+        }
+        &:not(.active) {
+          -webkit-filter: grayscale(100%);
+        }
+      }
+    }
+
+    .tel {
+      font-size: 14px;
+      float: right;
+
+      a {
+        color: $grey;
+      }
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.3;
+
+      em {
+        font-style: normal;
+        color: $lightmidgrey;
       }
     }
   }
