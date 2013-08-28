@@ -97,7 +97,7 @@ config.actions do
    # root actions
     dashboard                     # mandatory
     # collection actions
-    index                         # mandatory
+    index
     new
     export
     history_index
@@ -144,7 +144,36 @@ end
   # Label methods for model instances:
   # config.label_methods << :description # Default is [:name, :title]
 
-  config.model 'AdmoUnit' do
+  config.model AdmoAccount do
+    list do
+      field :name
+      field :config
+    end
+  end
+
+  config.model App do
+    list do
+      field :admo_account
+      field :name
+      field :config
+    end
+  end
+
+  config.model Content do
+    list do
+      field :app
+      field :key
+      field :value
+    end
+  end
+
+  config.model AdmoUnit do
+    list do
+      field :name
+      field :admo_account
+      field :address
+      field :city
+    end
     edit do
       configure :admo_screenshots do
         hide
