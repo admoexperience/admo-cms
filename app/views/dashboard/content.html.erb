@@ -38,8 +38,8 @@
       </div>
 
       <div class="input-block left">
-        <label>Video</label>
-        <button type="button" class="video"></button>
+        <label><%= @app.find_image(@current_content).id%></label>
+        <button type="button" class="video present" style="background-image: url(<%= @app.find_image(@current_content).thumb_url %>)"></button>
       </div>
 
       <div class="input-block right">

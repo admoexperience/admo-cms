@@ -17,4 +17,14 @@ FactoryGirl.define do
     image File.new("#{Rails.root}/test.png")
     admo_unit
   end
+
+  factory :app do
+    name
+    admo_account
+  end
+
+   factory :content do
+    key "key"
+    app
+  end
 end
