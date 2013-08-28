@@ -187,6 +187,8 @@ GEM
     mime-types (1.24)
     mini_portile (0.5.1)
     minitest (4.7.5)
+    mongoid-indifferent-access (1.0.0)
+      mongoid
     mongoid_slug (3.1.2)
       mongoid (> 3.0)
       stringex (~> 1.4)
@@ -383,6 +385,7 @@ DEPENDENCIES
   hipchat (~> 0.11.0)
   jquery-rails
   mongoid!
+  mongoid-indifferent-access
   mongoid_slug
   newrelic_rpm
   omniauth-google-oauth2

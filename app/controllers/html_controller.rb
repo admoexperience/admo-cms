@@ -12,4 +12,10 @@ class HtmlController < ApplicationController
   def content
   end
 
+  def analytics
+  end
+
+  def support
+  end
+
 end

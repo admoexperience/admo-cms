@@ -2,6 +2,7 @@ class App
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
+  include Mongoid::Extensions::Hash::IndifferentAccess
 
   field :name,              type: String
   field :description,       type: String
@@ -48,5 +49,9 @@ class App
     self.contents.each do |m|
       m.publish_change if m.last_published_at < m.last_edited_at
     end
+  end
+
+  def find_image(key)
+    contents.all.select{|c| c.key.match(key) && c.is_image}.first
   end
 end

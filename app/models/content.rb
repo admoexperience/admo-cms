@@ -33,12 +33,12 @@ class Content
   end
 
   def is_image
-    File.extname(self.value_name) =~ /jpg|jpeg|png|gif/i
+    File.extname(self.key) =~ /jpg|jpeg|png|gif/i if self.key
   end
 
   def thumb_url
     if self.is_image
-      self.value.thumb('100x100').url
+      self.value.thumb('200x200').url
     else
       nil
     end

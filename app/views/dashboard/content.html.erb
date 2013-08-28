@@ -3,15 +3,22 @@
   <h2>Content Management</h2>
 
   <ul>
-    <li>Airfare</li>
-    <li>Holidays Under R5 000</li>
-    <li>Holidays Under R10 000</li>
-    <li class="active">Holidays Under R15 000</li>
+    <% @app.config.each do |key, value|
+      url = view_content_path(@app,key)
+      current_page = current_page?(url)
+
+      %>
+    <%= content_tag :li, :class=>active_class?(current_page) do
+      link_to url do%>
+      <%= value[:title] || 'unkown'%><%
+      end
+    end
+    end%>
   </ul>
 </section>
 
 <div id="content">
-  <h2>Holidays Under R5 000</h2>
+  <h2><%= @app.name %></h2>
 
   <div class="portlet active">
     <div class="links">
@@ -20,25 +27,19 @@
     </div>
 
     <form>
-
       <div class="input-block">
         <label for="title">Title</label>
-        <input type="text" id="title" name="title" />
+        <%= text_field_tag :title, @app.config[@current_content][:title] %>
       </div>
 
       <div class="input-block">
         <label for="descriptiong">Description</label>
-        <textarea id="description" name="description"></textarea>
-      </div>
-
-      <div class="input-block">
-        <label for="price">Price</label>
-        <input type="text" id="price" name="price" />
+        <%= text_area_tag :description, @app.config[@current_content][:description] %>
       </div>
 
       <div class="input-block left">
-        <label>Video</label>
-        <button type="button" class="video"></button>
+        <label><%= @app.find_image(@current_content).id%></label>
+        <button type="button" class="video present" style="background-image: url(<%= @app.find_image(@current_content).thumb_url %>)"></button>
       </div>
 
       <div class="input-block right">
@@ -48,42 +49,6 @@
 
       <button type="button" class="cancel">Cancel</button>
       <button type="submit" class="proceed">Publish</button>
-
-    </form>
-  </div>
-
-  <div class="portlet">
-    <div class="links">
-      <a href="#" class="edit" title="Edit"></a>
-      <a href="#" class="delete" title="Delete"></a>
-    </div>
-
-    <form>
-
-      <div class="input-block">
-        <label>Title</label>
-        <div class="input"></div>
-      </div>
-
-      <div class="input-block">
-        <label>Description</label>
-        <div class="textarea"></div>
-      </div>
-
-      <div class="input-block">
-        <label>Price</label>
-        <div class="input"></div>
-      </div>
-
-      <div class="input-block left">
-        <label>Video</label>
-        <div class="video"></div>
-      </div>
-
-      <div class="input-block right">
-        <label>Image</label>
-        <div class="image"></div>
-      </div>
 
     </form>
   </div>

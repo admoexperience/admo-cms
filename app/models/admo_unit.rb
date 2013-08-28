@@ -1,6 +1,7 @@
 class AdmoUnit
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Extensions::Hash::IndifferentAccess
 
   CONFIG_KEYS = %w(
     app
@@ -112,6 +113,6 @@ class AdmoUnit
   end
 
   def current_screenshot
-    admo_screenshots.first
+    admo_screenshots.last
   end
 end
