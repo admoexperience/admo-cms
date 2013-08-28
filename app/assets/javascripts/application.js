@@ -27,4 +27,5 @@ $(function() {
   $('body').on('click', clearDropdown);
   $('.profile').on('click', dontClearDropdown);
   $('.profile .expand').on('click', toggleDropdown);
-})
+  $("abbr.timeago").timeago();
+  });

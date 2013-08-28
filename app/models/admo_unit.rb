@@ -110,4 +110,8 @@ class AdmoUnit
   def publish_change
     push_event('updateConfig')
   end
+
+  def current_screenshot
+    admo_screenshots.first
+  end
 end
