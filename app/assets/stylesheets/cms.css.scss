@@ -35,10 +35,15 @@ $sectionWidth: round($pageWidth * 0.27);
 $contentWidth: $pageWidth - $navWidth - $sectionWidth;
 
 $portletWidth: floor($contentWidth / 2);
-$portletInnerWidth: $portletWidth - 90px;
+$portletInnerWidth: $portletWidth - 85px;
+
+$wideContentWidth: $pageWidth - $navWidth;
 
 $widePortletWidth: $contentWidth;
 $widePortletInnerWidth: $widePortletWidth - 100px;
+
+$narrowPortletWidth: floor($wideContentWidth / 4);
+$narrowPortletInnerWidth: $narrowPortletWidth - 58px;
 
 /***** Fonts *****/
 @font-face{
@@ -95,7 +100,7 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: $defaultFontFamily;
-  font-size: 16px;
+  font-size: 14px;
   color: $grey;
 }
 body {
@@ -457,9 +462,66 @@ section {
 #content {
   position: absolute;
   right: 0; top: 0; bottom: 0;
+  padding-bottom: 30px;
   width: $contentWidth;
   background-color: $backgroundgrey;
   overflow: auto;
+
+  &.wide {
+    width: $wideContentWidth;
+
+    h2 {
+      border-top-color: transparent;
+      background-color: $white;
+      color: $lightmidgrey;
+      text-indent: 20px;
+      background-repeat: no-repeat;
+      background-position: 15px;
+      background-color: $white;
+
+      &.location { background-image: image-url("location.png"); }
+      &.content { background-image: image-url("content.png"); }
+      &.analytics { background-image: image-url("analytics.png"); }
+      &.support { background-image: image-url("support.png"); }
+    }
+
+    .portlet {
+      width: floor($wideContentWidth / 2) - 85px;
+
+      &.right {
+        float: right;
+        margin-right: 30px;
+        margin-left: 0;
+      }
+      &.third {
+        width: floor($wideContentWidth / 3) - 80px;
+      }
+      &.wide {
+        width: $wideContentWidth - 100px;
+      }
+    }
+  }
+
+  .toggle {
+    float: right;
+    border-radius: 4px;
+    background-color: $backgroundgrey;
+    overflow: hidden;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin: 15px 30px;
+
+    a {
+      color: $grey;
+      display: inline-block;
+      padding: 4px 20px 3px 20px;
+
+      &.active {
+        background-color: $lightgrey2;
+        color: $white;
+      }
+    }
+  }
 
   h2 {
     height: $itemHeight - 6px;
@@ -476,13 +538,39 @@ section {
     width: $portletInnerWidth;
     float: left;
     background-color: $white;
-    margin: 30px 10px 30px 30px;
+    margin: 30px 0 0 30px;
     padding: 20px;
     border-top: 5px solid $white;
 
     &.wide {
       width: $widePortletInnerWidth;
-      float: none;
+    }
+
+    &.blue {
+      border-color: $blue;
+      background-color: $blue;
+      color: $white;
+    }
+
+    &.narrow {
+      padding: 10px;
+      width: $narrowPortletInnerWidth;
+      text-align: center;
+
+      .amount {
+        font-size: 26px;
+        background: left no-repeat;
+        display: inline-block;
+        padding: 0 5px 0 37px;
+
+        &.people { background-image: image-url("people.png"); }
+        &.person { background-image: image-url("person.png"); }
+        &.time { background-image: image-url("time.png"); }
+        &.date { background-image: image-url("date.png"); }
+      }
+      p {
+        font-size: 13px;
+      }
     }
 
     &.active {
@@ -494,6 +582,12 @@ section {
       padding-bottom: 15px;
       border-bottom: 1px solid $lightgrey2;
       margin: 0 0 15px 0;
+    }
+    h4 {
+      font-size: 14px;
+      padding: 0;
+      margin: 0;
+      color: $darkgrey;
     }
     .info {
       width: $widePortletInnerWidth - 170px;
@@ -643,7 +737,7 @@ section {
     p {
       font-size: 14px;
       line-height: 1.3;
-
+      margin: 0;
     }
     em {
       font-size: 14px;
@@ -657,6 +751,64 @@ section {
 
     .portlet {
       border: 1px solid $lightgrey2;
+    }
+  }
+}
+
+.chart {
+  margin-top: 10px;
+
+  &.list {
+    margin-left: 9px;
+    border-left: 1px solid $blue;
+
+    .item {
+      margin: 25px 0;
+
+      .number {
+        background-color: $blue;
+        color: $white;
+        font-size: 10px;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        line-height: 20px;
+        text-align: center;
+        display: inline-block;
+        position: relative;
+        left: -9px;
+        margin-right: 5px;
+      }
+
+      em {
+        color: $blue !important;
+        font-size: 13px !important;
+      }
+    }
+  }
+
+  &.stacked-bar {
+    height: 23px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 11px;
+
+    div {
+      float: left;
+      height: 23px;
+      line-height: 23px;
+
+      &.light-grey {
+        background-color: $backgroundgrey;
+      }
+      &.grey {
+        background-color: $lightgrey2;
+        color: $white;
+      }
+      &.blue {
+        background-color: $blue;
+        color: $white;
+      }
     }
   }
 }
