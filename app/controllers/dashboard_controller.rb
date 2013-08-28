@@ -14,6 +14,9 @@ class DashboardController < ApplicationController
 
   end
 
+  def support
+  end
+
   def update
     #TODO: Figure out rails4 mass assignment provention,
     #but this is only for the hash it is should be ok
@@ -37,7 +40,7 @@ class DashboardController < ApplicationController
 
 
 private
-  def get_units 
+  def get_units
     if current_user.admo_account
       current_user.admo_account.admo_units
     else

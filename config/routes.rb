@@ -16,6 +16,7 @@ AdmoCms::Application.routes.draw do
 
   get '/dashboard/home(/:unit_id)' => 'dashboard#home'
   get '/dashboard/content/(:content_id)' => 'dashboard#content'
+  get '/dashboard/support/' => 'dashboard#support'
 
   get '/html/login' => 'html#login'
   get '/html/home' => 'html#home'
