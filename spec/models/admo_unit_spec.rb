@@ -59,4 +59,17 @@ describe AdmoUnit do
     @unit.admo_account = account
     @unit.dashboard_enabled.should eq true
   end
+
+  it "current_screenshot should be the most recent" do
+    old = create(:admo_screenshot)
+    old.created_at = 20.minutes.ago
+    old.save
+    @unit.admo_screenshots << old
+
+    s = create(:admo_screenshot)
+    s.created_at = 5.minutes.ago
+    s.save
+    @unit.admo_screenshots << s
+    @unit.current_screenshot.should eq s
+  end
 end

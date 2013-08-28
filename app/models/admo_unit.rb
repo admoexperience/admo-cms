@@ -112,6 +112,6 @@ class AdmoUnit
   end
 
   def current_screenshot
-    admo_screenshots.first
+    admo_screenshots.last
   end
 end
