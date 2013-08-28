@@ -30,15 +30,24 @@
   <body <%= current_user ? 'class="login"'.html_safe : '' %>>
 
     <% if current_user %>
-      <header>
+           <header>
         <div class="wrapper">
           <h1><span>ADMO</span></h1>
           <div class="profile">
-            <div class="more"></div>
-            Anandi Ellis
+            <a class="expand">
+              <span class="more">&#x25BC;</span>
+               <%= current_user.email_to_name.titleize %>
+            </a>
+
+            <ul>
+              <li><a href="#">Account</a></li>
+              <li><a href="#">Billing</a></li>
+              <li><%= link_to "Log Out", destroy_user_session_path %></li>
+            </ul>
           </div>
         </div>
       </header>
+
 
       <div id="page">
         <nav>
