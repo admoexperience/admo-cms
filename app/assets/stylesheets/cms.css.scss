@@ -756,7 +756,28 @@ section {
 }
 
 .chart {
-  margin-top: 10px;
+  margin-top: 15px;
+
+  &.donut {
+    float: left;
+    width: 48%;
+    text-align: center;
+    padding: 10px 0 5px 0;
+
+    p {
+      font-size: 12px;
+    }
+    svg {
+      margin-bottom: 10px;
+    }
+    .arc path {
+      stroke: #fff;
+    }
+    text {
+      fill: $lightgrey;
+      font-size: 18px;
+    }
+  }
 
   &.list {
     margin-left: 9px;
@@ -822,3 +843,4 @@ section {
   width: 50%;
   z-index: -1;
 }
+

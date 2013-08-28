@@ -72,7 +72,7 @@
     </div>
   </div>
 
-  <div class="portlet third">
+  <div class="portlet third" id="donut-charts">
     <h4>Destination Selected</h4>
   </div>
 
@@ -87,3 +87,13 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+  var values = [
+    { value: 0.43, name: "Mauritius"},
+    { value: 0.17, name: "Thailand"},
+    { value: 0.18, name: "Europe"},
+    { value: 0.12, name: "USA"}
+  ];
+  drawDonuts(values);
+</script>
