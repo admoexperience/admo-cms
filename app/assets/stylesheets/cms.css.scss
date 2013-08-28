@@ -74,9 +74,14 @@ input, textarea {
   }
 }
 
-@mixin transition($property) {
-  transition: $property 150ms;
-  -webkit-transition: $property 150ms;
+@mixin transition($property, $time:150ms) {
+  transition: $property $time;
+  -webkit-transition: $property $time;
+}
+
+@mixin rotate($angle) {
+  transform: rotate($angle);
+  -webkit-transform: rotate($angle);
 }
 
 /***** Body *****/
@@ -177,22 +182,60 @@ header {
 
     .profile {
       float: right;
-      color: $midgrey;
-      height: 35px;
+      min-height: 35px;
       line-height: 35px;
+      min-width: 120px;
       margin: 20px 20px 20px 0;
       cursor: pointer;
+      position: relative;
+      background-color: $darkgrey;
+      border: 1px solid transparent;
+      font-size: 14px;
 
-      &:hover {
-        color: $lightgrey;
+      a {
+        color: $midgrey;
+        display: block;
+        padding: 0 10px;
+
+        @include transition(color);
+
+        &:hover {
+          color: $lightgrey;
+        }
       }
 
       .more {
-        background: image-url("more.png") center no-repeat;
         width: 15px;
-        height: 15px;
+        height: 31px;
         float: right;
-        margin: 10px 0 0 20px;
+        margin: 2px 0 0 20px;
+        overflow: hidden;
+        @include transition(-webkit-transform, 350ms);
+      }
+
+      ul {
+        display: none;
+      }
+
+      &.expanded {
+        z-index: 1000;
+        border-color: $midgrey;
+
+        .more {
+          @include rotate(180deg);
+        }
+
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: block;
+
+          li {
+            border-top: 1px solid $midgrey;
+            text-align: center;
+          }
+        }
       }
     }
   }

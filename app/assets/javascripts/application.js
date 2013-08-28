@@ -9,5 +9,22 @@
 //
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
+//= require jquery
 //= require_tree .
 
+
+function toggleDropdown(event) {
+  $('.profile').toggleClass('expanded');
+}
+function dontClearDropdown(event) {
+  event.stopPropagation();
+}
+function clearDropdown(event) {
+  $('.profile').removeClass('expanded');
+}
+
+$(function() {
+  $('body').on('click', clearDropdown);
+  $('.profile').on('click', dontClearDropdown);
+  $('.profile .expand').on('click', toggleDropdown);
+})
