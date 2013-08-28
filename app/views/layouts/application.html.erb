@@ -56,7 +56,7 @@
         <nav>
           <ul>
             <li><%= link_to '/dashboard/home', :class=>['home', active_class?(params[:action] == 'home')] do %> <span class="icon"></span>Home <%end%></li>
-            <li><%= link_to '/dashboard/content', :class=>['content',active_class?(params[:action] == 'content')] do %> <span class="icon"></span>Content <%end%></li>
+            <li><%= link_to '/dashboard/content/'+ users_app.to_param, :class=>['content',active_class?(params[:action] == 'content')] do %> <span class="icon"></span>Content <%end%></li>
             <li><%= link_to '#', :class=>['analytics',active_class?(params[:action] == 'analytics')] do %> <span class="icon"></span>Analytics<%end%></li>
             <li><%= link_to '#', :class=>['support',active_class?(params[:action] == 'support')] do %> <span class="icon"></span>Support<%end%></li>
           </ul>

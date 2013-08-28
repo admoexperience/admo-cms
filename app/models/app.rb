@@ -2,6 +2,7 @@ class App
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
+  include Mongoid::Extensions::Hash::IndifferentAccess
 
   field :name,              type: String
   field :description,       type: String

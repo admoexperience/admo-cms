@@ -1,9 +1,16 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  
+
   before_filter :reload_rails_admin if :rails_admin_path?
 
+  helper_method :users_app
+
 protected
+
+  def users_app
+    current_user.admo_account.apps.first
+  end
+
 
 private
   def reload_rails_admin

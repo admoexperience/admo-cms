@@ -11,6 +11,11 @@ class DashboardController < ApplicationController
   end
 
   def content
+    @app = get_account.apps.find(params[:app_id])
+    @current_content = params[:content_id]
+  end
+
+  def update_content
 
   end
 
@@ -38,22 +43,16 @@ class DashboardController < ApplicationController
 
   end
 
-
 private
+  def get_account
+    current_user.admo_account
+  end
+
   def get_units
     if current_user.admo_account
       current_user.admo_account.admo_units
     else
       []
     end
-  end
-  def app_params
-    puts params.inspect
-    puts params.require(:app).permit(:config)
-    params.require(:app).permit(:config)
-  end
-
-  def load_model
-    @app = current_user.admo_account.apps.find(params[:id])
   end
 end

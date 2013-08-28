@@ -1,6 +1,7 @@
 class AdmoUnit
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Extensions::Hash::IndifferentAccess
 
   CONFIG_KEYS = %w(
     app

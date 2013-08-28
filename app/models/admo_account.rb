@@ -2,6 +2,7 @@ class AdmoAccount
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
+  include Mongoid::Extensions::Hash::IndifferentAccess
 
   field :api_key,          type: String,   :default => lambda {SecureRandom.uuid}
   field :name,             type: String

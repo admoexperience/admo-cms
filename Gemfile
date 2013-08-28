@@ -60,6 +60,8 @@ gem 'rails_admin', '~> 0.5.0'
 
 gem 'mongoid_slug'
 
+gem "mongoid-indifferent-access", require: "mongoid_indifferent_access"
+
 #Had to run my own fork because the jquery load function wasn't happening
 #Also wanted the maxwidth/maxheight feature
 gem 'rails_admin_map_field',  github: 'drubin/rails_admin_map_field'
