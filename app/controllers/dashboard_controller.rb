@@ -20,6 +20,10 @@ class DashboardController < ApplicationController
   end
 
   def support
+    if request.post?
+      email = {:user_email=> current_user.email}
+      SupportMailer.help(support_params.merge(email)).deliver
+    end
   end
 
   def update
@@ -44,6 +48,10 @@ class DashboardController < ApplicationController
   end
 
 private
+  def support_params
+    params.require(:support).permit([:subject,:message])
+  end
+
   def get_account
     current_user.admo_account
   end

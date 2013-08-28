@@ -16,6 +16,9 @@ general:
 gmaps:
   api_key: AIzaSyAuEhwdsqjl8kjyCWrtZLkpvzOEJIulVtc
 
+support:
+  email: support@admo.co
+
 
 email:
   from: <%= ENV['EMAIL_FROM'] || 'system@admo.co' %>

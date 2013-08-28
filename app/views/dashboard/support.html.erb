@@ -13,24 +13,24 @@
   <h2>Contact Us</h2>
 
   <div class="portlet wide">
-    <form>
+    <%= form_tag support_request_path, method: :post do %>
 
       <div class="input-block">
         <label for="subject">Subject</label>
-        <input type="text" id="subject" name="subject" />
+        <%= text_field_tag 'support[subject]' %>
       </div>
 
       <div class="input-block">
         <label for="descriptiong">Description</label>
         <em>Please try to be as specific as possible when describing your problem</em>
-        <textarea id="description" name="description"></textarea>
+        <%= text_area_tag 'support[message]' %>
       </div>
 
       <button type="submit" class="proceed">Submit</button>
 
       <div class="clear"></div>
 
-    </form>
+    <% end %>
   </div>
 </div>
 

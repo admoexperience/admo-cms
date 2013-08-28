@@ -58,7 +58,7 @@
             <li><%= link_to '/dashboard/home', :class=>['home', active_class?(params[:action] == 'home')] do %> <span class="icon"></span>Home <%end%></li>
             <li><%= link_to view_content_path(users_app,users_app.config.keys.first), :class=>['content',active_class?(params[:action] == 'content')] do %> <span class="icon"></span>Content <%end%></li>
             <li><%= link_to '#', :class=>['analytics',active_class?(params[:action] == 'analytics')] do %> <span class="icon"></span>Analytics<%end%></li>
-            <li><%= link_to '/dashboard/support', :class=>['support',active_class?(params[:action] == 'support')] do %> <span class="icon"></span>Support<%end%></li>
+            <li><%= link_to support_path, :class=>['support',active_class?(params[:action] == 'support')] do %> <span class="icon"></span>Support<%end%></li>
           </ul>
         </nav>
     <% end %>
