@@ -10,8 +10,10 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //= require jquery
+//= require ./vendor/jquery.ui.widget.js
+//= require ./vendor/jquery.iframe-transport.js
+//= require ./vendor/jquery.fileupload.js
 //= require_tree .
-
 
 function toggleDropdown(event) {
   $('.profile').toggleClass('expanded');

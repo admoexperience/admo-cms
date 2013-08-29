@@ -19,6 +19,23 @@ class DashboardController < ApplicationController
 
   end
 
+  def update_content_item
+    @app = get_account.apps.find(params[:app_id])
+    @cont = @app.contents.find(params[:content_item])
+    @cont.value = params[:upload]
+    @cont.save!
+    respond_to do |format|
+      format.html {
+        render :json => [@cont.to_jq_upload].to_json,
+        :content_type => 'text/html',
+        :layout => false
+      }
+      format.json {
+        render :json => [@cont.to_jq_upload].to_json
+      }
+    end
+  end
+
   def support
     if request.post?
       email = {:user_email=> current_user.email}
