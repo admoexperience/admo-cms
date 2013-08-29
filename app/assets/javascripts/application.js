@@ -42,7 +42,7 @@ var colors = {
 }
 
 // Donut charts
-function drawDonuts(values, elementId) {
+function drawDonutCharts(data, elementId) {
   // Constructor functions and parameters
   var width = 80,
       height = 80,
@@ -62,7 +62,7 @@ function drawDonuts(values, elementId) {
 
   // Create <div> containers
   var donuts = d3.select(elementId).selectAll(".chart.donut")
-      .data(values)
+      .data(data)
     .enter().append("div")
       .attr("class", "chart donut")
 
@@ -102,7 +102,7 @@ function drawDonuts(values, elementId) {
 
 
 // Funnel chart
-function drawFunnel(data, elementId) {
+function drawFunnelChart(data, elementId) {
 
   // Basic variables
   var n = data.length,
@@ -137,7 +137,9 @@ function drawFunnel(data, elementId) {
       .y1(function(d) { return y(d.y0 + d.y); });
 
   // Make the SVG object
-  var svg = d3.select(elementId).append("svg")
+  var svg = d3.select(elementId).append("div")
+      .attr("class", "chart funnel")
+    .append("svg")
       .attr("width", width)
       .attr("height", height);
 
@@ -209,124 +211,92 @@ function drawFunnel(data, elementId) {
       .attr("stroke-dasharray", "4,4");
 }
 
-$(function() {
+function drawBarChart(data, elementId) {
 
-var data = [
-{day:  1, weekday: 'Mon', date: '01 Aug 2013', value: 40},
-{day:  2, weekday: 'Tue', date: '02 Aug 2013', value: 64},
-{day:  3, weekday: 'Wed', date: '03 Aug 2013', value: 77},
-{day:  4, weekday: 'Thu', date: '04 Aug 2013', value: 80},
-{day:  5, weekday: 'Fri', date: '05 Aug 2013', value: 110},
-{day:  6, weekday: 'Sat', date: '06 Aug 2013', value: 170},
-{day:  7, weekday: 'Sun', date: '07 Aug 2013', value: 115},
-{day:  8, weekday: 'Mon', date: '08 Aug 2013', value: 50},
-{day:  9, weekday: 'Tue', date: '09 Aug 2013', value: 45},
-{day: 10, weekday: 'Wed', date: '10 Aug 2013', value: 70},
-{day: 11, weekday: 'Thu', date: '11 Aug 2013', value: 75},
-{day: 12, weekday: 'Fri', date: '12 Aug 2013', value: 130},
-{day: 13, weekday: 'Sat', date: '13 Aug 2013', value: 161},
-{day: 14, weekday: 'Sun', date: '14 Aug 2013', value: 130},
-{day: 15, weekday: 'Mon', date: '15 Aug 2013', value: 34},
-{day: 16, weekday: 'Tue', date: '16 Aug 2013', value: 67},
-{day: 17, weekday: 'Wed', date: '17 Aug 2013', value: 53},
-{day: 18, weekday: 'Thu', date: '18 Aug 2013', value: 82},
-{day: 19, weekday: 'Fri', date: '19 Aug 2013', value: 103},
-{day: 20, weekday: 'Sat', date: '20 Aug 2013', value: 152},
-{day: 21, weekday: 'Sun', date: '21 Aug 2013', value: 127},
-{day: 22, weekday: 'Mon', date: '22 Aug 2013', value: 47},
-{day: 23, weekday: 'Tue', date: '23 Aug 2013', value: 58},
-{day: 24, weekday: 'Wed', date: '24 Aug 2013', value: 59},
-{day: 25, weekday: 'Thu', date: '25 Aug 2013', value: 47},
-{day: 26, weekday: 'Fri', date: '26 Aug 2013', value: 169},
-{day: 27, weekday: 'Sat', date: '27 Aug 2013', value: 173},
-{day: 28, weekday: 'Sun', date: '28 Aug 2013', value: 114},
-{day: 29, weekday: 'Mon', date: '29 Aug 2013', value: 58},
-{day: 30, weekday: 'Tue', date: '30 Aug 2013', value: 63},
-]
+  var margin = {top: 20, right: 20, bottom: 30, left: 40},
+      width = $(elementId).width() - margin.left - margin.right,
+      height = 180 - margin.top - margin.bottom,
+      barWidth = 16;
 
-var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 912 - margin.left - margin.right,
-    height = 200 - margin.top - margin.bottom,
-    barWidth = 16;
+  var formatPercent = d3.format(".0%");
 
-var formatPercent = d3.format(".0%");
+  var x = d3.scale.ordinal()
+      .rangePoints([0, width], 1);
 
-var x = d3.scale.ordinal()
-    .rangePoints([0, width], 1);
+  var y = d3.scale.linear()
+      .range([height, 0]);
 
-var y = d3.scale.linear()
-    .range([height, 0]);
+  var labels = data.map(function(d) {return d.label});
+  var xAxis = d3.svg.axis()
+      .scale(x)
+      .tickFormat(function(d) {return labels[d]})
+      .tickPadding(10)
+      .orient("bottom");
 
-var weekdays = data.map(function(d) {return d.weekday[0]});
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .tickFormat(function(d) {return weekdays[d - 1]}) // Compensate for empty ticks at start/end
-    .tickPadding(10)
-    .orient("bottom");
+  var yAxis = d3.svg.axis()
+      .scale(y)
+      .ticks(5)
+      .tickPadding(5)
+      .orient("left");
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .ticks(5)
-    .tickPadding(5)
-    .orient("left");
+  var svg = d3.select(elementId).append("div")
+      .attr("class", "chart bar")
+    .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var svg = d3.select("#interactions-per-day .chart").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  x.domain(data.map(function(d, i) { return i; }));
+  y.domain([0, d3.max(data, function(d) { return d.value; })]);
 
-x.domain(data.map(function(d) { return d.day; }));
-y.domain([0, d3.max(data, function(d) { return d.value; })]);
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
 
-svg.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(xAxis);
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
 
-svg.append("g")
-    .attr("class", "y axis")
-    .call(yAxis)
+  var gridPositions = y.ticks(5);
+  svg.selectAll(".grid")
+      .data(gridPositions.slice(1, gridPositions.length))
+    .enter().append("line")
+      .attr("class", "grid")
+      .attr("x1", 0)
+      .attr("x2", width)
+      .attr("y1", y)
+      .attr("y2", y)
+      .style("stroke", "#ccc")
+      .attr("stroke-dasharray", "1,4");
 
-var gridPositions = y.ticks(5);
-svg.selectAll(".grid")
-    .data(gridPositions.slice(1, gridPositions.length))
-  .enter().append("line")
-    .attr("class", "grid")
-    .attr("x1", 0)
-    .attr("x2", width)
-    .attr("y1", y)
-    .attr("y2", y)
-    .style("stroke", "#ccc")
-    .attr("stroke-dasharray", "1,4");
+  svg.selectAll(".bar")
+      .data(data)
+    .enter().append("rect")
+      .attr("class", function(d) { return d.bold ? "bar sunday" : "bar" })
+      .attr("x", function(d, i) { return x(i)-barWidth/2; })
+      .attr("width", barWidth)
+      .attr("y", function(d) { return y(d.value); })
+      .attr("height", function(d) { return height - y(d.value); });
 
-svg.selectAll(".bar")
-    .data(data)
-  .enter().append("rect")
-    .attr("class", function(d) { return (d.weekday == 'Sun') ? "bar sunday" : "bar" })
-    .attr("x", function(d) { return x(d.day)-barWidth/2; })
-    .attr("width", barWidth)
-    .attr("y", function(d) { return y(d.value); })
-    .attr("height", function(d) { return height - y(d.value); });
+  var line = d3.svg.line()
+      .x(function(d, i) { return x(i); })
+      .y(function(d) { return y(d.value); });
+  svg.append("path")
+      .attr("d", line(data))
+      .attr("stroke", colors.blue)
+      .attr("stroke-width", 2)
+      .attr("fill", "none");
 
-var line = d3.svg.line()
-    .x(function(d) { return x(d.day); })
-    .y(function(d) { return y(d.value); });
-svg.append("path")
-    .attr("d", line(data))
-    .attr("stroke", colors.blue)
-    .attr("stroke-width", 2)
-    .attr("fill", "none");
+  svg.selectAll("circle")
+      .data(data)
+    .enter().append("circle")
+      .attr("cx", function(d, i) { return x(i); })
+      .attr("cy", function(d) { return y(d.value); })
+      .attr("r", 4)
+      .attr("stroke", colors.blue)
+      .attr("stroke-width", 2)
+      .attr("fill", colors.white);
 
-svg.selectAll("circle")
-    .data(data)
-  .enter().append("circle")
-    .attr("cx", function(d) { return x(d.day); })
-    .attr("cy", function(d) { return y(d.value); })
-    .attr("r", 4)
-    .attr("stroke", colors.blue)
-    .attr("stroke-width", 2)
-    .attr("fill", colors.white);
-
-
-});
+}
