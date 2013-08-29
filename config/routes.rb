@@ -21,6 +21,8 @@ AdmoCms::Application.routes.draw do
   get '/dashboard/support/' => 'dashboard#support',  as: 'support'
   post '/dashboard/support/' => 'dashboard#support', as: 'support_request'
 
+  get '/dashboard/analytics' => 'dashboard#analytics', as: 'analytics'
+
   get '/html/login' => 'html#login'
   get '/html/home' => 'html#home'
   get '/html/content' => 'html#content'

@@ -497,6 +497,9 @@ section {
       &.third {
         width: floor($wideContentWidth / 3) - 80px;
       }
+      &.two-thirds {
+        width: 2*floor($wideContentWidth / 3) - 90px;
+      }
       &.wide {
         width: $wideContentWidth - 100px;
       }
@@ -789,14 +792,39 @@ section {
 }
 
 .chart {
-  margin-top: 10px;
+  margin-top: 15px;
+
+  &.donut {
+    float: left;
+    width: 48%;
+    text-align: center;
+    padding: 20px 0 13px 0;
+
+    p {
+      font-size: 12px;
+    }
+    svg {
+      margin-bottom: 10px;
+    }
+    .arc path {
+      stroke: #fff;
+    }
+    text {
+      fill: $lightgrey;
+      font-size: 18px;
+    }
+  }
 
   &.list {
     margin-left: 9px;
     border-left: 1px solid $blue;
 
     .item {
-      margin: 25px 0;
+      margin: 20px 0;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
 
       .number {
         background-color: $blue;
@@ -817,6 +845,14 @@ section {
         color: $blue !important;
         font-size: 13px !important;
       }
+    }
+  }
+
+  &.funnel {
+    padding: 5px 0 0 0;
+
+    line {
+      shape-rendering: crispEdges;
     }
   }
 
@@ -844,6 +880,32 @@ section {
       }
     }
   }
+
+  &.bar {
+    .bar {
+      fill: $lightgrey;
+
+      &.sunday {
+        fill: $lightgrey2;
+      }
+
+      &:hover {
+        fill: $blue;
+      }
+    }
+
+    .axis text {
+      fill: $grey;
+    }
+    .y.axis path {
+      display: none;
+    }
+    .x.axis path, .x.axis line {
+      fill: none;
+      stroke: $midgrey;
+      shape-rendering: crispEdges;
+    }
+  }
 }
 
 #grey-background {
@@ -855,3 +917,4 @@ section {
   width: 50%;
   z-index: -1;
 }
+

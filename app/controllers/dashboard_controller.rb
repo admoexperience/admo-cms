@@ -64,6 +64,10 @@ class DashboardController < ApplicationController
 
   end
 
+  def analytics
+
+  end
+
 private
   def support_params
     params.require(:support).permit([:subject,:message])
