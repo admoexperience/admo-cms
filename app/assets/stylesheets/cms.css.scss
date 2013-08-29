@@ -852,6 +852,8 @@ section {
     .bar {
       fill: $lightgrey;
 
+      @include transition(fill);
+
       &.sunday {
         fill: $lightgrey2;
       }
