@@ -1,0 +1,171 @@
+<div id="content" class="wide">
+  <div class="toggle">
+    <a href="#">Week</a>
+    <a href="#" class="active">Month</a>
+  </div>
+  <h2 class="analytics">Analytics</h2>
+
+
+  <div class="portlet narrow blue">
+    <div class="amount people">3087</div>
+    <p>Total number of interactions</p>
+  </div>
+  <div class="portlet narrow blue">
+    <div class="amount person">151</div>
+    <p>Average interactions per day</p>
+  </div>
+  <div class="portlet narrow blue">
+    <div class="amount time">15:00</div>
+    <p>Busiest time of the day</p>
+  </div>
+  <div class="portlet narrow blue">
+    <div class="amount date">Sunday</div>
+    <p>Busiest day of the week</p>
+  </div>
+
+
+
+  <div class="portlet wide" id="interactions-per-day">
+    <h4>Number of Interactions per Day</h4>
+  </div>
+
+
+
+  <div class="portlet" id="interactions-by-weekday">
+    <h4>Interactions by Day of the Week</h4>
+  </div>
+
+  <div class="portlet" id="interactions-during-day">
+    <h4>Interactions During the Day</h4>
+  </div>
+
+
+
+
+  <div class="portlet third right" id="funnel">
+    <h4>Conversion Rate</h4>
+    <div class="chart funnel">
+    </div>
+  </div>
+  
+  <div class="portlet third right">
+    <h4>Store Popularity</h4>
+    <div class="chart list">
+      <div class="item">
+        <span class="number">1</span>
+        Canal Walk, <em>7489 interactions</em>
+      </div>
+      <div class="item">
+        <span class="number">2</span>
+        Sandton City, <em>6852 interactions</em>
+      </div>
+      <div class="item">
+        <span class="number">3</span>
+        Boardwalk, <em>5331 interactions</em>
+      </div>
+      <div class="item">
+        <span class="number">4</span>
+        Cavendish, <em>5012 interactions</em>
+      </div>
+      <div class="item">
+        <span class="number">5</span>
+        Rosebank, <em>2095 interactions</em>
+      </div>
+    </div>
+  </div>
+
+  <div class="portlet third" id="donut-charts">
+    <h4>Destination Selected</h4>
+  </div>
+
+  <div class="portlet two-thirds">
+    <h4>Duration of Interactions</h4>
+    <div class="chart stacked-bar">
+      <div class="light-grey" style="width:17%">0-10</div>
+      <div class="grey" style="width:28%">11-30 sec</div>
+      <div class="blue" style="width:40%">31-60 sec</div>
+      <div class="light-grey" style="width:15%">60+</div>
+    </div>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  var values = [
+    { value: 0.43, name: "Mauritius"},
+    { value: 0.17, name: "Thailand"},
+    { value: 0.18, name: "Europe"},
+    { value: 0.12, name: "USA"}
+  ];
+  drawDonutCharts(values, "#donut-charts");
+
+  var values = [
+    {name: 'Start', value: 582},
+    {name: 'Menu', value: 462},
+    {name: 'Carousel', value: 372},
+    {name: 'Item', value: 329}
+  ];
+  drawFunnelChart(values, "#funnel");
+
+  var values = [
+    {label: 'M', date: '01 Aug 2013', value: 40},
+    {label: 'T', date: '02 Aug 2013', value: 64},
+    {label: 'W', date: '03 Aug 2013', value: 77},
+    {label: 'T', date: '04 Aug 2013', value: 80},
+    {label: 'F', date: '05 Aug 2013', value: 110},
+    {label: 'S', date: '06 Aug 2013', value: 170},
+    {label: 'S', date: '07 Aug 2013', value: 115, bold: true},
+    {label: 'M', date: '08 Aug 2013', value: 50},
+    {label: 'T', date: '09 Aug 2013', value: 45},
+    {label: 'W', date: '10 Aug 2013', value: 70},
+    {label: 'T', date: '11 Aug 2013', value: 75},
+    {label: 'F', date: '12 Aug 2013', value: 130},
+    {label: 'S', date: '13 Aug 2013', value: 161},
+    {label: 'S', date: '14 Aug 2013', value: 130, bold: true},
+    {label: 'M', date: '15 Aug 2013', value: 34},
+    {label: 'T', date: '16 Aug 2013', value: 67},
+    {label: 'W', date: '17 Aug 2013', value: 53},
+    {label: 'T', date: '18 Aug 2013', value: 82},
+    {label: 'F', date: '19 Aug 2013', value: 103},
+    {label: 'S', date: '20 Aug 2013', value: 152},
+    {label: 'S', date: '21 Aug 2013', value: 127, bold: true},
+    {label: 'M', date: '22 Aug 2013', value: 47},
+    {label: 'T', date: '23 Aug 2013', value: 58},
+    {label: 'W', date: '24 Aug 2013', value: 59},
+    {label: 'T', date: '25 Aug 2013', value: 47},
+    {label: 'F', date: '26 Aug 2013', value: 169},
+    {label: 'S', date: '27 Aug 2013', value: 173},
+    {label: 'S', date: '28 Aug 2013', value: 114, bold: true},
+    {label: 'M', date: '29 Aug 2013', value: 58},
+    {label: 'T', date: '30 Aug 2013', value: 63},
+  ]
+  drawBarChart(values, "#interactions-per-day");
+
+  var values = [
+    {label: 'Mon', date: '01 Aug 2013', value: 40},
+    {label: 'Tue', date: '02 Aug 2013', value: 64},
+    {label: 'Wed', date: '03 Aug 2013', value: 77},
+    {label: 'Thu', date: '04 Aug 2013', value: 80},
+    {label: 'Fri', date: '05 Aug 2013', value: 110},
+    {label: 'Sat', date: '06 Aug 2013', value: 170},
+    {label: 'Sun', date: '07 Aug 2013', value: 115, bold: true},
+  ]
+  drawBarChart(values, "#interactions-by-weekday");
+
+  var values = [
+    {label: '00:00', date: '01 Aug 2013', value: 1},
+    {label: '', date: '02 Aug 2013', value: 2},
+    {label: '04:00', date: '03 Aug 2013', value: 4},
+    {label: '', date: '04 Aug 2013', value: 3},
+    {label: '08:00', date: '05 Aug 2013', value: 15},
+    {label: '', date: '06 Aug 2013', value: 34},
+    {label: '12:00', date: '07 Aug 2013', value: 45},
+    {label: '', date: '08 Aug 2013', value: 28},
+    {label: '16:00', date: '09 Aug 2013', value: 11},
+    {label: '', date: '10 Aug 2013', value: 9},
+    {label: '20:00', date: '11 Aug 2013', value: 5},
+    {label: '', date: '12 Aug 2013', value: 1},
+  ]
+  drawBarChart(values, "#interactions-during-day");
+
+</script>
