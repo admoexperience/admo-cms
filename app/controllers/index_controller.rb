@@ -1,6 +1,6 @@
 class IndexController < ApplicationController
   before_filter :authenticate_user!
   def index
-    redirect_to app_index_path
+    redirect_to dashboard_home_path
   end
 end
