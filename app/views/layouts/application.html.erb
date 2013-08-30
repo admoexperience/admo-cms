@@ -38,12 +38,11 @@
           <h1><span>ADMO</span></h1>
           <div class="profile">
             <a class="expand">
-              <span class="more">&#x25BC;</span>
-               <%= current_user.email_to_name.titleize %>
+               <%= current_user.email_to_name.titleize %><div class="icon"></div>
             </a>
 
             <ul>
-              <li><a href="#">Account</a></li>
+              <li><a href="<%= edit_user_registration_path %>">Account</a></li>
               <li><a href="#">Billing</a></li>
               <li><%= link_to "Log Out", destroy_user_session_path %></li>
             </ul>

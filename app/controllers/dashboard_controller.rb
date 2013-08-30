@@ -16,7 +16,34 @@ class DashboardController < ApplicationController
   end
 
   def update_content
+    @app = get_account.apps.find(params[:app_id])
+    @current_content = params[:content_id]
+    content = params[:content]
+    config = @app.config
+    config[@current_content]= content
+    puts config.to_yaml
+    @app.config = config
+    @app.save!
+    #should always publish on content saving.
+    @app.publish_change
+    redirect_to view_content_path(@app,@current_content)
+  end
 
+  def update_content_item
+    @app = get_account.apps.find(params[:app_id])
+    @cont = @app.contents.find(params[:content_item])
+    @cont.value = params[:upload]
+    @cont.save!
+    respond_to do |format|
+      format.html {
+        render :json => [@cont.to_jq_upload].to_json,
+        :content_type => 'text/html',
+        :layout => false
+      }
+      format.json {
+        render :json => [@cont.to_jq_upload].to_json
+      }
+    end
   end
 
   def support

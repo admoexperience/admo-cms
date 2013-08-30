@@ -43,4 +43,15 @@ class Content
       nil
     end
   end
+
+  #one convenient method to pass jq_upload the necessary information
+  def to_jq_upload
+    {
+      "name" => read_attribute(:value_name),
+      "size" => value.size,
+      "url" => value.url,
+      "thumbnail_url" => thumb_url,
+      "is_image"=> is_image
+    }
+  end
 end

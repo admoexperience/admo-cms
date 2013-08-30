@@ -20,8 +20,7 @@
           <h1><span>ADMO</span></h1>
           <div class="profile">
             <a class="expand">
-              <span class="more">&#x25BC;</span>
-              Anandi Ellis
+              Anandi Ellis <div class="icon"></div>
             </a>
 
             <ul>
@@ -36,10 +35,10 @@
       <div id="page">
         <nav>
           <ul>
-            <li><a href="/html/home" class="home active"><span class="icon"></span>Home</a></li>
-            <li><a href="/html/content" class="content"><span class="icon"></span>Content</a></li>
-            <li><a href="#" class="analytics"><span class="icon"></span>Analytics</a></li>
-            <li><a href="#" class="support"><span class="icon"></span>Support</a></li>
+            <li><a href="/html/home" class="home <%= action_name == 'home' ? 'active' : '' %>"><span class="icon"></span>Home</a></li>
+            <li><a href="/html/content" class="content <%= action_name == 'content' ? 'active' : '' %>"><span class="icon"></span>Content</a></li>
+            <li><a href="/html/analytics" class="analytics <%= action_name == 'analytics' ? 'active' : '' %>"><span class="icon"></span>Analytics</a></li>
+            <li><a href="/html/support" class="support <%= action_name == 'support' ? 'active' : '' %>"><span class="icon"></span>Support</a></li>
           </ul>
         </nav>
     <% end %>
