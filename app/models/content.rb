@@ -50,7 +50,8 @@ class Content
       "name" => read_attribute(:value_name),
       "size" => value.size,
       "url" => value.url,
-      "thumbnail_url" => thumb_url
+      "thumbnail_url" => thumb_url,
+      "is_image"=> is_image
     }
   end
 end

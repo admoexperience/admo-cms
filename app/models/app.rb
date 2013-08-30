@@ -54,4 +54,8 @@ class App
   def find_image(key)
     contents.all.select{|c| c.key.match(key) && c.is_image}.first
   end
+
+  def find_video(key)
+    contents.all.select{|c| c.key.match(key) && !c.is_image}.first
+  end
 end

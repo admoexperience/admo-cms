@@ -40,7 +40,7 @@
       <div class="input-block left">
         <label>Image</label>
         <div id="image-div" class="image present" style="background-image: url(<%= @app.find_image(@current_content).thumb_url %>)">
-          <input class="file-input" id="image_upload" name="upload" type="file"></input>
+          <input class="file-input" id="image_upload" name="upload" type="file" data-url="<%= update_content_item_path( @app,@current_content, @app.find_image(@current_content) )%>"></input>
           <div class="progress"><div class="bar"></div></div>
         </div>
       </div>
@@ -48,7 +48,7 @@
       <div class="input-block right">
         <label>Video</label>
         <div id="video-div" class="video">
-          <input class="file-input" id="video_upload" name="upload" type="file"></input>
+          <input class="file-input" id="video_upload" name="upload" type="file" data-url="<%= update_content_item_path( @app,@current_content, @app.find_video(@current_content) )%>"></input>
           <div class="progress"><div class="bar"></div></div>
         </div>
       </div>
@@ -63,24 +63,31 @@
 <script>
 $(function () {
 
-    $(['#video_upload','#image_upload']).each(function(key,value){
-      $(value).fileupload({
+    $(['#video','#image']).each(function(key,value){
+      var uploadElm = $(value+'_upload');
+      console.log(uploadElm.data('url'));
+      uploadElm.fileupload({
         dataType: 'json',
         formData: [ { name: 'authenticity_token', value: $('meta[name="csrf-token"]').attr('content') } ],
-         url: '<%= update_content_item_path( @app,@current_content, @app.find_image(@current_content) )%>',
+         url: uploadElm.data('url'),
          progressall: function (e, data) {
-          var progress = parseInt(data.loaded / data.total * 100, 10);
-          $('.progress .bar',value).css(
-              'width',
-              progress + '%'
-          );
-      },
-      done: function (e, data) {
-        console.log(data);
-        console.log(data.result);
-        var file = data.result[0];
-        $(value).css('background-image','url('+file.thumbnail_url+')');
-      }
+
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('.progress',value+'-div').show();
+            $('.progress .bar',value+'-div').css(
+                'width',
+                progress + '%'
+            );
+        },
+        done: function (e, data) {
+          console.log(data);
+          console.log(data.result);
+          var file = data.result[0];
+          $('.progress',value+'-div').hide();
+          if(file.is_image){
+            $(value+'-div').css('background-image','url('+file.thumbnail_url+')');
+          }
+        }
     });
     });
 });
