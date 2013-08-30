@@ -16,7 +16,7 @@ AdmoCms::Application.routes.draw do
 
   get '/dashboard/home(/:unit_id)' => 'dashboard#home', as: 'dashboard_home'
   get '/dashboard/content/:app_id(/:content_id)' => 'dashboard#content', as: 'view_content'
-  post '/dashboard/content/:app_id(/:content_id)' => 'dashboard#content', as: 'update_content'
+  post '/dashboard/content/:app_id(/:content_id)' => 'dashboard#update_content', as: 'update_content'
   post '/dashboard/content/:app_id(/:content_id(/:content_item))' => 'dashboard#update_content_item', as: 'update_content_item'
   get '/dashboard/support/' => 'dashboard#support',  as: 'support'
   post '/dashboard/support/' => 'dashboard#support', as: 'support_request'

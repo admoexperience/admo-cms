@@ -26,15 +26,15 @@
       <a href="#" class="delete" title="Delete"></a>
     </div>
 
-    <form>
+    <%= form_tag update_content_path(@app,@current_content), :method=>:post do %>
       <div class="input-block">
         <label for="title">Title</label>
-        <%= text_field_tag :title, @app.config[@current_content][:title] %>
+        <%= text_field_tag 'content[title]', @app.config[@current_content][:title] %>
       </div>
 
       <div class="input-block">
         <label for="descriptiong">Description</label>
-        <%= text_area_tag :description, @app.config[@current_content][:description] %>
+        <%= text_area_tag 'content[description]', @app.config[@current_content][:description] %>
       </div>
 
       <div class="input-block left">
@@ -55,7 +55,7 @@
       <button type="button" class="cancel">Cancel</button>
       <button type="submit" class="proceed">Publish</button>
 
-    </form>
+    <% end %>
   </div>
 </div>
 
