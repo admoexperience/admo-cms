@@ -338,10 +338,12 @@ function drawBarChart(data, elementId) {
 
     var bars = $('rect.bar', chart);
     for (var i = 0; i < bars.length; i++) {
+      var classString = bars.eq(i).attr("class")
       if (i == index) {
-        bars.eq(i).attr("class", "bar hover");
+        if (classString.indexOf("hover") == -1)
+          bars.eq(i).attr("class", classString + " hover");
       } else {
-        bars.eq(i).attr("class", "bar");
+        bars.eq(i).attr("class", classString.replace(" hover", ""));
       }
     }
   });

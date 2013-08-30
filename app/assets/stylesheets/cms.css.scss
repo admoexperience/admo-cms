@@ -199,29 +199,33 @@ header {
       margin: 20px 20px 20px 0;
       cursor: pointer;
       position: relative;
-      background-color: $darkgrey;
       border: 1px solid transparent;
       font-size: 14px;
 
       a {
-        color: $midgrey;
+        color: $lightgrey2;
         display: block;
         padding: 0 10px;
 
         @include transition(color);
 
         &:hover {
-          color: $lightgrey;
+          color: $white;
         }
-      }
 
-      .more {
-        width: 15px;
-        height: 31px;
-        float: right;
-        margin: 2px 0 0 20px;
-        overflow: hidden;
-        @include transition(-webkit-transform, 350ms);
+        &.expand {
+          color: $midgrey;
+
+          .icon {
+            background: image-url("person-small.png") right no-repeat;
+            width: 15px;
+            height: 15px;
+            float: right;
+            margin: 8px 5px 0 0;
+            opacity: 0.3;
+            @include transition(opacity);
+          }
+        }
       }
 
       ul {
@@ -230,20 +234,38 @@ header {
 
       &.expanded {
         z-index: 1000;
-        border-color: $midgrey;
 
-        .more {
-          @include rotate(180deg);
+        .expand {
+          color: $white;
+          .icon {
+            opacity: 1;
+          }
         }
 
         ul {
-          list-style: none;
-          margin: 0;
-          padding: 0;
           display: block;
+          list-style: none;
+          margin: 10px 0 0 0;
+          padding: 0;
+          background-color: $darkgrey;
+          position: relative;
+          border: 1px solid $lightgrey3;
+
+          &:before {
+            content: '';
+            background-color: $darkgrey;
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            right: 15px; top: -7px;
+            @include rotate(45deg);
+
+            border-style: solid;
+            border-color: $lightgrey3;
+            border-width: 1px 0 0 1px;
+          }
 
           li {
-            border-top: 1px solid $midgrey;
             text-align: center;
           }
         }
@@ -296,13 +318,13 @@ nav {
 
         &.active::before {
           content: '';
-          border: 10px solid transparent;
-          border-right-color: $white;
+          border: 12.5px solid transparent;
+          border-left-color: $white;
           width: 0;
           height: 0;
           position: absolute;
           margin: auto;
-          top: 0; bottom: 0; right: 0;
+          top: 0; bottom: 0; left: 0;
         }
 
         .icon {
@@ -692,7 +714,8 @@ section {
       }
     }
 
-    .screenshot {
+    .screenshot img {
+      border-radius: 3px;
     }
 
     .map {
@@ -703,6 +726,8 @@ section {
       line-height: 150px;
       text-align: center;
       margin: 0 0 20px 20px;
+      border-radius: 3px;
+      overflow: hidden;
     }
 
     .status {
