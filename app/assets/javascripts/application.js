@@ -213,7 +213,7 @@ function drawFunnelChart(data, elementId) {
 
 function drawBarChart(data, elementId) {
 
-  var margin = {top: 20, right: 20, bottom: 30, left: 40},
+  var margin = {top: 20, right: 20, bottom: 30, left: 30},
       width = $(elementId).width() - margin.left - margin.right,
       height = 180 - margin.top - margin.bottom,
       barWidth = 16;
@@ -278,8 +278,7 @@ function drawBarChart(data, elementId) {
       .attr("x", function(d, i) { return x(i)-barWidth/2; })
       .attr("width", barWidth)
       .attr("y", function(d) { return y(d.value); })
-      .attr("height", function(d) { return height - y(d.value); })
-      .attr("data-index", function(d, i) { return i });
+      .attr("height", function(d) { return height - y(d.value); });
 
   var line = d3.svg.line()
       .x(function(d, i) { return x(i); })
@@ -304,12 +303,16 @@ function drawBarChart(data, elementId) {
   //   <strong>119</strong><span> ^ 11%</span><br />
   //   <em>Wed 3 Aug</em>
   // </div>
+  var chart = $(elementId + ' .chart');
   var tooltip = $("<div class=\"tooltip\"><strong></strong> <span></span><br /><em></em></div>");
-  $(elementId + ' .chart').append(tooltip);
+  chart.append(tooltip);
 
-  $(elementId + ' rect.bar').on("mouseover", function() {
-    var bar = $(this);
-    var index = parseInt(bar.data('index'));
+  $('svg', chart).on("mousemove", function(event) {
+    var xPos = event.offsetX - margin.left - (0.5*width/data.length);
+    var index = Math.round( (xPos / width) * data.length);
+    index = Math.max(index, 0);
+    index = Math.min(index, data.length-1);
+
     var datum = data[index];
     $('strong', tooltip).html(datum.value);
     var change = '';
@@ -329,13 +332,18 @@ function drawBarChart(data, elementId) {
     $('em', tooltip).html(datum.tooltip);
 
     tooltip.css({
-      "left": Math.round(bar.attr("x")) + "px",
-      "top": Math.round(bar.attr("y")) + "px"
+      "left": Math.round(x(index)-barWidth/2) + "px",
+      "top": Math.round(y(datum.value)) + "px"
     });
-    tooltip.addClass("shown");
-  });
-  $(elementId + ' rect.bar').on("mouseout", function() {
-    tooltip.removeClass("shown");
+
+    var bars = $('rect.bar', chart);
+    for (var i = 0; i < bars.length; i++) {
+      if (i == index) {
+        bars.eq(i).attr("class", "bar hover");
+      } else {
+        bars.eq(i).attr("class", "bar");
+      }
+    }
   });
 
 }

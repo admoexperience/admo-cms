@@ -859,14 +859,14 @@ section {
       &.sunday {
         fill: $lightgrey2;
       }
-
-      &:hover {
-        fill: $blue;
-      }
+    }
+    &:hover .bar.hover {
+      fill: $blue;
     }
 
     .axis text {
       fill: $grey;
+      font-size: 11px;
     }
     .y.axis path {
       display: none;
@@ -886,18 +886,15 @@ section {
     text-align: center;
     color: $blue;
     line-height: 1.2;
-    width: 70px;
+    width: 80px;
     height: 30px;
-    margin: -50px -3px;
+    margin: -55px -3px;
     left: 0;
     top: 0;
     opacity: 0;
+    pointer-events: none;
 
     @include transition(opacity, 250ms);
-
-    &.shown {
-      opacity: 1;
-    }
 
     strong {
       font-weight: normal;
@@ -933,6 +930,10 @@ section {
       border-color: $lightgrey2;
       border-width: 0 1px 1px 0;
     }
+  }
+
+  &:hover .tooltip {
+    opacity: 1;
   }
 }
 
