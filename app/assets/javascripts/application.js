@@ -278,7 +278,8 @@ function drawBarChart(data, elementId) {
       .attr("x", function(d, i) { return x(i)-barWidth/2; })
       .attr("width", barWidth)
       .attr("y", function(d) { return y(d.value); })
-      .attr("height", function(d) { return height - y(d.value); });
+      .attr("height", function(d) { return height - y(d.value); })
+      .attr("data-index", function(d, i) { return i });
 
   var line = d3.svg.line()
       .x(function(d, i) { return x(i); })
@@ -298,5 +299,43 @@ function drawBarChart(data, elementId) {
       .attr("stroke", colors.blue)
       .attr("stroke-width", 2)
       .attr("fill", colors.white);
+
+  // <div class="tooltip">
+  //   <strong>119</strong><span> ^ 11%</span><br />
+  //   <em>Wed 3 Aug</em>
+  // </div>
+  var tooltip = $("<div class=\"tooltip\"><strong></strong> <span></span><br /><em></em></div>");
+  $(elementId + ' .chart').append(tooltip);
+
+  $(elementId + ' rect.bar').on("mouseover", function() {
+    var bar = $(this);
+    var index = parseInt(bar.data('index'));
+    var datum = data[index];
+    $('strong', tooltip).html(datum.value);
+    var change = '';
+    if (index > 0) {
+      var previous = data[index-1].value;
+      if (previous != 0) {
+        change = Math.round(100 * (datum.value - previous) / previous);
+        if (change == 0)
+          change = '';
+        else if (change > 0)
+          change = '<span>^</span> ' + change + '%';
+        else
+          change = '<span class="upside-down">^</span> ' + Math.abs(change) + '%';
+      }
+    }
+    $('span', tooltip).html(change);
+    $('em', tooltip).html(datum.tooltip);
+
+    tooltip.css({
+      "left": Math.round(bar.attr("x")) + "px",
+      "top": Math.round(bar.attr("y")) + "px"
+    });
+    tooltip.addClass("shown");
+  });
+  $(elementId + ' rect.bar').on("mouseout", function() {
+    tooltip.removeClass("shown");
+  });
 
 }

@@ -849,6 +849,8 @@ section {
   }
 
   &.bar {
+    position: relative;
+
     .bar {
       fill: $lightgrey;
 
@@ -873,6 +875,63 @@ section {
       fill: none;
       stroke: $midgrey;
       shape-rendering: crispEdges;
+    }
+  }
+
+  .tooltip {
+    background: $white;
+    border: 1px solid $lightgrey2;
+    position: absolute;
+    padding: 10px 15px;
+    text-align: center;
+    color: $blue;
+    line-height: 1.2;
+    width: 70px;
+    height: 30px;
+    margin: -50px -3px;
+    left: 0;
+    top: 0;
+    opacity: 0;
+
+    @include transition(opacity, 250ms);
+
+    &.shown {
+      opacity: 1;
+    }
+
+    strong {
+      font-weight: normal;
+      font-family: $heavyFontFamily;
+    }
+    em {
+      font-size: 11px !important;
+    }
+
+    span span {
+      position: relative;
+      top: 2px;
+
+      &.upside-down {
+        @include rotate(180deg);
+        display: inline-block;
+        top: -3px;
+      }
+    }
+
+    &:before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      @include rotate(45deg);
+      background-color: $white;
+      border-style: solid;
+      border-color: $lightgrey2;
+      border-width: 0 1px 1px 0;
     }
   }
 }
