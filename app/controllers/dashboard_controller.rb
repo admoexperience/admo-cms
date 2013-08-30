@@ -33,7 +33,7 @@ class DashboardController < ApplicationController
     @app = get_account.apps.find(params[:app_id])
     @cont = @app.contents.find(params[:content_item])
     @cont.value = params[:upload]
-    @content.last_edited_at = Time.now
+    @cont.last_edited_at = Time.now
     @cont.save!
     respond_to do |format|
       format.html {
