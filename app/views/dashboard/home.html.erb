@@ -8,7 +8,11 @@
       <%= link_to '/dashboard/home/'+unit.id do %>
         <span class="number"><%= unit.config.size%></span>
         <strong><%= unit.name%></strong>
-        <em><%= unit.city %>, <strong>LIVE</strong></em>
+        <em><%= unit.city %>,
+          <% if unit.online? %>
+           <strong>LIVE</strong>
+          <% end %>
+        </em>
         <%- end%>
       <%- end%>
     <%- end%>
@@ -31,8 +35,8 @@
       <!--<div class="tel">t | <a href="tel:0219879821">021 987 9821</a></div>-->
 
       <ul class="status">
-        <li class="active online">Online</li>
-        <li class="active up-to-date">Up to date</li>
+        <li class="online <%=active_class?(@current_unit.online?)%>"><%= @current_unit.online? ? 'Online': 'Offline'%></li>
+        <li class="up-to-date <%=active_class?(@current_unit.online?)%>"><%= @current_unit.online? ? 'Up to date': 'Pending...'%></li>
       </ul>
 
 
