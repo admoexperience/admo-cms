@@ -7,12 +7,12 @@
 
 
   <div class="portlet narrow blue">
-    <div class="amount people">3087</div>
-    <p>Total number of interactions</p>
+    <div class="amount people"><%= @total_interactions %></div>
+    <p>Total interactions this month</p>
   </div>
   <div class="portlet narrow blue">
-    <div class="amount person">151</div>
-    <p>Average interactions per day</p>
+    <div class="amount person"><%= @daily_avg_interactions %></div>
+    <p>Average per day</p>
   </div>
   <div class="portlet narrow blue">
     <div class="amount time">15:00</div>
@@ -105,7 +105,7 @@
   ];
   drawFunnelChart(values, "#funnel");
 
-  var values = [
+  /*var values = [
     {label: 'M', tooltip: 'Mon 1 Aug', value: 40},
     {label: 'T', tooltip: 'Tues 2 Aug', value: 64},
     {label: 'W', tooltip: 'Wed 3 Aug', value: 77},
@@ -136,7 +136,10 @@
     {label: 'S', tooltip: 'Sun 28 Aug', value: 114, bold: true},
     {label: 'M', tooltip: 'Mon 29 Aug', value: 58},
     {label: 'T', tooltip: 'Tues 30 Aug', value: 63},
-  ]
+  ];*/
+
+   var values = <%= @daily_interactions.to_json.html_safe %>;
+
   drawBarChart(values, "#interactions-per-day");
 
   var values = [

@@ -76,7 +76,27 @@ class DashboardController < ApplicationController
   end
 
   def analytics
+    analytics = get_account.analytics
 
+    config = {api_key: analytics[:mixpanel_api_key], api_secret: analytics[:mixpanel_api_secret]}
+
+    api = MixpanelApi.new(config)
+    @total_interactions = Rails.cache.fetch("total_interactions", :expires_in => 5.minute) do
+      api.total_interactions
+    end
+    @daily_avg_interactions = @total_interactions / 30
+
+    daily_interactions = Rails.cache.fetch("daily_interactions", :expires_in => 5.minute) do
+      api.daily_interactions
+    end
+
+    daily_interactions_sorted = daily_interactions.sort_by {|key,value| key }
+
+    @daily_interactions = daily_interactions_sorted.map do |key,value|
+      d = DateTime.parse(key)
+      tool_tip = d.strftime("%a %d %b")
+      {label: tool_tip.chars.first, tooltip: tool_tip, value: value, bold: tool_tip.start_with?("Sun")}
+    end
   end
 
 private
