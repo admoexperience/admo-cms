@@ -403,12 +403,27 @@ section {
     padding: 0;
 
     li {
-      height: $itemHeight - 28px;
-      line-height: $itemHeight - 28px;
-      padding: 14px 25px;
+      height: $itemHeight;
+      line-height: $itemHeight;
       font-size: 14px;
 
-      @include transition(background-color);
+      a {
+        height: $itemHeight - 28px;
+        line-height: $itemHeight - 28px;
+        padding: 14px 25px;
+        display: block;
+        cursor: pointer;
+        @include transition(background-color);
+
+        &:hover {
+          background-color: $lightbackgroundgrey;
+        }
+      }
+      &.active {
+        a {
+          background-color: $backgroundgrey;
+        }
+      }
 
       .number {
         float: right;
@@ -445,21 +460,11 @@ section {
         }
       }
 
-      &:not(.profile) {
-        cursor: pointer;
-
-        &:hover {
-          background-color: $lightbackgroundgrey;
-        }
-      }
-
-      &.active {
-        background-color: $backgroundgrey;
-      }
 
       &.profile {
         height: 52px;
         line-height: 52px;
+        padding: 14px 25px;
 
         &:before {
           content: '';
