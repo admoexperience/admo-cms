@@ -23,7 +23,7 @@
   <h2><%= @current_unit.city%></h2>
 
   <div class="portlet wide">
-    <div class="map" data-longitude="<%= @current_unit.longitude%>" data-latitude="<%= @current_unit.latitude%>"><%= image_tag "//maps.googleapis.com/maps/api/staticmap?center=#{@current_unit.latitude},#{@current_unit.longitude}&zoom=12&size=150x150&sensor=false&markers=#{@current_unit.latitude},#{@current_unit.longitude}"%></div>
+    <div class="map" data-longitude="<%= @current_unit.longitude%>" data-latitude="<%= @current_unit.latitude%>"><%= image_tag "//maps.googleapis.com/maps/api/staticmap?center=#{@current_unit.latitude},#{@current_unit.longitude}&zoom=12&size=150x150&sensor=false"%></div>
 
     <div class="info">
       <h3><%= @current_unit.name%></h3>
@@ -53,7 +53,7 @@
 
     <% if @current_unit.current_screenshot %>
     <div class="screenshot">
-      <%= image_tag @current_unit.admo_screenshots.try(:first).try(:image).try(:url), :width=>'600', :height=>340 %>
+      <%= link_to image_tag(@current_unit.current_screenshot.image.url, :width=>'600', :height=>340), @current_unit.current_screenshot.image.url, {target: '_blank'} %>
     </div>
     <% end %>
 
