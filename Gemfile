@@ -3,9 +3,6 @@ ruby '2.0.0'
 
 gem 'rails', '~> 4.0.0'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 group :development, :test do
   gem 'sqlite3'
   gem 'foreman'
@@ -35,8 +32,6 @@ gem 'jquery-rails'
 
 gem 'thin'
 gem 'simple_status'
-gem 'simple_admin_auth'
-gem 'omniauth-google-oauth2'
 
 
 gem 'sucker_punch', '~> 1.0.1'
@@ -67,8 +62,6 @@ gem "mongoid-indifferent-access", require: "mongoid_indifferent_access"
 gem 'rails_admin_map_field',  github: 'drubin/rails_admin_map_field'
 
 gem 'devise'
-
-gem 'twitter-bootstrap-rails'
 
 gem 'dropbox-sdk', '~> 1.6.1', require: 'dropbox_sdk'
 
