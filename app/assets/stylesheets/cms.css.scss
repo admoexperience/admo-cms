@@ -457,6 +457,9 @@ section {
           display: inline;
           color: $blue;
           font-size: 11px;
+          &.offline {
+            color: #FF0000;
+          }
         }
       }
 
@@ -767,6 +770,8 @@ section {
       margin: 0 0 20px 20px;
       border-radius: 3px;
       overflow: hidden;
+       filter: gray; /* IE6-9 */
+      -webkit-filter: grayscale(1);
     }
 
     .status {

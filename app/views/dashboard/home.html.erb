@@ -8,10 +8,12 @@
       <%= link_to '/dashboard/home/'+unit.id do %>
         <span class="number"><%= unit.config.size%></span>
         <strong><%= unit.name%></strong>
-        <em><%= unit.city %>
+        <em>
           <% if unit.online? %>
-           ,<strong>LIVE</strong>
-          <% end %>
+            <%= unit.city %>, <strong>LIVE</strong>
+          <% else %>
+            <%= unit.city %>, <strong class="offline">OFFLINE</strong>
+         <% end %>
         </em>
         <%- end%>
       <%- end%>
