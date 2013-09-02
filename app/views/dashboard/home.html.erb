@@ -8,9 +8,9 @@
       <%= link_to '/dashboard/home/'+unit.id do %>
         <span class="number"><%= unit.config.size%></span>
         <strong><%= unit.name%></strong>
-        <em><%= unit.city %>,
+        <em><%= unit.city %>
           <% if unit.online? %>
-           <strong>LIVE</strong>
+           ,<strong>LIVE</strong>
           <% end %>
         </em>
         <%- end%>
@@ -18,10 +18,6 @@
     <%- end%>
   </ul>
 </section>
-<div id="content">
-  <h2><%= @current_unit.name%></h2>
-  <%= image_tag @current_unit.admo_screenshots.try(:first).try(:image).try(:url) %>
-</div>
 
 <div id="content">
   <h2><%= @current_unit.city%></h2>
