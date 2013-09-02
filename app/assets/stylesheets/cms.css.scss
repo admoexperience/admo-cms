@@ -376,7 +376,9 @@ nav {
       }
     }
   }
-  .filler {
+  &::after {
+    content: '';
+    display: block;
     background-color: $blue;
     position: absolute;
     top: 4 * $navHeight;
