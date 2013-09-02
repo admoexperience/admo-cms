@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-unless Admin.all.count
+unless Admin.first
   Admin.create!(email: 'david@fireid.com', password: '1234')
 end
 
