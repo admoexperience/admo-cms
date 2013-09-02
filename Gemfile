@@ -20,7 +20,7 @@ group :production do
   #Used by heroku to enable logging and other magic
   gem 'rails_12factor'
   #Assets are served in production mode, and cached
-  gem 'heroku_rails_deflate'
+  #gem 'heroku_rails_deflate'
 end
 
 gem 'sass-rails',   '~> 4.0.0'
