@@ -29,6 +29,8 @@ $lightblue: #6abfe5;
 $headerHeight: 75px;
 $pageWidth: 1150px;
 $navWidth: round($pageWidth * 0.12);
+$activeWidth: 12px;
+
 $itemHeight: round($navWidth * 0.4);
 $navHeight: $itemHeight * 2;
 $sectionWidth: round($pageWidth * 0.27);
@@ -285,15 +287,17 @@ header {
 
 nav {
   background-color: $blue;
-  width: $navWidth;
+  width: $navWidth - $activeWidth;
   position: absolute;
   bottom: 0;
   top: 0;
+  z-index: 2;
 
   ul {
     list-style: none;
     padding: 0;
     margin: 0;
+
 
     li {
       margin: 0;
@@ -303,30 +307,36 @@ nav {
 
       a {
         display: block;
-        width: $navWidth;
-        height: $navHeight - 1px;
-        overflow: hidden;
+        width: $navWidth - $activeWidth*2;
+        height: $navHeight - 3px;
         color: $white;
         text-transform: uppercase;
         font-size: 13px;
         position: relative;
+        padding: 1px 0 1px $activeWidth;
 
         @include transition(background-color);
 
-        &:hover {
-          background-color: $lightblue;
-        }
-
-        &.active::before {
+        &::before {
           content: '';
-          border: 12.5px solid transparent;
-          border-left-color: $white;
-          width: 0;
-          height: 0;
+          width: $activeWidth;
+          background-color: $blue;
           position: absolute;
-          margin: auto;
-          top: 0; bottom: 0; left: 0;
+          right: -$activeWidth;
+          top: 0; bottom: 0;
+          @include transition(background-color);
         }
+        &.active::before, &.active::after {
+          content: '';
+          width: $activeWidth;
+          height: ($navHeight - 1px)/2 - $activeWidth;
+          background-color: $blue;
+          position: absolute;
+          right: -$activeWidth;
+          @include transition(background-color);
+        }
+        &.active::before { top: 0; }
+        &.active::after { bottom: 0; }
 
         .icon {
           width: 30px;
@@ -336,6 +346,29 @@ nav {
           background: center no-repeat;
         }
 
+        &.active .icon::before {
+          content: '';
+          border-width: $activeWidth $activeWidth $activeWidth 0;
+          border-style: solid;
+          border-color: $blue transparent $blue $blue;
+          width: 0;
+          height: 0;
+          position: absolute;
+          margin: auto;
+          top: 0; bottom: 0; right: -$activeWidth;
+          @include transition(border-color);
+        }
+
+        &:hover {
+          background-color: $lightblue;
+          &::before, &::after {
+            background-color: $lightblue;
+          }
+          .icon::before {
+            border-color: $lightblue transparent $lightblue $lightblue;
+          }
+        }
+
         &.home .icon { background-image: image-url("nav-home.png") }
         &.content .icon { background-image: image-url("nav-content.png") }
         &.analytics .icon { background-image: image-url("nav-analytics.png") }
@@ -343,12 +376,22 @@ nav {
       }
     }
   }
+  &::after {
+    content: '';
+    display: block;
+    background-color: $blue;
+    position: absolute;
+    top: 4 * $navHeight;
+    bottom: 0;
+    left: 0;
+    right: -$activeWidth;
+  }
 }
 
 section {
   position: absolute;
-  left: $navWidth; top: 0; bottom: 0;
-  width: $sectionWidth;
+  left: $navWidth - $activeWidth; top: 0; bottom: 0;
+  width: $sectionWidth + $activeWidth;
   background-color: $white;
 
   &.grey {
@@ -376,13 +419,13 @@ section {
     height: $itemHeight - 3px; /* 2px for padding, 1px for border */
     line-height: $itemHeight - 3px;
     margin: 0;
-    padding: 2px 30px 0 30px;
+    padding: 2px 30px 0 (30px + $activeWidth);
     color: $lightmidgrey;
     font-size: 16px;
     border-bottom: 1px solid $lightgrey2;
     text-indent: 20px;
     background-repeat: no-repeat;
-    background-position: 15px;
+    background-position: 15px + $activeWidth;
     background-color: $white;
 
     &.location { background-image: image-url("location.png"); }
@@ -395,6 +438,7 @@ section {
     margin: 25px;
     font-size: 14px;
     color: $darkgrey;
+    padding-left: $activeWidth;
   }
 
   ul {
@@ -410,7 +454,7 @@ section {
       a {
         height: $itemHeight - 28px;
         line-height: $itemHeight - 28px;
-        padding: 14px 25px;
+        padding: 14px 25px 14px (25px + $activeWidth);
         display: block;
         cursor: pointer;
         @include transition(background-color);
@@ -467,7 +511,7 @@ section {
       &.profile {
         height: 52px;
         line-height: 52px;
-        padding: 14px 25px;
+        padding: 14px 25px 14px (25px + $activeWidth);
 
         &:before {
           content: '';
@@ -500,6 +544,7 @@ section {
 
   &.wide {
     width: $wideContentWidth;
+    padding-left: $activeWidth;
 
     h2 {
       border-top-color: transparent;
