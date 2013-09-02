@@ -60,6 +60,9 @@ module AdmoCms
 
     config.assets.initialize_on_precompile = false
 
+    #Fixes journey unable to handle chunked encoding.
+    config.middleware.insert_after ActionDispatch::DebugExceptions, Rack::ContentLength
+
     #Configure rabl for grape
     config.middleware.use(Rack::Config) do |env|
       env['api.tilt.root'] = Rails.root.join "app", "views", "api"
