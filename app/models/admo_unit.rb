@@ -115,4 +115,10 @@ class AdmoUnit
   def current_screenshot
     admo_screenshots.last
   end
+
+  def online?
+    return false unless self.last_checkin
+
+    self.last_checkin > 15.minutes.ago
+  end
 end

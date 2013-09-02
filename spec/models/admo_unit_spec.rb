@@ -72,4 +72,20 @@ describe AdmoUnit do
     @unit.admo_screenshots << s
     @unit.current_screenshot.should eq s
   end
+
+  it "Should work out if it is online is_online based on time interval" do
+    @unit.last_checkin = nil
+    @unit.online?.should eq false
+
+    @unit.last_checkin = 5.minutes.ago
+    @unit.online?.should eq true
+
+    @unit.last_checkin = 16.minutes.ago
+    @unit.online?.should eq false
+
+    @unit.checkin('doesntmatter')
+    @unit.online?.should eq true
+
+
+  end
 end

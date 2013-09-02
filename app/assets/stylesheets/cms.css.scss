@@ -457,6 +457,9 @@ section {
           display: inline;
           color: $blue;
           font-size: 11px;
+          &.offline {
+            color: #e86c6d;
+          }
         }
       }
 
@@ -757,13 +760,11 @@ section {
       border-radius: 3px;
     }
 
-    .map {
+    .map, #map {
       float: right;
       background-color: $lightgrey;
       width: 150px;
       height: 150px;
-      line-height: 150px;
-      text-align: center;
       margin: 0 0 20px 20px;
       border-radius: 3px;
       overflow: hidden;
