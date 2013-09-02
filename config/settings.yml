@@ -12,6 +12,7 @@ dashboard:
 
 general:
   hostname: <%= ENV['GENERAL_HOSTNAME'] || 'localhost' %>
+  protocol: <%= ENV['GENERAL_PROTOCOL'] || 'https' %>
 
 gmaps:
   api_key: AIzaSyAuEhwdsqjl8kjyCWrtZLkpvzOEJIulVtc
@@ -19,6 +20,11 @@ gmaps:
 support:
   email: support@admo.co
 
+s3:
+  region:<%= ENV['S3_REGION'] %>
+  bucket_name:<%= ENV['S3_BUCKET'] %>
+  access_key_id:<%= ENV['S3_KEY'] %>
+  secret_access_key:<%= ENV['S3_SECRET'] %>
 
 email:
   from: <%= ENV['EMAIL_FROM'] || 'system@admo.co' %>
