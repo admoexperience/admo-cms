@@ -28,4 +28,6 @@ AdmoCms::Application.routes.draw do
 
   root :to => "index#index"
 
+  get '/auth/:provider/callback', to: 'sessions#create'
+
 end

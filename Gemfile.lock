@@ -195,6 +195,15 @@ GEM
     newrelic_rpm (3.6.5.130)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
+    oauth (0.4.7)
+    omniauth (1.1.4)
+      hashie (>= 1.2, < 3)
+      rack
+    omniauth-dropbox (0.2.0)
+      omniauth-oauth (~> 1.0)
+    omniauth-oauth (1.0.1)
+      oauth
+      omniauth (~> 1.0)
     origin (1.1.0)
     orm_adapter (0.4.0)
     pg (0.15.1)
@@ -356,6 +365,8 @@ DEPENDENCIES
   mongoid-indifferent-access
   mongoid_slug
   newrelic_rpm
+  omniauth
+  omniauth-dropbox
   pg
   pry
   pubnub
