@@ -37,4 +37,10 @@ class Admin
 
   ## Token authenticatable
   # field :authentication_token, :type => String
+
+  validates_uniqueness_of :email
+  validates_presence_of :email
+
+  #Indexes
+  index({ api_key: 1 }, { unique: true, name: "email_index" })
 end

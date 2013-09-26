@@ -102,8 +102,6 @@ GEM
       multi_json (~> 1.0)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
-    faraday (0.8.7)
-      multipart-post (~> 1.1)
     ffi (1.9.0)
     fog (1.14.0)
       builder
@@ -152,8 +150,6 @@ GEM
     haml (4.0.3)
       tilt
     hashie (2.0.5)
-    heroku_rails_deflate (0.2.0)
-      rack (~> 1.5.0)
     hike (1.2.3)
     hipchat (0.11.0)
       httparty
@@ -161,7 +157,6 @@ GEM
     httparty (0.11.0)
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
-    httpauth (0.2.0)
     i18n (0.6.5)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
@@ -170,8 +165,6 @@ GEM
       jquery-rails
       railties (>= 3.1.0)
     json (1.8.0)
-    jwt (0.1.8)
-      multi_json (>= 1.5)
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -200,7 +193,6 @@ GEM
     moped (1.5.0)
     multi_json (1.7.9)
     multi_xml (0.5.4)
-    multipart-post (1.2.0)
     nested_form (0.3.2)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
@@ -208,21 +200,6 @@ GEM
     newrelic_rpm (3.6.5.130)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
-    oauth2 (0.8.1)
-      faraday (~> 0.8)
-      httpauth (~> 0.1)
-      jwt (~> 0.1.4)
-      multi_json (~> 1.0)
-      rack (~> 1.2)
-    omniauth (1.1.4)
-      hashie (>= 1.2, < 3)
-      rack
-    omniauth-google-oauth2 (0.2.0)
-      omniauth (~> 1.0)
-      omniauth-oauth2
-    omniauth-oauth2 (1.1.1)
-      oauth2 (~> 0.8.0)
-      omniauth (~> 1.0)
     origin (1.1.0)
     orm_adapter (0.4.0)
     pg (0.15.1)
@@ -314,9 +291,6 @@ GEM
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
-    simple_admin_auth (0.1.0)
-      omniauth
-      sinatra
     simple_status (0.0.2)
       sinatra
     sinatra (1.4.3)
@@ -351,13 +325,6 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    twitter-bootstrap-rails (2.2.8)
-      actionpack (>= 3.1)
-      execjs
-      rails (>= 3.1)
-      railties (>= 3.1)
-    typhoeus (0.5.4)
-      ethon (~> 0.5.7)
     tzinfo (0.3.37)
     uglifier (2.1.2)
       execjs (>= 0.3.0)
@@ -388,7 +355,6 @@ DEPENDENCIES
   grape-rabl
   grape-swagger (~> 0.6.0)
   guard-livereload
-  heroku_rails_deflate
   hipchat (~> 0.11.0)
   jquery-rails
   mixpanel_client (~> 3.1.2)
@@ -396,7 +362,6 @@ DEPENDENCIES
   mongoid-indifferent-access
   mongoid_slug
   newrelic_rpm
-  omniauth-google-oauth2
   pg
   pry
   pubnub
@@ -409,11 +374,9 @@ DEPENDENCIES
   rb-fsevent
   rspec-rails (~> 2.0)
   sass-rails (~> 4.0.0)
-  simple_admin_auth
   simple_status
   sqlite3
   sucker_punch (~> 1.0.1)
   thin
   timecop
-  twitter-bootstrap-rails
   uglifier (~> 2.1.2)

@@ -7,8 +7,7 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag "application", :media => "all" %>
-    <%= javascript_include_tag "//maps.google.com/maps/api/js?sensor=true", :media => "all" %>
-
+    <%= javascript_include_tag "//maps.googleapis.com/maps/api/js?sensor=false&extension=.js" %>
 
 
     <%= javascript_include_tag "application" %>
@@ -33,7 +32,7 @@
   <body <%= current_user ? '' : 'class="login"'.html_safe %>>
 
     <% if current_user %>
-           <header>
+      <header>
         <div class="wrapper">
           <h1><span>ADMO</span></h1>
           <div class="profile">
@@ -42,8 +41,8 @@
             </a>
 
             <ul>
-              <li><a href="<%= edit_user_registration_path %>">Account</a></li>
-              <li><a href="#">Billing</a></li>
+              <li><%= link_to "Account", edit_user_registration_path %></li>
+              <li><%= link_to "Billing", '#' %></li>
               <li><%= link_to "Log Out", destroy_user_session_path %></li>
             </ul>
           </div>

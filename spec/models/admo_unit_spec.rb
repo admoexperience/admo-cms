@@ -72,4 +72,54 @@ describe AdmoUnit do
     @unit.admo_screenshots << s
     @unit.current_screenshot.should eq s
   end
+
+  it "Should work out if it is online is_online based on time interval" do
+    @unit.last_checkin = nil
+    @unit.online?.should eq false
+
+    @unit.last_checkin = 5.minutes.ago
+    @unit.online?.should eq true
+
+    @unit.last_checkin = 16.minutes.ago
+    @unit.online?.should eq false
+
+    @unit.checkin('doesntmatter')
+    @unit.online?.should eq true
+  end
+
+  it "Should clean up all but the most recent 5 screenshot records" do
+    first = create(:admo_screenshot)
+    @unit.admo_screenshots << first
+    @unit.admo_screenshots.count.should eq 1
+    6.times do |count|
+      puts count
+      @unit.admo_screenshots << create(:admo_screenshot)
+      @unit.admo_screenshots.count.should eq(count+2) #Count starts at 0
+    end
+
+    @unit.clean_up
+    @unit.admo_screenshots.count.should eq 5
+    @unit.admo_screenshots.where(id: first.id).first.should eq nil
+  end
+
+  it "Should clean up all but the most recent configured screenshot records" do
+    max_keep = 8
+    config = @unit.config
+    config[:screenshot_max_keep] = max_keep
+    @unit.config = config
+    @unit.save!
+
+    first = create(:admo_screenshot)
+    @unit.admo_screenshots << first
+    @unit.admo_screenshots.count.should eq 1
+    (max_keep+2).times do |count|
+      @unit.admo_screenshots << create(:admo_screenshot)
+      @unit.admo_screenshots.count.should eq (count+2) #Count starts at 0
+    end
+
+    @unit.clean_up
+    @unit.admo_screenshots.count.should eq max_keep
+    @unit.admo_screenshots.where(id: first.id).first.should eq nil
+  end
+
 end

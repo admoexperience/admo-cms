@@ -9,11 +9,6 @@ AdmoCms::Application.routes.draw do
 
   get '/media/*other', :to => Dragonfly[:images]
 
-
-  resources :app do
-    resources :content
-  end
-
   get '/dashboard/home(/:unit_id)' => 'dashboard#home', as: 'dashboard_home'
   get '/dashboard/content/:app_id(/:content_id)' => 'dashboard#content', as: 'view_content'
   post '/dashboard/content/:app_id(/:content_id)' => 'dashboard#update_content', as: 'update_content'

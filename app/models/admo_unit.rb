@@ -90,12 +90,11 @@ class AdmoUnit
 
   #Function cleans up older screenshots
   def clean_up
-    #Delete every thing but the most recent 5 screenshots
-    screenshots = self.admo_screenshots.order_by("updated_at DESC").limit(5)
-    self.admo_screenshots.each  do |screen|
-      unless screenshots.include? screen
-        screen.destroy
-      end
+    #Delete every thing but the most recent config[:screenshot_max_keep] screenshots
+    max_screenshots = self.config[:screenshot_max_keep] || 5
+    #Delete the last created one while they count is more then the max
+    while self.admo_screenshots.count > max_screenshots
+      self.admo_screenshots.order_by('created_at asc').first.destroy
     end
   end
 
@@ -114,5 +113,11 @@ class AdmoUnit
 
   def current_screenshot
     admo_screenshots.last
+  end
+
+  def online?
+    return false unless self.last_checkin
+
+    self.last_checkin > 15.minutes.ago
   end
 end
