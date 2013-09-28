@@ -68,3 +68,7 @@ gem 'devise'
 gem 'dropbox-sdk', '~> 1.6.1', require: 'dropbox_sdk'
 
 gem "rails_config", "~> 0.3.3"
+
+#Used for authentiation to dropbox
+gem 'omniauth'
+gem 'omniauth-dropbox'

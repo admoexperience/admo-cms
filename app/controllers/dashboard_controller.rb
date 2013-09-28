@@ -1,12 +1,13 @@
 class DashboardController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :get_account
 
 
   def home
     @units = get_units
     @current_unit = @units.first
     if params[:unit_id]
-      @current_unit = AdmoUnit.find(params[:unit_id])
+      @current_unit = get_units.find(params[:unit_id])
     end
   end
 
@@ -21,7 +22,6 @@ class DashboardController < ApplicationController
     content = params[:content]
     config = @app.config
     config[@current_content]= content
-    puts config.to_yaml
     @app.config = config
     @app.save!
     #should always publish on content saving.
@@ -94,7 +94,6 @@ class DashboardController < ApplicationController
     ########
     daily = {}
     @daily_interactions = daily_interactions_sorted.map do |key,value|
-      puts key
       d = DateTime.parse(key)
       tool_tip = d.strftime("%a %d %b")
       {label: tool_tip.chars.first, tooltip: tool_tip, value: value, bold: tool_tip.start_with?("Sun")}
@@ -115,6 +114,15 @@ class DashboardController < ApplicationController
     @busiest_day_of_week =  daily.sort_by{|k,v| v}.last[0]
 
 
+    interactions_by_host  = cache("interactions_by_host") do
+      api.total_interactions_by_host
+    end
+
+    @interactions_by_host = interactions_by_host.sort_by{|k,v| v}.reverse.map do |key, value|
+      {host_name: key, total: value }
+    end
+
+
 
     @last_updated = cache('laste_updated') do
       Time.now.strftime("%H:%m")
@@ -123,7 +131,7 @@ class DashboardController < ApplicationController
 
 private
   def cache(key, &block)
-     Rails.cache.fetch(key+'_'+current_user.id, :expires_in => 5.minute) do
+     Rails.cache.fetch(key+'_'+get_account.id+'_'+current_user.id, :expires_in => 5.minute) do
         block.call
      end
   end
@@ -133,12 +141,12 @@ private
   end
 
   def get_account
-    current_user.admo_account
+    @account = current_user.accounts.find(params[:account])
   end
 
   def get_units
-    if current_user.admo_account
-      current_user.admo_account.admo_units
+    if get_account
+      get_account.admo_units
     else
       []
     end

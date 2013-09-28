@@ -41,49 +41,34 @@
   </div>
 
 
-
-
-  <div class="portlet third right" id="funnel">
-    <h4>Conversion Rate</h4>
-  </div>
-
-  <div class="portlet third right">
+  <div class="portlet third left">
     <h4>Store Popularity</h4>
     <div class="chart list">
+      <% @interactions_by_host.each_with_index do |value,index|%>
       <div class="item">
-        <span class="number">1</span>
-        Canal Walk, <em>7489 interactions</em>
+        <span class="number"><%= (index+1) %></span>
+        <%= value[:host_name]%>, <em><%= value[:total]%> interactions</em>
       </div>
-      <div class="item">
-        <span class="number">2</span>
-        Sandton City, <em>6852 interactions</em>
-      </div>
-      <div class="item">
-        <span class="number">3</span>
-        Boardwalk, <em>5331 interactions</em>
-      </div>
-      <div class="item">
-        <span class="number">4</span>
-        Cavendish, <em>5012 interactions</em>
-      </div>
-      <div class="item">
-        <span class="number">5</span>
-        Rosebank, <em>2095 interactions</em>
-      </div>
+      <%end %>
     </div>
   </div>
 
-  <div class="portlet third" id="donut-charts">
-    <h4>Destination Selected</h4>
+  <div class="portlet two-thirds" id="funnel">
+    <h4>Conversion Rate</h4>
+  </div>
+  <!-- Hack so we can use current layout-->
+  <div class="" style="clear:both">
   </div>
 
   <div class="portlet two-thirds">
     <h4>Duration of Interactions</h4>
     <div class="chart stacked-bar">
-      <div class="light-grey" style="width:17%">0-10</div>
-      <div class="grey" style="width:28%">11-30 sec</div>
+      <div class="light-grey" style="width:50%">Time</div>
+      <div class="grey" style="width:50%">Time</div>
+      <!--
       <div class="blue" style="width:40%">31-60 sec</div>
       <div class="light-grey" style="width:15%">60+</div>
+    -->
     </div>
   </div>
 
@@ -91,18 +76,18 @@
 
 <script type="text/javascript">
   var values = [
-    { value: 0.43, name: "Mauritius"},
-    { value: 0.17, name: "Thailand"},
-    { value: 0.18, name: "Europe"},
-    { value: 0.12, name: "USA"}
+    //{ value: 0.43, name: "Mauritius"},
+    //{ value: 0.17, name: "Thailand"},
+    //{ value: 0.18, name: "Europe"},
+    //{ value: 0.12, name: "USA"}
   ];
   drawDonutCharts(values, "#donut-charts");
 
   var values = [
-    {name: 'Start', value: 582},
-    {name: 'Menu', value: 462},
-    {name: 'Carousel', value: 372},
-    {name: 'Item', value: 329}
+    {name: 'Start', value: 10},
+    {name: 'Menu', value: 4},
+    {name: 'Carousel', value: 10},
+    {name: 'Item', value: 4}
   ];
   drawFunnelChart(values, "#funnel");
 
@@ -114,18 +99,18 @@
   drawBarChart(values, "#interactions-by-weekday");
 
   var values = [
-    {label: '00:00', tooltip: '00:00', value: 1},
-    {label: '', tooltip: '02:00', value: 2},
-    {label: '04:00', tooltip: '04:00', value: 4},
-    {label: '', tooltip: '06:00', value: 3},
-    {label: '08:00', tooltip: '08:00', value: 15},
-    {label: '', tooltip: '10:00', value: 34},
-    {label: '12:00', tooltip: '12:00', value: 45},
-    {label: '', tooltip: '14:00', value: 28},
-    {label: '16:00', tooltip: '16:00', value: 11},
-    {label: '', tooltip: '18:00', value: 9},
-    {label: '20:00', tooltip: '20:00', value: 5},
-    {label: '', tooltip: '22:00', value: 1},
+    {label: '00:00', tooltip: '00:00', value: 0},
+    {label: '', tooltip: '02:00', value: 0},
+    {label: '04:00', tooltip: '04:00', value: 0},
+    {label: '', tooltip: '06:00', value: 0},
+    {label: '08:00', tooltip: '08:00', value: 0},
+    {label: '', tooltip: '10:00', value: 0},
+    {label: '12:00', tooltip: '12:00', value: 0},
+    {label: '', tooltip: '14:00', value: 0},
+    {label: '16:00', tooltip: '16:00', value: 0},
+    {label: '', tooltip: '18:00', value: 0},
+    {label: '20:00', tooltip: '20:00', value: 0},
+    {label: '', tooltip: '22:00', value: 0},
   ]
   drawBarChart(values, "#interactions-during-day");
 

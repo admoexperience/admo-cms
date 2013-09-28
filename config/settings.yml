@@ -20,6 +20,10 @@ gmaps:
 support:
   email: support@admo.co
 
+dropbox:
+  key:  <%= ENV['DROPBOX_KEY'] || '' %>
+  secret:  <%= ENV['DROPBOX_SECRET'] || '' %>
+
 s3:
   region: <%= ENV['S3_REGION'] %>
   bucket_name: <%= ENV['S3_BUCKET'] %>

@@ -22,6 +22,7 @@
 </section>
 
 <div id="content">
+  <% if @current_unit%>
   <h2><%= @current_unit.city%></h2>
 
   <div class="portlet wide">
@@ -166,5 +167,13 @@ jQuery(document).ready(function () {
         shadow: shadow
     });
 });
-
 </script>
+<% else %>
+<h2>No Units</h2>
+<div class="portlet wide">
+
+    <div class="info">
+      <h3>No Units</h3>
+    </div>
+  </div>
+<%end %>
