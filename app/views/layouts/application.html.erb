@@ -41,9 +41,11 @@
             </a>
 
             <ul>
-              <li><%= link_to "Account", edit_user_registration_path %></li>
               <li><%= link_to "Billing", '#' %></li>
               <li><%= link_to "Log Out", destroy_user_session_path %></li>
+              <% current_user.accounts.each do |account| %>
+              <li><%= link_to account.name, dashboard_home_path(account) %></li>
+              <% end%>
             </ul>
           </div>
         </div>
@@ -53,10 +55,10 @@
       <div id="page">
         <nav>
           <ul>
-            <li><%= link_to '/dashboard/home', :class=>['home', active_class?(params[:action] == 'home')] do %> <span class="icon"></span>Home <%end%></li>
-            <li><%= link_to view_content_path(users_app,users_app.config.keys.first), :class=>['content',active_class?(params[:action] == 'content')] do %> <span class="icon"></span>Content <%end%></li>
-            <li><%= link_to analytics_path, :class=>['analytics',active_class?(params[:action] == 'analytics')] do %> <span class="icon"></span>Analytics<%end%></li>
-            <li><%= link_to support_path, :class=>['support',active_class?(params[:action] == 'support')] do %> <span class="icon"></span>Support<%end%></li>
+            <li><%= link_to dashboard_home_path(@account), :class=>['home', active_class?(params[:action] == 'home')] do %> <span class="icon"></span>Home <%end%></li>
+            <li><%= link_to view_content_path(@account,users_app,users_app.config.keys.first), :class=>['content',active_class?(params[:action] == 'content')] do %> <span class="icon"></span>Content <%end%></li>
+            <li><%= link_to analytics_path(@account), :class=>['analytics',active_class?(params[:action] == 'analytics')] do %> <span class="icon"></span>Analytics<%end%></li>
+            <li><%= link_to support_path(@account), :class=>['support',active_class?(params[:action] == 'support')] do %> <span class="icon"></span>Support<%end%></li>
           </ul>
         </nav>
     <% end %>
