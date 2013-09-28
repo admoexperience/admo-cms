@@ -1,27 +1,28 @@
 <div id="content" class="wide">
   <div class="toggle">
-    <a href="#">Week</a>
+    <!--<a href="#">Week</a>-->
     <a href="#" class="active">Month</a>
   </div>
   <h2 class="analytics">Analytics</h2>
 
 
   <div class="portlet narrow blue">
-    <div class="amount people">3087</div>
-    <p>Total number of interactions</p>
+    <div class="amount people"><%= @total_interactions %></div>
+    <p>Total interactions this month</p>
   </div>
   <div class="portlet narrow blue">
-    <div class="amount person">151</div>
-    <p>Average interactions per day</p>
+    <div class="amount person"><%= @daily_avg_interactions %></div>
+    <p>Average per day</p>
   </div>
   <div class="portlet narrow blue">
-    <div class="amount time">15:00</div>
-    <p>Busiest time of the day</p>
+    <div class="amount time"><%= @last_updated %></div>
+    <p>Last Updated</p>
   </div>
   <div class="portlet narrow blue">
-    <div class="amount date">Sunday</div>
+    <div class="amount date"><%= @busiest_day_of_week%></div>
     <p>Busiest day of the week</p>
   </div>
+
 
 
 
@@ -105,49 +106,11 @@
   ];
   drawFunnelChart(values, "#funnel");
 
-  var values = [
-    {label: 'M', tooltip: 'Mon 1 Aug', value: 40},
-    {label: 'T', tooltip: 'Tues 2 Aug', value: 64},
-    {label: 'W', tooltip: 'Wed 3 Aug', value: 77},
-    {label: 'T', tooltip: 'Thurs 4 Aug', value: 80},
-    {label: 'F', tooltip: 'Fri 5 Aug', value: 110},
-    {label: 'S', tooltip: 'Sat 6 Aug', value: 170},
-    {label: 'S', tooltip: 'Sun 7 Aug', value: 115, bold: true},
-    {label: 'M', tooltip: 'Mon 8 Aug', value: 50},
-    {label: 'T', tooltip: 'Tues 9 Aug', value: 45},
-    {label: 'W', tooltip: 'Wed 10 Aug', value: 70},
-    {label: 'T', tooltip: 'Thurs 11 Aug', value: 75},
-    {label: 'F', tooltip: 'Fri 12 Aug', value: 130},
-    {label: 'S', tooltip: 'Sat 13 Aug', value: 161},
-    {label: 'S', tooltip: 'Sun 14 Aug', value: 130, bold: true},
-    {label: 'M', tooltip: 'Mon 15 Aug', value: 34},
-    {label: 'T', tooltip: 'Tues 16 Aug', value: 67},
-    {label: 'W', tooltip: 'Wed 17 Aug', value: 53},
-    {label: 'T', tooltip: 'Thurs 18 Aug', value: 82},
-    {label: 'F', tooltip: 'Fri 19 Aug', value: 103},
-    {label: 'S', tooltip: 'Sat 20 Aug', value: 152},
-    {label: 'S', tooltip: 'Sun 21 Aug', value: 127, bold: true},
-    {label: 'M', tooltip: 'Mon 22 Aug', value: 47},
-    {label: 'T', tooltip: 'Tues 23 Aug', value: 58},
-    {label: 'W', tooltip: 'Wed 24 Aug', value: 59},
-    {label: 'T', tooltip: 'Thurs 25 Aug', value: 47},
-    {label: 'F', tooltip: 'Fri 26 Aug', value: 169},
-    {label: 'S', tooltip: 'Sat 27 Aug', value: 173},
-    {label: 'S', tooltip: 'Sun 28 Aug', value: 114, bold: true},
-    {label: 'M', tooltip: 'Mon 29 Aug', value: 58},
-    {label: 'T', tooltip: 'Tues 30 Aug', value: 63},
-  ]
+  var values = <%= @daily_interactions.to_json.html_safe %>;
+
   drawBarChart(values, "#interactions-per-day");
 
-  var values = [
-    {label: 'Mon', tooltip: 'Monday', value: 40},
-    {label: 'Tue', tooltip: 'Tuesday', value: 64},
-    {label: 'Wed', tooltip: 'Wednesday', value: 77},
-    {label: 'Thu', tooltip: 'Thursday', value: 80},
-    {label: 'Fri', tooltip: 'Friday', value: 110},
-    {label: 'Sat', tooltip: 'Saturday', value: 170},
-    {label: 'Sun', tooltip: 'Sunday', value: 115, bold: true},
-  ]
+  var values = <%= @days_of_week_interactions.to_json.html_safe %>;
   drawBarChart(values, "#interactions-by-weekday");
 
   var values = [
