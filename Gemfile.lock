@@ -93,6 +93,9 @@ GEM
       addressable (>= 2.1.1)
       eventmachine (>= 0.12.9)
     erubis (2.7.0)
+    ethon (0.5.12)
+      ffi (>= 1.3.0)
+      mime-types (~> 1.18)
     eventmachine (1.0.3)
     excon (0.25.3)
     execjs (1.4.0)
@@ -180,6 +183,8 @@ GEM
     mime-types (1.24)
     mini_portile (0.5.1)
     minitest (4.7.5)
+    mixpanel_client (3.1.2)
+      typhoeus (~> 0.5.4)
     mongoid-indifferent-access (1.0.0)
       mongoid
     mongoid_slug (3.1.2)
@@ -352,6 +357,7 @@ DEPENDENCIES
   guard-livereload
   hipchat (~> 0.11.0)
   jquery-rails
+  mixpanel_client (~> 3.1.2)
   mongoid!
   mongoid-indifferent-access
   mongoid_slug

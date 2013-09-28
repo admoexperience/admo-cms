@@ -7,6 +7,7 @@ class AdmoAccount
   field :api_key,          type: String,   :default => lambda {SecureRandom.uuid}
   field :name,             type: String
   field :config,           type: Hash,     :default => {}
+  field :analytics,        type: Hash,     :default => {}
 
   #This is a total hack, but for now its ok...
   #We need a generic blob of auth info that can be encrypted
