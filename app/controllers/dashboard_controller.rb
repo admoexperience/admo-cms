@@ -49,7 +49,13 @@ class DashboardController < ApplicationController
 
   def support
     if request.post?
-      email = {:user_email=> current_user.email}
+      email = {
+        :user_email => current_user.email,
+        :extra_info =>{
+          :account => @account.name,
+          :user_agent=> request.user_agent
+        }.to_yaml
+      }
       SupportMailer.help(support_params.merge(email)).deliver
     end
   end
