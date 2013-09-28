@@ -114,6 +114,15 @@ class DashboardController < ApplicationController
     @busiest_day_of_week =  daily.sort_by{|k,v| v}.last[0]
 
 
+    interactions_by_host  = cache("interactions_by_host") do
+      api.total_interactions_by_host
+    end
+
+    @interactions_by_host = interactions_by_host.sort_by{|k,v| v}.reverse.map do |key, value|
+      {host_name: key, total: value }
+    end
+
+
 
     @last_updated = cache('laste_updated') do
       Time.now.strftime("%H:%m")

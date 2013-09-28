@@ -22,6 +22,19 @@ class MixpanelApi
     data[:values][:undefined]
   end
 
-  def get_trailer_selections
+  def total_interactions_by_host
+    data = @client.request('events/properties', {
+      event:     'startInteractionSelected',
+      name: 'hostName', #hostName
+      type:      'unique',
+      unit:      'day',
+      interval:   30,
+    }).with_indifferent_access[:data]
+    values_by_host = {}
+    data[:values].each do |key, value|
+      values_by_host[key] = value.values.inject(:+)
+    end
+    values_by_host
   end
+
 end
