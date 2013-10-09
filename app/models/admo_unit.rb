@@ -84,8 +84,12 @@ class AdmoUnit
       'pubnub_subscribe_key'=> Settings.pubnub.subscribe_key
     }
 
+    static_config = {
+      'name'=> self.name
+    }
+
     account_config = self.admo_account.try(:config) || {}
-    global_config.merge(account_config).merge(self.config)
+    global_config.merge(account_config).merge(self.config).merge(static_config)
   end
 
   #Function cleans up older screenshots
