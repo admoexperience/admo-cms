@@ -88,6 +88,13 @@ class AdmoUnit
       'name'=> self.name
     }
 
+    #Manually inject the analytics from the account into the unit
+    if self.admo_account and not self.admo_account.analytics.empty?
+      #We hide the secret away from the clients for now.
+      static_config['analytics'] = self.admo_account.analytics
+      static_config['analytics'].delete(:mixpanel_api_secret)
+    end
+
     account_config = self.admo_account.try(:config) || {}
     global_config.merge(account_config).merge(self.config).merge(static_config)
   end

@@ -127,4 +127,15 @@ describe AdmoUnit do
     @unit.get_config['name'].should eq "myname"
   end
 
+
+  it 'Should inject analytics into the unit config' do
+    account = @unit.admo_account
+    account.analytics = {mixpanel_api_key: 'mixpanel_api_key', mixpanel_api_secret: 'mixpanel_api_secret',
+mixpanel_api_token: 'mixpanel_api_token'}
+    config = @unit.get_config['analytics']
+    config['mixpanel_api_key'].should eq "mixpanel_api_key"
+    config['mixpanel_api_secret'].should eq nil
+    config['mixpanel_api_token'].should eq "mixpanel_api_token"
+  end
+
 end
