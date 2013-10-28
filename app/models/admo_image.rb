@@ -34,4 +34,11 @@ class AdmoImage
     folder = self.admo_unit.get_config['dropbox_img_path'] || raise("Missing dropbox_img_path config variable")
     dbox.upload_file(folder, imagefile, self.image_name)
   end
+
+
+  def upload_to_facebook(auth_token)
+    @page_api = Koala::Facebook::API.new(auth_token)
+    url = self.image.remote_url
+    @page_api.put_picture(url)
+  end
 end

@@ -72,3 +72,7 @@ gem "rails_config", "~> 0.3.3"
 #Used for authentiation to dropbox
 gem 'omniauth'
 gem 'omniauth-dropbox'
+
+
+#Used for FB posting
+gem "koala", "~> 1.8.0rc1"

@@ -131,6 +131,12 @@ class Unit < Grape::API
         #Push to dropbox
         img.upload_to_dropbox(tempfile,dbsession)
       end
+
+      auth_token = @unit.get_config['facebook_auth_token']
+      unless auth_token.empty?
+        img.upload_to_facebook(auth_token)
+      end
+
       @screenshot = img
     end
   end
