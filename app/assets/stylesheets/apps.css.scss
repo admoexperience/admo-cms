@@ -1,0 +1,62 @@
+#apps {
+ul {
+  padding-left: 20px;
+  li {
+   width: 300px;
+   height: 225px;
+   background: #fff;
+   list-style-type: none;
+   display:inline-block;
+   box-sizing:border-box;
+   padding: 10px;
+   margin: 12px 10px;
+   text-align: center;
+   &.disabled {
+     h3 {
+       color: #EEE;
+     }
+   }
+   h3 {
+     color: $blue;
+     text-align: left;
+   }
+   img {
+     border: 1px solid #eee;
+   }
+   &.details {
+     width: 950px;
+     height: 350px;
+     background: #fff;
+     box-sizing:border-box;
+     padding: 20px;
+     text-align: left;
+     position: relative;
+     .admo-tv {
+        width: 413px;
+        height: 297px;
+        border: none;
+        background-image: image-url("apps/device.png");
+        position: relative;
+        img {
+          position: absolute;
+          top: 38px;
+          left: 10px;
+          border: none;
+        }
+      }
+      &:after {
+        content: "";
+        width: 0; 
+        height: 0; 
+        border-left: 14px solid transparent;
+        border-right: 14px solid transparent;
+        border-top: 14px solid #fff;
+        position: absolute;
+        bottom: -13px;
+        left: 130px;
+      }
+    }
+  }
+}
+
+}
