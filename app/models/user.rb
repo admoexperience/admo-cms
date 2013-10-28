@@ -43,6 +43,9 @@ class User
   #We assign a user an account to which they have scoped control over units/info/content
 
   belongs_to :admo_account
+
+  has_and_belongs_to_many :accounts, {class_name: 'AdmoAccount'}
+
   field :admin,   :type => Boolean, :default => false
 
 
@@ -51,5 +54,9 @@ class User
   def email_to_name
     name = self.email[/[^@]+/]
     name.split(".").map {|n| n.capitalize }.join(" ")
+  end
+
+  def primary_account
+    self.admo_account
   end
 end

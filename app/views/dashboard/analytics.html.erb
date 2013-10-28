@@ -1,27 +1,28 @@
 <div id="content" class="wide">
   <div class="toggle">
-    <a href="#">Week</a>
+    <!--<a href="#">Week</a>-->
     <a href="#" class="active">Month</a>
   </div>
   <h2 class="analytics">Analytics</h2>
 
 
   <div class="portlet narrow blue">
-    <div class="amount people">3087</div>
-    <p>Total number of interactions</p>
+    <div class="amount people"><%= @total_interactions %></div>
+    <p>Total interactions this month</p>
   </div>
   <div class="portlet narrow blue">
-    <div class="amount person">151</div>
-    <p>Average interactions per day</p>
+    <div class="amount person"><%= @daily_avg_interactions %></div>
+    <p>Average per day</p>
   </div>
   <div class="portlet narrow blue">
-    <div class="amount time">15:00</div>
-    <p>Busiest time of the day</p>
+    <div class="amount time"><%= @last_updated %></div>
+    <p>Last Updated</p>
   </div>
   <div class="portlet narrow blue">
-    <div class="amount date">Sunday</div>
+    <div class="amount date"><%= @busiest_day_of_week%></div>
     <p>Busiest day of the week</p>
   </div>
+
 
 
 
@@ -31,138 +32,86 @@
 
 
 
-  <div class="portlet" id="interactions-by-weekday">
+  <div class="portlet wide" id="interactions-by-weekday">
     <h4>Interactions by Day of the Week</h4>
   </div>
 
-  <div class="portlet" id="interactions-during-day">
+<!--
+  <div class="portlet " id="interactions-during-day">
     <h4>Interactions During the Day</h4>
   </div>
+-->
 
-
-
-
-  <div class="portlet third right" id="funnel">
-    <h4>Conversion Rate</h4>
-  </div>
-
-  <div class="portlet third right">
+  <div class="portlet third left">
     <h4>Store Popularity</h4>
     <div class="chart list">
+      <% @interactions_by_host.each_with_index do |value,index|%>
       <div class="item">
-        <span class="number">1</span>
-        Canal Walk, <em>7489 interactions</em>
+        <span class="number"><%= (index+1) %></span>
+        <%= value[:host_name]%>, <em><%= value[:total]%> interactions</em>
       </div>
-      <div class="item">
-        <span class="number">2</span>
-        Sandton City, <em>6852 interactions</em>
-      </div>
-      <div class="item">
-        <span class="number">3</span>
-        Boardwalk, <em>5331 interactions</em>
-      </div>
-      <div class="item">
-        <span class="number">4</span>
-        Cavendish, <em>5012 interactions</em>
-      </div>
-      <div class="item">
-        <span class="number">5</span>
-        Rosebank, <em>2095 interactions</em>
-      </div>
+      <%end %>
     </div>
   </div>
-
-  <div class="portlet third" id="donut-charts">
-    <h4>Destination Selected</h4>
+<!--
+  <div class="portlet two-thirds" id="funnel">
+    <h4>Conversion Rate</h4>
+  </div>
+   Hack so we can use current layout
+  <div class="" style="clear:both">
   </div>
 
   <div class="portlet two-thirds">
     <h4>Duration of Interactions</h4>
     <div class="chart stacked-bar">
-      <div class="light-grey" style="width:17%">0-10</div>
-      <div class="grey" style="width:28%">11-30 sec</div>
+      <div class="light-grey" style="width:50%">Time</div>
+      <div class="grey" style="width:50%">Time</div>
+
       <div class="blue" style="width:40%">31-60 sec</div>
       <div class="light-grey" style="width:15%">60+</div>
+
     </div>
   </div>
-
+-->
 </div>
 
 <script type="text/javascript">
   var values = [
-    { value: 0.43, name: "Mauritius"},
-    { value: 0.17, name: "Thailand"},
-    { value: 0.18, name: "Europe"},
-    { value: 0.12, name: "USA"}
+    //{ value: 0.43, name: "Mauritius"},
+    //{ value: 0.17, name: "Thailand"},
+    //{ value: 0.18, name: "Europe"},
+    //{ value: 0.12, name: "USA"}
   ];
   drawDonutCharts(values, "#donut-charts");
 
   var values = [
-    {name: 'Start', value: 582},
-    {name: 'Menu', value: 462},
-    {name: 'Carousel', value: 372},
-    {name: 'Item', value: 329}
+    {name: 'Start', value: 10},
+    {name: 'Menu', value: 4},
+    {name: 'Carousel', value: 10},
+    {name: 'Item', value: 4}
   ];
   drawFunnelChart(values, "#funnel");
 
-  var values = [
-    {label: 'M', tooltip: 'Mon 1 Aug', value: 40},
-    {label: 'T', tooltip: 'Tues 2 Aug', value: 64},
-    {label: 'W', tooltip: 'Wed 3 Aug', value: 77},
-    {label: 'T', tooltip: 'Thurs 4 Aug', value: 80},
-    {label: 'F', tooltip: 'Fri 5 Aug', value: 110},
-    {label: 'S', tooltip: 'Sat 6 Aug', value: 170},
-    {label: 'S', tooltip: 'Sun 7 Aug', value: 115, bold: true},
-    {label: 'M', tooltip: 'Mon 8 Aug', value: 50},
-    {label: 'T', tooltip: 'Tues 9 Aug', value: 45},
-    {label: 'W', tooltip: 'Wed 10 Aug', value: 70},
-    {label: 'T', tooltip: 'Thurs 11 Aug', value: 75},
-    {label: 'F', tooltip: 'Fri 12 Aug', value: 130},
-    {label: 'S', tooltip: 'Sat 13 Aug', value: 161},
-    {label: 'S', tooltip: 'Sun 14 Aug', value: 130, bold: true},
-    {label: 'M', tooltip: 'Mon 15 Aug', value: 34},
-    {label: 'T', tooltip: 'Tues 16 Aug', value: 67},
-    {label: 'W', tooltip: 'Wed 17 Aug', value: 53},
-    {label: 'T', tooltip: 'Thurs 18 Aug', value: 82},
-    {label: 'F', tooltip: 'Fri 19 Aug', value: 103},
-    {label: 'S', tooltip: 'Sat 20 Aug', value: 152},
-    {label: 'S', tooltip: 'Sun 21 Aug', value: 127, bold: true},
-    {label: 'M', tooltip: 'Mon 22 Aug', value: 47},
-    {label: 'T', tooltip: 'Tues 23 Aug', value: 58},
-    {label: 'W', tooltip: 'Wed 24 Aug', value: 59},
-    {label: 'T', tooltip: 'Thurs 25 Aug', value: 47},
-    {label: 'F', tooltip: 'Fri 26 Aug', value: 169},
-    {label: 'S', tooltip: 'Sat 27 Aug', value: 173},
-    {label: 'S', tooltip: 'Sun 28 Aug', value: 114, bold: true},
-    {label: 'M', tooltip: 'Mon 29 Aug', value: 58},
-    {label: 'T', tooltip: 'Tues 30 Aug', value: 63},
-  ]
+  var values = <%= @daily_interactions.to_json.html_safe %>;
+
   drawBarChart(values, "#interactions-per-day");
 
-  var values = [
-    {label: 'Mon', tooltip: 'Monday', value: 40},
-    {label: 'Tue', tooltip: 'Tuesday', value: 64},
-    {label: 'Wed', tooltip: 'Wednesday', value: 77},
-    {label: 'Thu', tooltip: 'Thursday', value: 80},
-    {label: 'Fri', tooltip: 'Friday', value: 110},
-    {label: 'Sat', tooltip: 'Saturday', value: 170},
-    {label: 'Sun', tooltip: 'Sunday', value: 115, bold: true},
-  ]
+  var values = <%= @days_of_week_interactions.to_json.html_safe %>;
   drawBarChart(values, "#interactions-by-weekday");
 
   var values = [
-    {label: '00:00', tooltip: '00:00', value: 1},
-    {label: '', tooltip: '02:00', value: 2},
-    {label: '04:00', tooltip: '04:00', value: 4},
-    {label: '', tooltip: '06:00', value: 3},
-    {label: '08:00', tooltip: '08:00', value: 15},
-    {label: '', tooltip: '10:00', value: 34},
-    {label: '12:00', tooltip: '12:00', value: 45},
-    {label: '', tooltip: '14:00', value: 28},
-    {label: '16:00', tooltip: '16:00', value: 11},
-    {label: '', tooltip: '18:00', value: 9},
-    {label: '20:00', tooltip: '20:00', value: 5},
-    {label: '', tooltip: '22:00', value: 1},
+    {label: '00:00', tooltip: '00:00', value: 0},
+    {label: '', tooltip: '02:00', value: 0},
+    {label: '04:00', tooltip: '04:00', value: 0},
+    {label: '', tooltip: '06:00', value: 0},
+    {label: '08:00', tooltip: '08:00', value: 0},
+    {label: '', tooltip: '10:00', value: 0},
+    {label: '12:00', tooltip: '12:00', value: 0},
+    {label: '', tooltip: '14:00', value: 0},
+    {label: '16:00', tooltip: '16:00', value: 0},
+    {label: '', tooltip: '18:00', value: 0},
+    {label: '20:00', tooltip: '20:00', value: 0},
+    {label: '', tooltip: '22:00', value: 0},
   ]
   drawBarChart(values, "#interactions-during-day");
 

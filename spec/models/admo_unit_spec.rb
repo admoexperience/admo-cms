@@ -15,12 +15,12 @@ describe AdmoUnit do
 
   it "Config options should include global settings as well" do
     @unit.config = {'1' => 'value', '2'=> 'value2'}
-    @unit.get_config.should eq({'1' => 'value', '2'=> 'value2', 'pubnub_subscribe_key'=> 'my-sub-key'})
+    @unit.get_config.should eq({'1' => 'value', '2'=> 'value2', 'pubnub_subscribe_key'=> 'my-sub-key', 'name'=>@unit.name})
   end
 
   it "Config can override global config settings" do
     @unit.config = {'1' => 'value', 'pubnub_subscribe_key'=> 'value2'}
-    @unit.get_config.should eq({'1' => 'value','pubnub_subscribe_key'=> 'value2'})
+    @unit.get_config.should eq({'1' => 'value','pubnub_subscribe_key'=> 'value2', 'name'=>@unit.name})
   end
 
   it "Account config is added to unit" do
@@ -28,7 +28,7 @@ describe AdmoUnit do
     @unit.admo_account = account
     account.config = {'account'=> 'myaccount'}
     @unit.config = {'1' => 'value', 'pubnub_subscribe_key'=> 'value2'}
-    @unit.get_config.should eq({'1' => 'value','pubnub_subscribe_key'=> 'value2','account'=> 'myaccount'})
+    @unit.get_config.should eq({'1' => 'value','pubnub_subscribe_key'=> 'value2','account'=> 'myaccount', 'name'=>@unit.name})
   end
 
   it "Account config is added to unit and can be overriden by unit" do
@@ -36,13 +36,13 @@ describe AdmoUnit do
     @unit.admo_account = account
     account.config = {'account'=> 'myaccount'}
     @unit.config = {'1' => 'value', 'pubnub_subscribe_key'=> 'value2','account'=> 'unitaccount'}
-    @unit.get_config.should eq({'1' => 'value','pubnub_subscribe_key'=> 'value2','account'=> 'unitaccount'})
+    @unit.get_config.should eq({'1' => 'value','pubnub_subscribe_key'=> 'value2','account'=> 'unitaccount', 'name'=>@unit.name})
   end
 
   it "Account config is added to unit and can be overriden by unit" do
     @unit.admo_account = nil
     @unit.config = {'1' => 'value', 'pubnub_subscribe_key'=> 'value2','account'=> 'unitaccount'}
-    @unit.get_config.should eq({'1' => 'value','pubnub_subscribe_key'=> 'value2','account'=> 'unitaccount'})
+    @unit.get_config.should eq({'1' => 'value','pubnub_subscribe_key'=> 'value2','account'=> 'unitaccount', 'name'=>@unit.name})
   end
 
 
@@ -135,6 +135,22 @@ describe AdmoUnit do
     #Units shoult be valid if the accounts change
     @unit2.admo_account = create(:admo_account)
     @unit2.valid?.should eq true
+  end
+
+  it 'should pass the name to the unit' do
+    @unit.name = "myname"
+    @unit.get_config['name'].should eq "myname"
+  end
+
+
+  it 'Should inject analytics into the unit config' do
+    account = @unit.admo_account
+    account.analytics = {mixpanel_api_key: 'mixpanel_api_key', mixpanel_api_secret: 'mixpanel_api_secret',
+mixpanel_api_token: 'mixpanel_api_token'}
+    config = @unit.get_config['analytics']
+    config['mixpanel_api_key'].should eq "mixpanel_api_key"
+    config['mixpanel_api_secret'].should eq nil
+    config['mixpanel_api_token'].should eq "mixpanel_api_token"
   end
 
 end

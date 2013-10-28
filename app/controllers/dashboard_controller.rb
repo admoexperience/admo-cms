@@ -1,12 +1,13 @@
 class DashboardController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :get_account
 
 
   def home
     @units = get_units
     @current_unit = @units.first
     if params[:unit_id]
-      @current_unit = AdmoUnit.find(params[:unit_id])
+      @current_unit = get_units.find(params[:unit_id])
     end
   end
 
@@ -21,7 +22,6 @@ class DashboardController < ApplicationController
     content = params[:content]
     config = @app.config
     config[@current_content]= content
-    puts config.to_yaml
     @app.config = config
     @app.save!
     #should always publish on content saving.
@@ -49,7 +49,13 @@ class DashboardController < ApplicationController
 
   def support
     if request.post?
-      email = {:user_email=> current_user.email}
+      email = {
+        :user_email => current_user.email,
+        :extra_info =>{
+          :account => @account.name,
+          :user_agent=> request.user_agent
+        }.to_yaml
+      }
       SupportMailer.help(support_params.merge(email)).deliver
     end
   end
@@ -76,21 +82,77 @@ class DashboardController < ApplicationController
   end
 
   def analytics
+    analytics = get_account.analytics
 
+    config = {api_key: analytics[:mixpanel_api_key], api_secret: analytics[:mixpanel_api_secret]}
+
+    api = MixpanelApi.new(config)
+    @total_interactions = cache("total_interactions") do
+      api.total_interactions
+    end
+    @daily_avg_interactions = @total_interactions / 30
+
+    daily_interactions_tmp = cache("daily_interactions") do
+      api.daily_interactions
+    end
+
+    daily_interactions_sorted = daily_interactions_tmp.sort_by {|k,v| k }
+    ########
+    daily = {}
+    @daily_interactions = daily_interactions_sorted.map do |key,value|
+      d = DateTime.parse(key)
+      tool_tip = d.strftime("%a %d %b")
+      {label: tool_tip.chars.first, tooltip: tool_tip, value: value, bold: tool_tip.start_with?("Sun")}
+    end
+
+    ########
+    daily_interactions_sorted.each do |key, value|
+      d = DateTime.parse(key)
+      day = d.strftime("%A")
+      daily[day] = 0 unless daily.has_key? day
+      daily[day] += value.to_i
+    end
+
+    @days_of_week_interactions = daily.sort_by {|k,v| DateTime.parse(k).strftime("%u")}.map do |key,value|
+      {label: key[0..2], tooltip: key, value: value, bold: key.start_with?("Sun")}
+    end
+
+    @busiest_day_of_week =  daily.sort_by{|k,v| v}.last[0]
+
+
+    interactions_by_host  = cache("interactions_by_host") do
+      api.total_interactions_by_host
+    end
+
+    @interactions_by_host = interactions_by_host.sort_by{|k,v| v}.reverse.map do |key, value|
+      {host_name: key, total: value }
+    end
+
+
+
+    @last_updated = cache('laste_updated') do
+      Time.now.strftime("%H:%m")
+    end
   end
 
 private
+  def cache(key, &block)
+     Rails.cache.fetch(key+'_'+get_account.id+'_'+current_user.id, :expires_in => 5.minute) do
+        block.call
+     end
+  end
+
   def support_params
     params.require(:support).permit([:subject,:message])
   end
 
   def get_account
-    current_user.admo_account
+    @account = current_user.accounts.find(params[:account])
   end
 
   def get_units
-    if current_user.admo_account
-      current_user.admo_account.admo_units
+    if get_account
+      get_account.admo_units
     else
       []
     end

@@ -61,8 +61,18 @@ gem "mongoid-indifferent-access", require: "mongoid_indifferent_access"
 #Also wanted the maxwidth/maxheight feature
 gem 'rails_admin_map_field',  github: 'drubin/rails_admin_map_field'
 
+gem 'mixpanel_client', '~> 3.1.2'
+
 gem 'devise'
 
 gem 'dropbox-sdk', '~> 1.6.1', require: 'dropbox_sdk'
 
 gem "rails_config", "~> 0.3.3"
+
+#Used for authentiation to dropbox
+gem 'omniauth'
+gem 'omniauth-dropbox'
+
+
+#Used for FB posting
+gem "koala", "~> 1.8.0rc1"

@@ -9,14 +9,18 @@ AdmoCms::Application.routes.draw do
 
   get '/media/*other', :to => Dragonfly[:images]
 
-  get '/dashboard/home(/:unit_id)' => 'dashboard#home', as: 'dashboard_home'
-  get '/dashboard/content/:app_id(/:content_id)' => 'dashboard#content', as: 'view_content'
-  post '/dashboard/content/:app_id(/:content_id)' => 'dashboard#update_content', as: 'update_content'
-  post '/dashboard/content/:app_id(/:content_id(/:content_item))' => 'dashboard#update_content_item', as: 'update_content_item'
-  get '/dashboard/support/' => 'dashboard#support',  as: 'support'
-  post '/dashboard/support/' => 'dashboard#support', as: 'support_request'
+  scope ':account' do
+    get '/dashboard/home' => 'dashboard#home', as: 'dashboard_home'
+    get '/dashboard/home/:unit_id' => 'dashboard#home', as: 'unit'
+    get '/dashboard/content/:app_id(/:content_id)' => 'dashboard#content', as: 'view_content'
+    post '/dashboard/content/:app_id(/:content_id)' => 'dashboard#update_content', as: 'update_content'
+    post '/dashboard/content/:app_id(/:content_id(/:content_item))' => 'dashboard#update_content_item', as: 'update_content_item'
+    get '/dashboard/support/' => 'dashboard#support',  as: 'support'
+    post '/dashboard/support/' => 'dashboard#support', as: 'support_request'
+    get '/dashboard/analytics' => 'dashboard#analytics', as: 'analytics'
+  end
 
-  get '/dashboard/analytics' => 'dashboard#analytics', as: 'analytics'
+
 
   get '/html/login' => 'html#login'
   get '/html/home' => 'html#home'
@@ -27,5 +31,7 @@ AdmoCms::Application.routes.draw do
   mount RootApi => '/api/'
 
   root :to => "index#index"
+
+  get '/auth/:provider/callback', to: 'sessions#create'
 
 end

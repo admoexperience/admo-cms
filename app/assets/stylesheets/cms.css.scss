@@ -898,6 +898,8 @@ section {
 
     .item {
       margin: 20px 0;
+      //Here so the lists don't flow over to a new line.
+      white-space: nowrap;
 
       &:last-child {
         margin-bottom: 0;
