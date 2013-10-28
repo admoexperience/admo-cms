@@ -10,21 +10,6 @@
  *
  */
 
-/***** Colours *****/
-$white: #fff;
-$darkgrey: #404041;
-$middarkgrey: #58585b;
-$grey: #6d6e70;
-$midgrey: #808284;
-$lightmidgrey: #939597;
-$lightgrey3: #a7a9ab;
-$lightgrey2: #bbbdc0;
-$lightgrey: #e6e7e8;
-$backgroundgrey: #f1f1f2;
-$lightbackgroundgrey: #fbfbfb;
-$blue: #49a8de;
-$lightblue: #6abfe5;
-
 /***** Sizes *****/
 $headerHeight: 75px;
 $pageWidth: 1150px;
@@ -370,7 +355,8 @@ nav {
         }
 
         &.home .icon { background-image: image-url("nav-home.png") }
-        &.content .icon { background-image: image-url("nav-content.png") }
+        &.apps .icon { background-image: image-url("nav-apps.png") }
+        &.devices .icon { background-image: image-url("nav-devices.png") }
         &.analytics .icon { background-image: image-url("nav-analytics.png") }
         &.support .icon { background-image: image-url("nav-support.png") }
       }
@@ -381,7 +367,7 @@ nav {
     display: block;
     background-color: $blue;
     position: absolute;
-    top: 4 * $navHeight;
+    top: 5 * $navHeight;
     bottom: 0;
     left: 0;
     right: -$activeWidth;
@@ -554,8 +540,11 @@ section {
       background-repeat: no-repeat;
       background-position: 15px;
       background-color: $white;
-
+      
       &.location { background-image: image-url("location.png"); }
+      &.devices { background-image: image-url("devices.png"); }
+      &.get-started { background-image: image-url("devices.png"); }
+      &.apps { background-image: image-url("apps.png"); }
       &.content { background-image: image-url("content.png"); }
       &.analytics { background-image: image-url("analytics.png"); }
       &.support { background-image: image-url("support.png"); }

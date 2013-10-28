@@ -27,6 +27,9 @@ AdmoCms::Application.routes.draw do
   get '/html/content' => 'html#content'
   get '/html/analytics' => 'html#analytics'
   get '/html/support' => 'html#support'
+  get '/html/tutorial' => 'html#tutorial'
+  get '/html/devices' => 'html#devices'
+  get '/html/apps' => 'html#apps'
 
   mount RootApi => '/api/'
 

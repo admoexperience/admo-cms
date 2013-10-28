@@ -18,4 +18,12 @@ class HtmlController < ApplicationController
   def support
   end
 
+  def tutorial
+  end
+
+  def devices
+  end
+
+  def apps
+  end
 end
