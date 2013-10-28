@@ -127,13 +127,13 @@ class Unit < Grape::API
       img.save!
 
       dbsession = @unit.admo_account.dropbox_session_info
-      unless dbsession.empty?
+      unless dbsession.blank?
         #Push to dropbox
         img.upload_to_dropbox(tempfile,dbsession)
       end
 
       auth_token = @unit.get_config['facebook_auth_token']
-      unless auth_token.empty?
+      unless auth_token.blank?
         img.upload_to_facebook(auth_token)
       end
 
