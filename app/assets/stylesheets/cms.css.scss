@@ -1048,3 +1048,15 @@ section {
   z-index: -1;
 }
 
+a.button {
+  background: $blue;
+  color: #fff;
+  padding: 6px 20px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+a.button:hover {
+  background-color: #0E7AC4;
+}
+

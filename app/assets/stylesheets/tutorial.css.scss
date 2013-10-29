@@ -8,21 +8,21 @@
     li {
       list-style: none;
       float: left;
-      border-right: 1px solid #d1d2d4;
-      height: 46px;
+      border-right: 1px solid #e8e8e8;
+      height: 48px;
+      border-bottom: 1px solid #e8e8e8;
       img {
         margin-right: 7px;
         vertical-align:middle;
       }
       a {
         vertical-align:middle;
-        line-height: 40px;
+        line-height: 44px;
         display: block;
-        width: 140px;
+        width: 150px;
         color: $blue;
-        padding-left: 30px;
+        padding-left: 25px;
         border-top: 5px solid transparent;
-        border-bottom: 1px solid #d1d2d4;
         &:hover {
           background: #eee;
         }
@@ -30,43 +30,83 @@
           border-top: 4px solid $blue;
           padding-bottom: 1px;
           cursor: default;
-          padding-bottom: 2px;
           border-bottom: none;
+
         }
       }
+      &.line-hack {
+        width: 315px;
+        border-right: none;
+        border-bottom: 1px solid #e8e8e8;
+        line-height: 45px;
+      }
+    }
+    strong {
+      font-family: $heavyFontFamily;
     }
     .tab-content {
       height: 520px;
+      display: none;
+    }
+    .tab-content.show {
+      display: block;
     }
     #tabs-1 {
       padding: 10px 10px 8px 10px;
+      .download-admo {
+        height: 200px;
+      }
       .block-gray {
         background: #eee;
         width: 100%;
         height: 300px;
+        .blue {
+          color: $blue;
+        }
         .image, .copy {
           float: left;
         }
         .image {
-          width: 250px;
-          text-align: center;
+          width: 300px;
+          position: relative;
+          height: 100%;
+          img {
+            margin: auto;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+          }
+        }
+        .copy {
+          width: 350px;
+          p {
+            line-height: 180%;
+          }
+          h4 {
+            display: block;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #d8d8d8;
+          }
         }
       }
     }
     #tabs-2 {
-      position: relative;
-      text-align: center;
+      margin-left: 50px;
       img {
         margin-top: 40px;
       }
     }
     #tabs-3 {
-      text-align: center;
+      margin-left: 50px;
+      img {
+        margin-top: 40px;
+      }
     }
 
     #tabs-4 {
-      text-align: center;
-
+      margin-left: 50px;
+      img {
+        margin-top: 40px;
+      }
     }
   }
 }

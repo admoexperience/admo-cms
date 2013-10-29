@@ -10,7 +10,7 @@
       th, td {
         padding: 12px;
       }
-      td.button {
+      td.action {
         width: 250px;
         text-align: right;
       }
@@ -25,14 +25,6 @@
       }
       td {
         border-bottom: 1px solid #eee;
-      }
-      a {
-        background: $blue;
-        color: #fff;
-        padding: 6px 20px;
-        -webkit-border-radius: 2px;
-        -moz-border-radius: 2px;
-        border-radius: 2px;
       }
     }
   }
