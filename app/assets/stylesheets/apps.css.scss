@@ -7,14 +7,21 @@ ul {
    background: #fff;
    list-style-type: none;
    display:inline-block;
-   box-sizing:border-box;
-   padding: 10px;
+   box-sizing: border-box;
+   padding: 20px;
    margin: 12px 10px;
    text-align: center;
+   border-top: 4px solid transparent;
    &.disabled {
      h3 {
        color: #EEE;
      }
+   }
+   &.active {
+    border-top: 4px solid $blue;
+   }
+   &:hover.app {
+    border-top: 4px solid $blue;
    }
    h3 {
      color: $blue;
@@ -33,15 +40,45 @@ ul {
      position: relative;
      .admo-tv {
         width: 413px;
+        margin-right: 30px;
         height: 297px;
         border: none;
         background-image: image-url("apps/device.png");
         position: relative;
+        float:left;
         img {
           position: absolute;
           top: 38px;
           left: 10px;
           border: none;
+        }
+      }
+      .description {
+        width: 440px;
+        float: left;
+        position: relative;
+        h2 {
+          background-position: 0px;
+          padding-left: 20px;
+          color: $blue; 
+          &.catalog { background-image: image-url("apps/catalog-icon.png"); }
+          &.game { background-image: image-url("apps/game-icon.png"); }
+          &.linear { background-image: image-url("apps/linear-icon.png"); }
+        }
+        p {
+          line-height: 140%;
+        }
+        span {
+          background-repeat: no-repeat;
+          padding-left: 25px;
+          margin-right: 30px;
+          &.avatar { background-image: image-url("apps/avatar.png"); }
+          &.online { background-image: image-url("apps/online-component.png"); }
+        }
+        .button {
+          position: absolute;
+          top: 15px;
+          right: 0;
         }
       }
       &:after {
