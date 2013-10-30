@@ -5,6 +5,7 @@ class RootApi < Grape::API
  # prefix 'api'
   version 'v1', using: :path
   mount Unit
+  mount Account
 
   add_swagger_documentation({
     :base_path => lambda { |request| "#{request.base_url}/api" },

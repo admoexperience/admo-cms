@@ -122,6 +122,21 @@ describe AdmoUnit do
     @unit.admo_screenshots.where(id: first.id).first.should eq nil
   end
 
+  it "Should be able to create multiple units with the same name if they are in a different account" do
+    @unit.name = "1234"
+    @unit.save!
+
+    @unit2 = create(:admo_unit)
+    @unit2.admo_account = @unit.admo_account
+    @unit2.valid?.should eq true
+    @unit2.name = "1234"
+    @unit2.valid?.should eq false
+
+    #Units shoult be valid if the accounts change
+    @unit2.admo_account = create(:admo_account)
+    @unit2.valid?.should eq true
+  end
+
   it 'should pass the name to the unit' do
     @unit.name = "myname"
     @unit.get_config['name'].should eq "myname"

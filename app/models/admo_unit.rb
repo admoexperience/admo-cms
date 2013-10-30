@@ -35,7 +35,7 @@ class AdmoUnit
   validates_presence_of :admo_account
 
   validates_uniqueness_of :api_key
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, :scope=> :admo_account
   validates_presence_of :name
 
   #Indexes

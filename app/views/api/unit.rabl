@@ -1,3 +1,3 @@
 object @unit => :unit
 
-attributes :name, :last_checkin
+attributes :api_key, :name, :created_at

@@ -38,7 +38,7 @@ class Unit < Grape::API
     Used to inform the CMS of the online status of the unit.
     Should be called every 5mins.
     NOTE
-    get :checkin, :rabl => "unit" do
+    get :checkin, :rabl => "checkin" do
       authenticate!
       @unit.checkin(request.base_url)
     end
