@@ -98,6 +98,7 @@
       var selector = "#" + $(this).data('details');
       if ($(selector).is(":visible")){
         $(selector).slideUp();
+        $(this).removeClass("active");
       } else {
         $('.details').hide();
         $(selector).slideDown();

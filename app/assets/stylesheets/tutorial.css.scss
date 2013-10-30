@@ -1,7 +1,6 @@
 #get-started {
   .tab-selectors {
-    border-top: 1px solid #bbbdc0;
-    border-bottom: 1px solid #bbbdc0;
+
   }
   .tutorial {
     width: 1012px;
@@ -14,7 +13,7 @@
       float: left;
       border-right: 1px solid #e8e8e8;
       height: 48px;
-      // border-bottom: 1px solid #e8e8e8;
+      border-bottom: 1px solid #e8e8e8;
       img {
         margin-right: 7px;
         vertical-align:middle;
@@ -27,19 +26,21 @@
         color: $blue;
         padding-left: 25px;
         border-top: 5px solid transparent;
-        &:hover {
-          background: #eee;
-        }
-        &.selected {
-          border-top: 4px solid $blue;
-          padding-bottom: 1px;
-          cursor: default;
-          border-bottom: none;
+      }
+      &.selected {
+        padding-bottom: 1px;
+        cursor: default;
+        border-bottom: 1px solid white;
 
+        a {
+          border-top: 4px solid $blue;
         }
       }
+      &:hover {
+        background: #eee;
+      }
       &.line-hack {
-        width: 315px;
+        width: 305px;
         border-right: none;
         border-bottom: 1px solid #e8e8e8;
         line-height: 45px;
