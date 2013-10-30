@@ -1,6 +1,9 @@
 #get-started {
+  .tab-selectors {
+
+  }
   .tutorial {
-    width: 1024px;
+    width: 1012px;
     ul {
       margin: 0;
       padding: 0;
@@ -23,19 +26,21 @@
         color: $blue;
         padding-left: 25px;
         border-top: 5px solid transparent;
-        &:hover {
-          background: #eee;
-        }
-        &.selected {
-          border-top: 4px solid $blue;
-          padding-bottom: 1px;
-          cursor: default;
-          border-bottom: none;
+      }
+      &.selected {
+        padding-bottom: 1px;
+        cursor: default;
+        border-bottom: 1px solid white;
 
+        a {
+          border-top: 4px solid $blue;
         }
       }
+      &:hover {
+        background: #eee;
+      }
       &.line-hack {
-        width: 315px;
+        width: 305px;
         border-right: none;
         border-bottom: 1px solid #e8e8e8;
         line-height: 45px;

@@ -67,6 +67,7 @@ User.destroy_all
 user = User.first
 unless user
   user = User.new(email:'demo@admoexperience.com', password:'demo12345', admo_account: account)
+  user.accounts << account
   user.skip_confirmation!
   user.save!
 end

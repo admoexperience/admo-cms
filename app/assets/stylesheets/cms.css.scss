@@ -293,7 +293,7 @@ header {
               border-left: 8px solid transparent;
               border-right: 8px solid transparent;
               border-bottom: 8px solid $blue;
-            } 
+            }
           }
           li:nth-child(1):hover{
             &:before {
@@ -584,7 +584,7 @@ section {
       background-repeat: no-repeat;
       background-position: 15px;
       background-color: $white;
-      
+
       &.location { background-image: image-url("location.png"); }
       &.devices { background-image: image-url("devices.png"); }
       &.get-started { background-image: image-url("devices.png"); }

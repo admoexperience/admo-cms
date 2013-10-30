@@ -2,15 +2,15 @@
     <div id="get-started">
       <h2 class="get-started">Getting started</h2>
       <div class="tutorial">
-        <ul> 
+        <ul class="tab-selectors">
           <li><a href="#tabs-1" class="selected">
             <%= image_tag("tutorial/1.png") %>
             Install
-          </a></li> 
-          <li><a href="#tabs-2"><%= image_tag("tutorial/2.png") %><span>Configure</span></a></li> 
-          <li><a href="#tabs-3"><%= image_tag("tutorial/3.png") %>Choose App</a></li> 
-          <li><a href="#tabs-4"><%= image_tag("tutorial/4.png") %>Publish</a></li> 
-          <li class="line-hack"></li> 
+          </a></li>
+          <li><a href="#tabs-2"><%= image_tag("tutorial/2.png") %><span>Configure</span></a></li>
+          <li><a href="#tabs-3"><%= image_tag("tutorial/3.png") %>Choose App</a></li>
+          <li><a href="#tabs-4"><%= image_tag("tutorial/4.png") %>Publish</a></li>
+          <li class="line-hack"></li>
           <div class="" style="clear:both"></div>
         </ul>
         <div id="tabs">
@@ -21,7 +21,7 @@
                 Follow these few easy steps to get started right away.<br/>
                 Please start by downloading the installer and installing it on a Windows PC.<br/>
               </p>
-              
+
             </div>
             <div class="download-block">
               <div class="image">
@@ -42,7 +42,7 @@
                   <strong>OS</strong>  |  Windows 7<br/>
                 </p>
                 <a href="online">Buy Online</a>
-                
+
               </div>
               <div class="" style="clear:both"></div>
             </div>
@@ -59,3 +59,17 @@
         </div>
     </div>
 </div>
+
+<script>
+  $(function() {
+    $('.tab-selectors li').click(function(){
+      $('.tab-selectors li').removeClass("selected");
+      $(this).addClass("selected");
+
+      var selector = $(this).find('a').attr('href');
+      $('.tab-content').hide();
+      $(selector).fadeIn();
+      return false;
+    });
+  });
+</script>
