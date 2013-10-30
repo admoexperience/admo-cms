@@ -1,4 +1,21 @@
 #apps {
+
+.arrow {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid #fff;
+  margin-left: 60px;
+  margin-top: -2px;
+  opacity: 0;
+}
+
+.app.active .arrow {
+  opacity: 1;
+}
+
 ul {
   padding-left: 20px;
   li {
@@ -31,6 +48,7 @@ ul {
      border: 1px solid #eee;
    }
    &.details {
+      display: none;
      width: 950px;
      height: 350px;
      background: #fff;
@@ -60,7 +78,7 @@ ul {
         h2 {
           background-position: 0px;
           padding-left: 20px;
-          color: $blue; 
+          color: $blue;
           &.catalog { background-image: image-url("apps/catalog-icon.png"); }
           &.game { background-image: image-url("apps/game-icon.png"); }
           &.linear { background-image: image-url("apps/linear-icon.png"); }
@@ -80,17 +98,6 @@ ul {
           top: 15px;
           right: 0;
         }
-      }
-      &:after {
-        content: "";
-        width: 0; 
-        height: 0; 
-        border-left: 14px solid transparent;
-        border-right: 14px solid transparent;
-        border-top: 14px solid #fff;
-        position: absolute;
-        bottom: -13px;
-        left: 130px;
       }
     }
   }

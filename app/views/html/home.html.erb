@@ -63,9 +63,13 @@
 <script>
   $(function() {
     $('.tab-selectors li a').click(function(){
+      $('.tab-selectors li a').removeClass("selected");
+      $(this).addClass("selected");
+
       var selector = $(this).attr('href');
-      $('.tab-content').removeClass('show');
-      $(selector).addClass('show');
+      $('.tab-content').hide();
+      $(selector).fadeIn();
+      return false;
     });
   });
 </script>
