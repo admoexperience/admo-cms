@@ -92,16 +92,15 @@
 <script>
   $(function() {
     $('.app').click(function(){
-      $('.app').removeClass("active");
-      $(this).addClass("active");
-
       var selector = "#" + $(this).data('details');
-      if ($(selector).is(":visible")){
+      if ($(this).hasClass("active")){
         $(selector).slideUp();
         $(this).removeClass("active");
       } else {
-        $('.details').hide();
+        $('.details').hide(); // hide all the other app details divs
         $(selector).slideDown();
+        $('.app').removeClass("active");
+        $(this).addClass("active");
       }
     });
   });

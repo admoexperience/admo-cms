@@ -1,34 +1,31 @@
 #apps {
 
-.arrow {
-  content: "";
-  width: 0;
-  height: 0;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-top: 15px solid #fff;
-  margin-left: 60px;
-  margin-top: -2px;
-  opacity: 0;
-}
-
-.app.active .arrow {
-  opacity: 1;
-}
-
 ul {
   padding-left: 20px;
   li {
-   width: 300px;
-   height: 225px;
-   background: #fff;
-   list-style-type: none;
-   display:inline-block;
-   box-sizing: border-box;
-   padding: 20px;
-   margin: 12px 10px;
-   text-align: center;
-   border-top: 4px solid transparent;
+    position: relative;
+    width: 300px;
+    height: 225px;
+    background: #fff;
+    list-style-type: none;
+    display:inline-block;
+    box-sizing: border-box;
+    padding: 20px;
+    margin: 12px 10px;
+    text-align: center;
+    border-top: 4px solid transparent;
+
+    &:after {
+      position: absolute;
+      bottom: -15px;
+      content: "";
+      width: 0;
+      height: 0;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-top: 15px solid #fff;
+      opacity: 0;
+    }
    &.disabled {
      h3 {
        color: #EEE;
@@ -36,6 +33,10 @@ ul {
    }
    &.active {
     border-top: 4px solid $blue;
+
+    &:after {
+      opacity: 1;
+    }
    }
    &:hover.app {
     border-top: 4px solid $blue;

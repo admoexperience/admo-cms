@@ -582,8 +582,10 @@ section {
       color: $lightmidgrey;
       text-indent: 20px;
       background-repeat: no-repeat;
-      background-position: 15px;
+      background-position: 35px;
       background-color: $white;
+      margin-left: -12px;
+      padding-left: 60px;
 
       &.location { background-image: image-url("location.png"); }
       &.devices { background-image: image-url("devices.png"); }
