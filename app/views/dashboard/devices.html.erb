@@ -1,0 +1,41 @@
+<div id="content" class="wide white">
+  <div id="devices">
+    <h2 class="devices">Devices</h2>
+    <div class="devices-list">
+      <table>
+        <col style="width:200px"><col style="width:185px"><col style="width:200px"><col style="width:200px">
+        <thead>
+          <tr><th>Name</th>  <th>App</th>  <th>Last Updated</th>  <th>Status</th>
+        </thead>
+        <tbody>
+          <%- @units.each do |unit|%>
+            <tr>
+              <td><%= unit.name %></td>
+              <td>
+                <select>
+                  <option value="Four Menu">Four Menu</option>
+                  <option value="Two Menu">Two Menu</option>
+                  <option value="Carousel">Carousel</option>
+                  <option value="Competition">Competition</option>
+                </select>
+              </td>
+              <td>
+                <abbr class="timeago" title="<%=  @current_unit.last_checkin.iso8601 %>">
+                  <%= @current_unit.last_checkin.to_s %>
+                </abbr>
+              </td>
+              <td>
+                <% if unit.online? %>
+                  Online
+                <% else %>
+                  Offline
+               <% end %>
+              </td>
+              <td class="action"><a href="" class="button">Publish</a></td>
+            </tr>
+          <%- end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,46 +1,33 @@
 <div id="content" class="wide">
-  <div class="toggle">
-    <!--<a href="#">Week</a>-->
-    <a href="#" class="active">Month</a>
-  </div>
   <h2 class="analytics">Analytics</h2>
-
 
   <div class="portlet narrow blue">
     <div class="amount people"><%= @total_interactions %></div>
     <p>Total interactions this month</p>
   </div>
+
   <div class="portlet narrow blue">
     <div class="amount person"><%= @daily_avg_interactions %></div>
     <p>Average per day</p>
   </div>
+
   <div class="portlet narrow blue">
     <div class="amount time"><%= @last_updated %></div>
     <p>Last Updated</p>
   </div>
+
   <div class="portlet narrow blue">
     <div class="amount date"><%= @busiest_day_of_week%></div>
     <p>Busiest day of the week</p>
   </div>
 
-
-
-
   <div class="portlet wide" id="interactions-per-day">
     <h4>Number of Interactions per Day</h4>
   </div>
 
-
-
   <div class="portlet wide" id="interactions-by-weekday">
     <h4>Interactions by Day of the Week</h4>
   </div>
-
-<!--
-  <div class="portlet " id="interactions-during-day">
-    <h4>Interactions During the Day</h4>
-  </div>
--->
 
   <div class="portlet third left">
     <h4>Store Popularity</h4>
@@ -53,26 +40,6 @@
       <%end %>
     </div>
   </div>
-<!--
-  <div class="portlet two-thirds" id="funnel">
-    <h4>Conversion Rate</h4>
-  </div>
-   Hack so we can use current layout
-  <div class="" style="clear:both">
-  </div>
-
-  <div class="portlet two-thirds">
-    <h4>Duration of Interactions</h4>
-    <div class="chart stacked-bar">
-      <div class="light-grey" style="width:50%">Time</div>
-      <div class="grey" style="width:50%">Time</div>
-
-      <div class="blue" style="width:40%">31-60 sec</div>
-      <div class="light-grey" style="width:15%">60+</div>
-
-    </div>
-  </div>
--->
 </div>
 
 <script type="text/javascript">
