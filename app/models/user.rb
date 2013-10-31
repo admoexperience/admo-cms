@@ -46,9 +46,27 @@ class User
 
   has_and_belongs_to_many :accounts, {class_name: 'AdmoAccount'}
 
-  field :admin,   :type => Boolean, :default => false
+  field :admin, :type => Boolean, :default => false
+  field :first_name, :type => String, :default => ""
+  field :last_name, :type => String, :default => ""
 
+  before_save do |user|
+    account = AdmoAccount.new
+    account.name = user.company_name
+    account.save!
+    user.admo_account = account
+    user.accounts << account
+  end
 
+  # used to temporarily store the company name on the user model when the user signs up with devise
+  def company_name
+    @company_name
+  end
+
+  # used to temporarily store the company name on the user model when the user signs up with devise
+  def company_name=(name)
+    @company_name = name
+  end
 
   #Hack for now, we dont store name
   def email_to_name

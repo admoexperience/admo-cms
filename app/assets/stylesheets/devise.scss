@@ -1,0 +1,88 @@
+/***** Login *****/
+.devise-box {
+  width: 600px;
+  height: 320px;
+  position: absolute;
+  left: 0; top: 100px; right: 0; bottom: 0;
+  margin: 0 auto;
+  padding: 30px;
+  box-sizing: border-box;
+  background: $white;
+  border-top: 5px solid $blue;
+
+  &.sign_up {
+    height: 550px;
+  }
+
+  h1 {
+      background: image-url("logo-login.png") center no-repeat;
+      width: 150px;
+      height: 36px;
+      margin-top: 0;
+      span {
+        display: none;
+      }
+    }
+  h2 {
+    color: $blue;
+    font-size: 15px;
+    line-height: 140%;
+  }
+  .auth-block, .border-form-div {
+    background: $white;
+    width: 270px;
+    /*height: 250px;*/
+    border-right: 1px solid #e6e7e8;
+    float:left;
+    div.input-block {
+      clear: both;
+      margin: 15px 0;
+      height: 42px;
+
+      label {
+        background: $lightgrey center no-repeat;
+        height: 42px;
+        width: 42px;
+        float: left;
+        overflow: hidden;
+        text-indent: 100px;
+
+        &.first_name { background-image: image-url("login-email.png"); }
+        &.last_name { background-image: image-url("login-email.png"); }
+        &.company_name { background-image: image-url("login-email.png"); }
+        &.email { background-image: image-url("login-email.png"); }
+        &.password { background-image: image-url("login-password.png"); }
+      }
+      input {
+        background-color: $backgroundgrey;
+        border: none;
+        height: 40px;
+        width: 178px;
+        float: left;
+        padding: 2px 10px 0 10px;
+        line-height: 40px;
+        font-size: 14px;
+      }
+    }
+
+    .button {
+      background: $blue;
+      color: $white;
+      border: none;
+      width: 240px;
+      height: 42px;
+      line-height: 40px;
+      font-size: 14px;
+    }
+  }
+  .hero {
+    width: 265px;
+    height: 220px;
+    float:left;
+    box-sizing: border-box;
+    padding-left: 30px;
+    background-image: image-url("login-laptop.png");
+    background-repeat: no-repeat;
+    background-position: 40px 80px;
+  }
+}
