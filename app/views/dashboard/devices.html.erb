@@ -1,179 +1,37 @@
-<section>
-  <a href="#" class="new">+</a>
-  <h2 class="location">Locations</h2>
-
-  <ul>
-    <%- @units.each do |unit|%>
-      <%= content_tag :li, :class=>active_class?(@current_unit == unit) do %>
-      <%= link_to unit_path(@account, unit) do %>
-        <span class="number"><%= unit.config.size%></span>
-        <strong><%= unit.name%></strong>
-        <em>
-          <% if unit.online? %>
-            <%= unit.city %>, <strong>LIVE</strong>
-          <% else %>
-            <%= unit.city %>, <strong class="offline">OFFLINE</strong>
-         <% end %>
-        </em>
-        <%- end%>
-      <%- end%>
-    <%- end%>
-  </ul>
-</section>
-
-<div id="content">
-  <% if @current_unit%>
-  <h2><%= @current_unit.city%></h2>
-
-  <div class="portlet wide">
-    <div id="map" data-longitude="<%= @current_unit.longitude%>" data-latitude="<%= @current_unit.latitude%>">MAP</div>
-
-    <div class="info">
-      <h3><%= @current_unit.name%></h3>
-
-      <!--<div class="tel">t | <a href="tel:0219879821">021 987 9821</a></div>-->
-
-      <ul class="status">
-        <li class="online <%=active_class?(@current_unit.online?)%>"><%= @current_unit.online? ? 'Online': 'Offline'%></li>
-        <li class="up-to-date <%=active_class?(@current_unit.online?)%>"><%= @current_unit.online? ? 'Up to date': 'Pending...'%></li>
-      </ul>
-
-
-      <p>
-        Screenshot last updated<br />
-        <em>
-          <% if @current_unit.current_screenshot %>
-          <abbr class="timeago" title="<%=  @current_unit.current_screenshot.created_at.iso8601 %>">
-          <%= @current_unit.current_screenshot.created_at.to_s %>
-          </abbr>
-          <% else %>
-          Never
-          <% end %>
-      </em>
-      </p>
-
+<div id="content" class="wide white">
+  <div id="devices">
+    <h2 class="devices">Devices</h2>
+    <div class="devices-list">
+      <table>
+        <col style="width:200px"><col style="width:185px"><col style="width:200px"><col style="width:200px">
+        <thead>
+          <tr><th>Name</th>  <th>App</th>  <th>Last Updated</th>  <th>Status</th>
+        </thead>
+        <tbody>
+          <%- @units.each do |unit|%>
+            <tr>
+              <td><%= unit.name %></td>
+              <td>
+                <select>
+                  <option value="Four Menu">Four Menu</option>
+                  <option value="Two Menu">Two Menu</option>
+                  <option value="Carousel">Carousel</option>
+                  <option value="Competition">Competition</option>
+                </select>
+              </td>
+              <td>a few days ago</td>
+              <td>
+                <% if unit.online? %>
+                  Online
+                <% else %>
+                  Offline
+               <% end %>
+              </td>
+              <td class="action"><a href="" class="button">Publish</a></td>
+            </tr>
+          <%- end%>
+        </tbody>
+      </table>
     </div>
-
-    <% if @current_unit.current_screenshot %>
-    <div class="screenshot">
-      <%= link_to image_tag(@current_unit.current_screenshot.image.url, :width=>'600', :height=>340), @current_unit.current_screenshot.image.url, {target: '_blank'} %>
-    </div>
-    <% end %>
-
   </div>
 </div>
-
-<script>
-jQuery(document).ready(function () {
-    var mapDiv = $('#map');
-    var map;
-    var centerPosition = new google.maps.LatLng(mapDiv.data('latitude'), mapDiv.data('longitude'));
-
-
-    var style = [{
-        "stylers": [{
-            "visibility": "off"
-        }]
-    }, {
-        "featureType": "road",
-            "stylers": [{
-            "visibility": "on"
-        }, {
-            "color": "#ffffff"
-        }]
-    }, {
-        "featureType": "road.arterial",
-            "stylers": [{
-            "visibility": "on"
-        }, {
-            "color": "#fee379"
-        }]
-    }, {
-        "featureType": "road.highway",
-            "stylers": [{
-            "visibility": "on"
-        }, {
-            "color": "#fee379"
-        }]
-    }, {
-        "featureType": "landscape",
-            "stylers": [{
-            "visibility": "on"
-        }, {
-            "color": "#f3f4f4"
-        }]
-    }, {
-        "featureType": "water",
-            "stylers": [{
-            "visibility": "on"
-        }, {
-            "color": "#7fc8ed"
-        }]
-    }, {}, {
-        "featureType": "road",
-            "elementType": "labels",
-            "stylers": [{
-            "visibility": "off"
-        }]
-    }, {
-        "featureType": "poi.park",
-            "elementType": "geometry.fill",
-            "stylers": [{
-            "visibility": "on"
-        }, {
-            "color": "#83cead"
-        }]
-    }, {
-        "elementType": "labels",
-            "stylers": [{
-            "visibility": "off"
-        }]
-    }, {
-        "featureType": "landscape.man_made",
-            "elementType": "geometry",
-            "stylers": [{
-            "weight": 0.9
-        }, {
-            "visibility": "off"
-        }]
-    }]
-
-    var options = {
-        zoom: 12,
-        center: centerPosition,
-        disableDefaultUI: true,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-    map = new google.maps.Map($('#map')[0], options);
-    map.setOptions({
-        styles: style
-    });
-
-    var image = {
-        url: '<%= image_path("marker.png")%>',
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(12, 59)
-    };
-    var shadow = {
-        url: '<%= image_path("shadow.png")%>',
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(-2, 36)
-    };
-
-    var marker = new google.maps.Marker({
-        position: centerPosition,
-        map: map,
-        icon: image,
-        shadow: shadow
-    });
-});
-</script>
-<% else %>
-<h2>No Units</h2>
-<div class="portlet wide">
-
-    <div class="info">
-      <h3>No Units</h3>
-    </div>
-  </div>
-<%end %>
