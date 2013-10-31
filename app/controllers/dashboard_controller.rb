@@ -4,6 +4,10 @@ class DashboardController < ApplicationController
 
 
   def home
+
+  end
+
+  def devices
     @units = get_units
     @current_unit = @units.first
     if params[:unit_id]
