@@ -7,6 +7,10 @@ class DashboardController < ApplicationController
 
   end
 
+  def apps
+
+  end
+
   def devices
     @units = get_units
     @current_unit = @units.first
