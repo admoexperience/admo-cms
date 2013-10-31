@@ -14,7 +14,7 @@ class Account < Grape::API
       email = params[:email]
       password = params[:password]
       user = User.where(email: email).first
-      if user.valid_password?(password)
+      if user and user.valid_password?(password)
         @account = user.admo_account
       else
         return nil
