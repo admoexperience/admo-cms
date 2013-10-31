@@ -1,15 +1,21 @@
-<div class="auth-block">
-  <h1><span>ADMO</span></h1>
-  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-    <div class="input-block">
-      <label for="email" class="email">Email</label>
-      <%= f.email_field :email, :autofocus => true, :placeholder=>'Email' %>
-    </div>
-    <div class="input-block">
-      <label for="password" class="password">Password</label>
-      <%= f.password_field :password, :placeholder=>'Password' %>
-    </div>
-    <%= f.submit "Sign in", :class=>'button' %>
-  <% end %>
+<div class="login-box">
+  <div class="auth-block">
+    <h1><span>ADMO</span></h1>
+    <h2>Login</h2>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <div class="input-block">
+        <label for="email" class="email">Email</label>
+        <%= f.email_field :email, :autofocus => true, :placeholder=>'Email' %>
+      </div>
+      <div class="input-block">
+        <label for="password" class="password">Password</label>
+        <%= f.password_field :password, :placeholder=>'Password' %>
+      </div>
+      <%= f.submit "Log in", :class=>'button' %>
+    <% end %>
+  </div>
+  <div class="hero">
+    <h2>An interactive experience</br>that brings retail stores to life</h2>
+  </div>
+  <div class="clear"></div>
 </div>
-

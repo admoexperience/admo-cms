@@ -9,7 +9,7 @@ Seed the Database
 
 defaults:
   
-  * Username: demo@admoexpereince.com
+  * Username: demo@admoexperience.com
   * Password: demo12345
 
 To run server in dev mode

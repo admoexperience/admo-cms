@@ -8,4 +8,23 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  */
- @import "cms";
+/***** Colours *****/
+$white: #fff;
+$darkgrey: #404041;
+$middarkgrey: #58585b;
+$grey: #6d6e70;
+$midgrey: #808284;
+$lightmidgrey: #939597;
+$lightgrey3: #a7a9ab;
+$lightgrey2: #bbbdc0;
+$lightgrey: #e6e7e8;
+$backgroundgrey: #f1f1f2;
+$lightbackgroundgrey: #fbfbfb;
+$blue: #49a8de;
+$lightblue: #6abfe5;
+
+ 
+@import "cms";
+@import "tutorial";
+@import "apps";
+@import "devices";

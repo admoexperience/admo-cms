@@ -1,0 +1,107 @@
+<div id="content" class="wide">
+  <div id="apps">
+    <h2 class="apps">Apps</h2>
+    <div id="app-list">
+      <ul>
+        <li data-details="details-1" class="app">
+          <%= image_tag("apps/four-structure.png") %>
+          <h3>Four structure menu</h3>
+          <div class="arrow"></div>
+        </li>
+        <li data-details="details-2" class="app">
+          <%= image_tag("apps/two-structure.png") %>
+          <h3>Two structure menu</h3>
+          <div class="arrow"></div>
+        </li>
+        <li data-details="details-3" class="app">
+          <%= image_tag("apps/carousel.png") %>
+          <h3>Carousel</h3>
+          <div class="arrow"></div>
+        </li>
+        <li id="details-1" class="details">
+          <div class="admo-tv">
+            <%= image_tag("apps/gif-large.png") %>
+          </div>
+          <div class="description">
+            <h2 class="catalog">Catalog</h2>
+            <p>
+              One Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, autem, veniam, excepturi, maiores laboriosam cumque est explicabo commodi nihil unde cupiditate. Excepturi, maiores laboriosam cumque est explicabo commodi.
+            </p>
+            <span class="online">Online component</span>
+            <span class="avatar">Avatar</span>
+            <a href="" class="button">Publish</a>
+          </div>
+        </li>
+        <li id="details-2" class="details">
+          <div class="admo-tv">
+            <%= image_tag("apps/gif-large.png") %>
+          </div>
+          <div class="description">
+            <h2 class="catalog">Catalog</h2>
+            <p>
+              Two Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, autem, veniam, excepturi, maiores laboriosam cumque est explicabo commodi nihil unde cupiditate. Excepturi, maiores laboriosam cumque est explicabo commodi.
+            </p>
+            <span class="online">Online component</span>
+            <span class="avatar">Avatar</span>
+            <a href="" class="button">Publish</a>
+          </div>
+        </li>
+        <li id="details-3" class="details">
+          <div class="admo-tv">
+            <%= image_tag("apps/gif-large.png") %>
+          </div>
+          <div class="description">
+            <h2 class="catalog">Catalog</h2>
+            <p>
+              Three Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, autem, veniam, excepturi, maiores laboriosam cumque est explicabo commodi nihil unde cupiditate. Excepturi, maiores laboriosam cumque est explicabo commodi.
+            </p>
+            <span class="online">Online component</span>
+            <span class="avatar">Avatar</span>
+            <a href="" class="button">Publish</a>
+          </div>
+        </li>
+        <li class="disabled app">
+          <%= image_tag("apps/carousel.png") %>
+          <h3>Two structure menu</h3>
+        </li>
+        <li class="disabled app">
+          <%= image_tag("apps/carousel.png") %>
+          <h3>Two structure menu</h3>
+        </li>
+        <li class="disabled app">
+          <%= image_tag("apps/carousel.png") %>
+          <h3>Two structure menu</h3>
+        </li>
+        <li class="disabled app">
+          <%= image_tag("apps/carousel.png") %>
+          <h3>Two structure menu</h3>
+        </li>
+        <li class="disabled app">
+          <%= image_tag("apps/carousel.png") %>
+          <h3>Two structure menu</h3>
+        </li>
+        <li class="disabled app">
+          <%= image_tag("apps/carousel.png") %>
+          <h3>Two structure menu</h3>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    $('.app').click(function(){
+      var selector = "#" + $(this).data('details');
+      if ($(this).hasClass("active")){
+        $(selector).slideUp();
+        $(this).removeClass("active");
+      } else {
+        $('.details').hide(); // hide all the other app details divs
+        $(selector).slideDown();
+        $('.app').removeClass("active");
+        $(this).addClass("active");
+      }
+    });
+  });
+</script>

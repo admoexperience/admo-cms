@@ -1,0 +1,40 @@
+#devices{
+  .devices-list{
+    margin-left: 10px;
+    table {
+      border-collapse: collapse;
+      border: none;
+      caption {
+      font-size: larger; margin: 1em auto;
+      }
+      th, td {
+        padding: 12px;
+      }
+      td.action {
+        width: 100px;
+        text-align: right;
+      }
+      th, thead {
+        text-align: left;
+        background: #fff;
+        color: $blue;
+        border-bottom: 1px solid #eee;
+      }
+      tr:hover {
+        background: #eee;
+      }
+      td {
+        border-bottom: 1px solid #eee;
+      }
+      #map {
+        float: right;
+        background-color: $lightgrey;
+        width: 150px;
+        height: 150px;
+        margin: 0 0 20px 20px;
+        border-radius: 3px;
+        overflow: hidden;
+      }
+    }
+  }
+}

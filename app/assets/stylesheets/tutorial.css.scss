@@ -1,0 +1,143 @@
+#get-started {
+  .tab-selectors {
+
+  }
+  .tutorial {
+    width: 1012px;
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      list-style: none;
+      float: left;
+      border-right: 1px solid #e8e8e8;
+      height: 48px;
+      border-bottom: 1px solid #e8e8e8;
+      img {
+        margin-right: 7px;
+        vertical-align:middle;
+      }
+      a {
+        vertical-align:middle;
+        line-height: 44px;
+        display: block;
+        width: 150px;
+        color: $blue;
+        padding-left: 25px;
+        border-top: 4px solid transparent;
+      }
+      &.selected {
+        padding-bottom: 1px;
+        cursor: default;
+        border-bottom: 1px solid white;
+
+        a {
+          border-top: 4px solid $blue;
+        }
+      }
+      &:hover {
+        background: #eee;
+      }
+      &.line-hack {
+        width: 308px;
+        border-right: none;
+        border-bottom: 1px solid #e8e8e8;
+        line-height: 45px;
+      }
+    }
+    strong {
+      font-family: $heavyFontFamily;
+    }
+    .tab-content {
+      height: 520px;
+      display: none;
+    }
+    .tab-content.show {
+      display: block;
+    }
+    #tabs-1 {
+      h1 {
+        color: $blue;
+        font-size: 18px;
+      }
+      h3 {
+        margin-bottom: 7px;
+      }
+      p {
+        margin: 5px 0;
+      }
+      padding: 10px 10px 8px 10px;
+      .intro {
+        width: 600px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e8e8e8;
+        p {
+          line-height: 160%;
+        }
+      }
+      .download-block {
+        padding-top: 20px;
+        width: 100%;
+        height: 300px;
+        p {
+          font-size: 14px;
+          color: #808183;
+        }
+        h3 {
+          font-size: 16px;
+          color: #555;
+        }
+        .blue {
+          color: $blue;
+        }
+        .image, .copy {
+          float: left;
+        }
+        .image {
+          width: 180px;
+          text-align: center;
+          img {
+            margin-bottom: 20px;
+          }
+        }
+        .copy {
+          width: 450px;
+          p {
+            line-height: 160%;
+          }
+          h4 {
+            display: block;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #d8d8d8;
+          }
+          a {
+            color: $blue;
+          }
+          a:hover {
+            color: #0E7AC4;
+          }
+        }
+      }
+    }
+    #tabs-2 {
+      margin-left: 50px;
+      img {
+        margin-top: 40px;
+      }
+    }
+    #tabs-3 {
+      margin-left: 50px;
+      img {
+        margin-top: 40px;
+      }
+    }
+
+    #tabs-4 {
+      margin-left: 50px;
+      img {
+        margin-top: 40px;
+      }
+    }
+  }
+}
