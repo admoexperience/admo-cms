@@ -51,10 +51,10 @@ class User
   field :last_name, :type => String, :default => ""
 
   before_save do |user|
-    user.create_new_user_account
+    user.before_save_create_account
   end
 
-  def create_new_user_account
+  def before_save_create_account
     return unless self.admo_account.nil?
 
     account = AdmoAccount.new
