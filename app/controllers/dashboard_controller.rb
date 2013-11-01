@@ -87,6 +87,10 @@ class DashboardController < ApplicationController
 
   def analytics
     analytics = get_account.analytics
+    unless analytics
+      @analytics_not_present = true
+      return
+    end
 
     config = {api_key: analytics[:mixpanel_api_key], api_secret: analytics[:mixpanel_api_secret]}
 
