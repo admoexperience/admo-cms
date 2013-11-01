@@ -20,11 +20,11 @@
                 </select>
               </td>
               <td>
-                <abbr class="timeago" title="<%=  @current_unit.last_checkin.iso8601 %>">
-                  <%= @current_unit.last_checkin.to_s %>
+                <abbr class="timeago" title="<%=  unit.last_checkin.try(:iso8601) %>">
+                  <%= unit.last_checkin.to_s %>
                 </abbr>
               </td>
-              <td>
+              <td class="online">
                 <% if unit.online? %>
                   Online
                 <% else %>
