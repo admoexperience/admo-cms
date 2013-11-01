@@ -60,7 +60,7 @@ class User
     account = AdmoAccount.new
 
     # avoid account name collisions
-    if AdmoAccount.where(:name => self.company_name).count > 0
+    if AdmoAccount.where(:name => self.company_name).first
       self.company_name = "#{self.company_name} (#{self.first_name} #{self.last_name})"
     end
 

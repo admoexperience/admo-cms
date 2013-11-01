@@ -32,6 +32,19 @@ describe User do
         @user2.save!
         @user2.admo_account.name.should eq("#{@user1.company_name} (#{@user2.first_name} #{@user2.last_name})")
       end
+
+      #Test the edge case of a user re-signing up
+      it "Should raise an error if the companyname + first_name/lastname exsist" do
+        @user2 = build(:user)
+        @user2.company_name = @user1.company_name
+        @user2.save!
+        @user2.admo_account.name.should eq("#{@user1.company_name} (#{@user2.first_name} #{@user2.last_name})")
+        user3 = build(:user)
+        user3.first_name = @user2.first_name
+        user3.last_name = @user2.last_name
+        user3.company_name =  @user1.company_name
+        expect { user3.save! }.to raise_error(Mongoid::Errors::Validations)
+      end
     end
   end
 end

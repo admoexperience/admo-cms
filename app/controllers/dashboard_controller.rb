@@ -13,10 +13,6 @@ class DashboardController < ApplicationController
 
   def devices
     @units = get_units
-    @current_unit = @units.first
-    if params[:unit_id]
-      @current_unit = get_units.find(params[:unit_id])
-    end
   end
 
   def content
@@ -160,7 +156,7 @@ private
 
   def get_units
     if get_account
-      get_account.admo_units
+      get_account.admo_units.order_by(:name => :desc)
     else
       []
     end
