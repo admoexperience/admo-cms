@@ -3,7 +3,7 @@ class User
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :confirmable, :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
@@ -51,11 +51,23 @@ class User
   field :last_name, :type => String, :default => ""
 
   before_save do |user|
+    user.create_new_user_account
+  end
+
+  def create_new_user_account
+    return unless self.admo_account.nil?
+
     account = AdmoAccount.new
-    account.name = user.company_name
+
+    # avoid account name collisions
+    if AdmoAccount.where(:name => self.company_name).count > 0
+      self.company_name = "#{self.company_name} (#{self.first_name} #{self.last_name})"
+    end
+
+    account.name = self.company_name
     account.save!
-    user.admo_account = account
-    user.accounts << account
+    self.admo_account = account
+    self.accounts << account
   end
 
   # used to temporarily store the company name on the user model when the user signs up with devise

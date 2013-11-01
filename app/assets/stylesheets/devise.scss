@@ -1,18 +1,13 @@
 /***** Login *****/
 .devise-box {
   width: 600px;
-  height: 320px;
   position: absolute;
-  left: 0; top: 100px; right: 0; bottom: 0;
+  left: 0; top: 100px; right: 0;
   margin: 0 auto;
   padding: 30px;
   box-sizing: border-box;
   background: $white;
   border-top: 5px solid $blue;
-
-  &.sign_up {
-    height: 550px;
-  }
 
   h1 {
       background: image-url("logo-login.png") center no-repeat;
@@ -84,5 +79,8 @@
     background-image: image-url("login-laptop.png");
     background-repeat: no-repeat;
     background-position: 40px 80px;
+  }
+  .shared-links{
+    margin-top: 20px;
   }
 }
