@@ -3,6 +3,22 @@ FactoryGirl.define do
       "name_#{n}"
   end
 
+  sequence :first_name do |n|
+      "first_name_#{n}"
+  end
+
+  sequence :last_name do |n|
+      "last_name_#{n}"
+  end
+
+  sequence :email do |n|
+      "email_#{n}@example.com"
+  end
+
+  sequence :company_name do |n|
+      "company_#{n}@example.com"
+  end
+
   factory :admo_unit do
     config({'key1'=> 'value1', 'key2'=>'value2'})
     name
@@ -23,8 +39,16 @@ FactoryGirl.define do
     admo_account
   end
 
-   factory :content do
+  factory :content do
     key "key"
     app
+  end
+
+  factory :user do
+    first_name
+    last_name
+    email
+    password "1234"
+    company_name
   end
 end

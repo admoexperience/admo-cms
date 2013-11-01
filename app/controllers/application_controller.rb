@@ -5,12 +5,19 @@ class ApplicationController < ActionController::Base
 
   helper_method :users_app
 
+  before_filter :configure_permitted_parameters, if: :devise_controller?
+
 protected
 
   def users_app
     current_user.admo_account.apps.first
   end
 
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up)  do |u|
+      u.permit(:first_name, :last_name, :company_name, :email, :password)
+    end
+  end
 
 private
   def reload_rails_admin
