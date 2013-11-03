@@ -1,6 +1,6 @@
  if Settings.email && Settings.email.password
   Rails.logger.info "Using #{Settings.email.user_name}"
-  ActionMailer::Base.default_url_options = { :protocol => Settings.general.hostname, :host => Settings.general.hostname }
+  ActionMailer::Base.default_url_options = { :protocol => Settings.general.protocol, :host => Settings.general.hostname }
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.perform_deliveries = true
   ActionMailer::Base.raise_delivery_errors = true

@@ -139,5 +139,15 @@ class Unit < Grape::API
 
       @screenshot = img
     end
+
+
+    desc "Lists apps that should be assosiated with this unit", :notes=> <<-NOTE
+
+    NOTE
+    get "apps" , :rabl => "apps" do
+      authenticate!
+      @apps = @unit.admo_account.apps
+
+    end
   end
 end

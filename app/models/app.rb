@@ -31,6 +31,22 @@ class App
 
   validates_presence_of :admo_account
 
+  field :pod_uid, type: String
+  field :pod_name, type: String
+  file_accessor :pod
+
+  validates_size_of :pod, :maximum =>  25.megabytes
+  validates_property :mime_type, :of => :pod, :in => %w(application/zip)
+
+  field :pod_checksum, type: String
+
+  #Automatically set the checksum of the pod file
+  before_save do |document|
+    if document.pod && document.pod.tempfile
+      document.pod_checksum = Digest::SHA256.file( document.pod.tempfile).hexdigest
+    end
+  end
+
   def publish_change
     ContentUploaderJob.new.process(self)
   end
@@ -57,5 +73,9 @@ class App
 
   def find_video(key)
     contents.all.select{|c| c.key.match(key) && !c.is_image}.first
+  end
+
+  def public_url
+
   end
 end
