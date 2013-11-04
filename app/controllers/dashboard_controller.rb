@@ -13,10 +13,6 @@ class DashboardController < ApplicationController
 
   def devices
     @units = get_units
-    @current_unit = @units.first
-    if params[:unit_id]
-      @current_unit = get_units.find(params[:unit_id])
-    end
   end
 
   def content
@@ -91,6 +87,10 @@ class DashboardController < ApplicationController
 
   def analytics
     analytics = get_account.analytics
+    unless analytics
+      @analytics_not_present = true
+      return
+    end
 
     config = {api_key: analytics[:mixpanel_api_key], api_secret: analytics[:mixpanel_api_secret]}
 
@@ -160,7 +160,7 @@ private
 
   def get_units
     if get_account
-      get_account.admo_units
+      get_account.admo_units.order_by(:name => :desc)
     else
       []
     end

@@ -3,7 +3,7 @@ class User
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :confirmable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
@@ -51,16 +51,16 @@ class User
   field :last_name, :type => String, :default => ""
 
   before_save do |user|
-    user.create_new_user_account
+    user.before_save_create_account
   end
 
-  def create_new_user_account
+  def before_save_create_account
     return unless self.admo_account.nil?
 
     account = AdmoAccount.new
 
     # avoid account name collisions
-    if AdmoAccount.where(:name => self.company_name).count > 0
+    if AdmoAccount.where(:name => self.company_name).first
       self.company_name = "#{self.company_name} (#{self.first_name} #{self.last_name})"
     end
 

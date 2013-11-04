@@ -1,5 +1,32 @@
 #apps {
 
+.app {
+  .coming-soon {
+    display: none;
+    position: absolute;
+    width: 280px;
+    height: 145px;
+    top: -4px;
+    padding: 80px 10px 0px 10px;
+    margin-top: 0px;
+    left: 0px;
+    font-size: 20px;
+    text-align: center;
+    background-color: lightgray;
+    opacity: 0.7;
+    color: white;
+    &:after {
+      content: "More templates available soon..."
+    }
+  }
+
+  &.disabled:hover {
+    .coming-soon {
+      display: block;
+    }
+  }
+}
+
 ul {
   padding-left: 20px;
   li {
@@ -34,12 +61,25 @@ ul {
    &.active {
     border-top: 4px solid $blue;
 
+    &.disabled {
+      border-top: 4px solid white;
+
+      &:after {
+        opacity: 0;
+      }
+    }
+
     &:after {
       opacity: 1;
     }
    }
+
    &:hover.app {
     border-top: 4px solid $blue;
+
+    &.disabled {
+      border-top: 4px solid white;
+    }
    }
    h3 {
      color: $blue;
