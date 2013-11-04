@@ -26,7 +26,7 @@
             <div class="download-block">
               <div class="image">
                 <%= image_tag("tutorial/admo-app-icon.png") %>
-                <a href="#" class="button">Download</a>
+                <a id="download-admo-button" href="#" class="button">...</a>
               </div>
               <div class="copy">
                 <h1>Admo Player</h1>
@@ -70,6 +70,13 @@
       $('.tab-content').hide();
       $(selector).fadeIn();
       return false;
+    });
+    var DOWNLOAD_URL = "https://s3-eu-west-1.amazonaws.com/admo-downloads/admo-kinect/";
+    $.getJSON( DOWNLOAD_URL+"version.json",
+     function( data ) {
+      console.log(data);
+      $("#download-admo-button").attr('href',DOWNLOAD_URL+data.filename);
+      $("#download-admo-button").text("Download");
     });
   });
 </script>
