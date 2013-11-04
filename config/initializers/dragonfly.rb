@@ -4,6 +4,7 @@ app = Dragonfly[:images]
 app.configure_with(:imagemagick)
 app.configure_with(:rails)
 app.configure do |c|
+  c.url_host = Settings.general.protocol+'://'+Settings.general.hostname
   c.log = Logger.new($stdout)
   if Rails.env.production?
     c.datastore = Dragonfly::DataStorage::S3DataStore.new(

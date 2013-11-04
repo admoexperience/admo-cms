@@ -30,7 +30,7 @@ FactoryGirl.define do
   end
 
   factory :admo_screenshot do
-    image File.new("#{Rails.root}/test.png")
+    image File.new("#{Rails.root}/spec/test.png")
     admo_unit
   end
 
