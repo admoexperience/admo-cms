@@ -41,17 +41,16 @@ class AdmoUnit
   #Indexes
   index({ api_key: 1 }, { unique: true, name: "api_key_index" })
 
-  def checkin(requestbase)
+  def checkin()
     self.last_checkin = Time.now()
     self.save
-    self.push_to_dashboard(requestbase,self.admo_screenshots.last)
+    self.push_to_dashboard(self.admo_screenshots.last)
   end
 
-  def push_to_dashboard(requestbase,screenshot)
+  def push_to_dashboard(screenshot)
      return unless self.dashboard_enabled
-     #Hack to get it working better, if screenshots aren't there :/ this is horrid coding
      url = ""
-     url = "#{requestbase}#{screenshot.image.url}" if screenshot and screenshot.image
+     url = screenshot.image.url if screenshot and screenshot.image
      screenshot_created_at = ""
      screenshot_created_at = screenshot.created_at if screenshot
      DashboardNotifyJob.new.process(self.name, {:checkedinAt=>self.last_checkin,:screenshotUrl=> url, :screenshotCreatedAt=> screenshot_created_at})
@@ -62,10 +61,10 @@ class AdmoUnit
     return (conf.has_key? 'dashboard_enabled' and conf['dashboard_enabled'])
   end
 
-  def create_screenshot(requestbase, hash)
+  def create_screenshot( hash)
     screenshot = self.admo_screenshots.create!(hash)
     self.clean_up
-    self.push_to_dashboard(requestbase,screenshot)
+    self.push_to_dashboard(screenshot)
     return screenshot
   end
 

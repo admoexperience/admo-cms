@@ -40,7 +40,7 @@ class Unit < Grape::API
     NOTE
     get :checkin, :rabl => "checkin" do
       authenticate!
-      @unit.checkin(request.base_url)
+      @unit.checkin
     end
 
     desc "Sets an config option", :nickname => 'config', :notes => <<-NOTE
@@ -105,7 +105,7 @@ class Unit < Grape::API
     post "screenshot" , :rabl => "screenshot" do
       authenticate!
       raise "Screenshot is required" unless params[:screenshot]
-      @screenshot = @unit.create_screenshot(request.base_url, :image=>params[:screenshot][:tempfile],:image_name=>params[:screenshot][:filename])
+      @screenshot = @unit.create_screenshot(:image=>params[:screenshot][:tempfile],:image_name=>params[:screenshot][:filename])
     end
 
 
@@ -138,6 +138,16 @@ class Unit < Grape::API
       end
 
       @screenshot = img
+    end
+
+
+    desc "Lists apps that should be assosiated with this unit", :notes=> <<-NOTE
+
+    NOTE
+    get "apps" , :rabl => "apps" do
+      authenticate!
+      @apps = @unit.admo_account.apps
+
     end
   end
 end
