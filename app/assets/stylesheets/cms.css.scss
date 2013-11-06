@@ -1026,3 +1026,51 @@ a.button:hover {
   background-color: #0E7AC4;
 }
 
+.overlay {
+  text-align: center;
+  .background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: black;
+    opacity: 0.4;
+  }
+
+  .message-box {
+    position: absolute;
+    width: 400px;
+    height: 250px;
+    margin: auto;
+    top: 0px; bottom: 0px; left: 0px; right: 0px;
+    background-color: black;
+    border-radius: 5px;
+    opacity: 0.6;
+    color: white;
+
+    h1 {
+      width: 80%;
+      margin: auto;
+      padding-top: 30px;
+    }
+
+    p {
+      width: 80%;
+      margin: auto;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .button {
+      position: absolute;
+      top: 0px; bottom: 0px; left: 0px; right: 0px;
+      margin: auto;
+      margin-top: 160px;
+      height: 20px;
+      width: 100px;
+      display: block;
+      padding-top: 10px;
+    }
+  }
+}

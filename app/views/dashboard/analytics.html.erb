@@ -1,9 +1,5 @@
 <%if @analytics_not_present %>
-<div id="content" class="wide">
-  <h2 class="analytics">Analytics</h2>
-  <div class="portlet wide">
-    <h4>Analytics not configured yet</h4>
-  </div>
+  <%= render 'overlay', header: "Activate Analytics",text: "Please contact Admo support to have your device analytics enabled.", link_text: "Get Started", link_url: support_path %>
 <%else %>
 
 <div id="content" class="wide">

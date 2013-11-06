@@ -39,3 +39,9 @@
     </div>
   </div>
 </div>
+
+<% if @units.empty? %>
+  <%= render 'overlay', header: "Configure your player",text: "This page will be available once you have configured your device.", link_text: "Get Started", link_url: dashboard_home_path %>
+<% end %>
+
+
