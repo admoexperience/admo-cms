@@ -39,3 +39,9 @@
     </div>
   </div>
 </div>
+
+<% if @units.empty? %>
+  <%= render 'demo_devices_overlay' %>
+<% end %>
+
+
