@@ -56,6 +56,9 @@
     .tab-content.show {
       display: block;
     }
+    #tabs {
+      margin-left: 20px;
+    }
     #tabs-1 {
       h1 {
         color: $blue;
@@ -83,7 +86,7 @@
         .button{
           width:  80px;
           display: block;
-          margin: 0 auto;
+          text-align: center;
         }
         p {
           font-size: 14px;
@@ -101,7 +104,6 @@
         }
         .image {
           width: 180px;
-          text-align: center;
           img {
             margin-bottom: 20px;
           }
