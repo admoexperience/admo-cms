@@ -13,6 +13,19 @@ class DashboardController < ApplicationController
 
   def devices
     @units = get_units
+    @apps = get_account.apps
+
+    if request.post?
+      unit = AdmoUnit.find(params[:admo_unit_id])
+      app = App.find(params[:app_id])
+      config = unit.config #JUST use the units config as to not override account settings
+      config[:pod_file] = app.pod_name
+      unit.config = config
+      unit.save!
+      unit.publish_change
+      flash[:notice] = "Unit successfully published"
+      redirect_to action: :devices
+    end
   end
 
   def content

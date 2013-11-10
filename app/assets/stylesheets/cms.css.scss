@@ -1013,7 +1013,9 @@ section {
   z-index: -1;
 }
 
-a.button, button {
+a.button, button, input.button {
+  background:none;
+  border:none;
   background: $blue;
   color: #fff;
   padding: 6px 20px;
@@ -1023,6 +1025,11 @@ a.button, button {
 }
 
 a.button:hover {
+  background-color: #0E7AC4;
+}
+
+input.button:hover {
+  cursor: pointer;
   background-color: #0E7AC4;
 }
 

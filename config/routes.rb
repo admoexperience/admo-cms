@@ -11,7 +11,8 @@ AdmoCms::Application.routes.draw do
 
   scope ':account' do
     get '/dashboard/home' => 'dashboard#home', as: 'dashboard_home'
-    get '/dashboard/devices' => 'dashboard#devices', as: 'dashboard_devices'
+    get '/dashboard/devices' => 'dashboard#devices', as: 'dashboard_devices_post'
+    post '/dashboard/devices' => 'dashboard#devices', as: 'dashboard_devices'
     get '/dashboard/apps' => 'dashboard#apps', as: 'dashboard_apps'
     get '/dashboard/content/:app_id(/:content_id)' => 'dashboard#content', as: 'view_content'
     post '/dashboard/content/:app_id(/:content_id)' => 'dashboard#update_content', as: 'update_content'
