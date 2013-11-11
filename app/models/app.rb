@@ -74,4 +74,8 @@ class App
   def find_video(key)
     contents.all.select{|c| c.key.match(key) && !c.is_image}.first
   end
+
+  def pod_public_url
+    pod.remote_url(expires: 5.hours.from_now, scheme: 'https')  if pod
+  end
 end
