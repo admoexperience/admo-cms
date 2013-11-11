@@ -75,7 +75,9 @@
           </ul>
         </nav>
     <% end %>
-
+    <% flash.each do |key, value| %>
+      <div class="flash <%= key %>"><%= value %></div>
+    <% end %>
     <%= yield %>
 
     <% if current_user %>
