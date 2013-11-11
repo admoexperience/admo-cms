@@ -8,6 +8,9 @@ app.configure do |c|
   c.log = Logger.new($stdout)
   if Rails.env.production?
     c.datastore = Dragonfly::DataStorage::S3DataStore.new(
+      #Mark the files as private by default.
+      #NO idea why this isn't the default
+      :storage_headers => {'x-amz-acl' => 'private'},
       :region=>Settings.s3.region,
       :bucket_name => Settings.s3.bucket_name,
       :access_key_id => Settings.s3.access_key_id,
