@@ -318,7 +318,7 @@ nav {
         }
 
         &.home .icon { background-image: image-url("nav-home.png") }
-        &.apps .icon { background-image: image-url("nav-apps.png") }
+        &.templates .icon { background-image: image-url("nav-templates.png") }
         &.devices .icon { background-image: image-url("nav-devices.png") }
         &.analytics .icon { background-image: image-url("nav-analytics.png") }
         &.support .icon { background-image: image-url("nav-support.png") }
@@ -509,7 +509,7 @@ section {
       &.location { background-image: image-url("location.png"); }
       &.devices { background-image: image-url("devices.png"); }
       &.get-started { background-image: image-url("devices.png"); }
-      &.apps { background-image: image-url("apps.png"); }
+      &.templates { background-image: image-url("templates.png"); }
       &.content { background-image: image-url("content.png"); }
       &.analytics { background-image: image-url("analytics.png"); }
       &.support { background-image: image-url("support.png"); }

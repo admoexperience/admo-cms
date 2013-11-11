@@ -1,0 +1,23 @@
+<div class="template-row">
+  <% template_row.each do |template| %>
+    <div class="template" data-details="details-<%= template[:id] %>">
+      <%= image_tag("apps/four-structure.png") %>
+      <h3><%= template[:name]%></h3>
+    </div>
+  <% end %>
+
+  <% template_row.each do |template| %>
+    <div id="details-<%= template[:id] %>" class="details">
+      <div class="admo-tv">
+        <%= image_tag("apps/gif-large.png") %>
+      </div>
+      <div class="description">
+        <h2 class="catalog"><%= template[:name]%></h2>
+        <p><%= template[:description]%></p>
+        <span class="online">Online component</span>
+        <span class="avatar">Avatar</span>
+        <a href="" class="button">Publish</a>
+      </div>
+    </div>
+  <% end %>
+</div>

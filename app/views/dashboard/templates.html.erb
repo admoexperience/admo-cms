@@ -1,0 +1,27 @@
+<div id="content" class="wide">
+  <div id="templates">
+    <h2 class="templates">Templates</h2>
+    <div id="template-list">
+      <% @template_rows.each do |template_row| %>
+        <%= render 'template_row', template_row: template_row %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    $('.template').click(function(){
+      var selector = "#" + $(this).data('details');
+      if ($(this).hasClass("active")){
+        $(selector).slideUp();
+        $(this).removeClass("active");
+      } else {
+        $('.details').hide(); // hide all the other template details divs
+        $(selector).slideDown();
+        $('.template').removeClass("active");
+        $(this).addClass("active");
+      }
+    });
+  });
+</script>
