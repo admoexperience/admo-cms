@@ -16,7 +16,7 @@
         <p><%= template[:description]%></p>
         <span class="online">Online component</span>
         <span class="avatar">Avatar</span>
-        <a href="" class="button">Publish</a>
+        <%= link_to "Add to My Apps", dashboard_add_template_to_apps_path(template_id: template[:id]), class: "button" %>
       </div>
     </div>
   <% end %>

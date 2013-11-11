@@ -3,6 +3,19 @@ class DashboardController < ApplicationController
   before_filter :get_account
 
 
+  def add_template_to_apps
+    flash[:message] = "This template has been added to your apps."
+    template = Template.find(params[:template_id])
+
+    app = App.new
+    app.name = template.name
+    app.admo_account = current_user.admo_account
+    app.pod = template.pod
+    app.save!
+
+    redirect_to :dashboard_devices
+  end
+
   def home
 
   end
