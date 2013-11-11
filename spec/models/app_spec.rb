@@ -29,4 +29,9 @@ describe App do
     }.to raise_error(Mongoid::Errors::Validations)
     #Pod mime type is incorrect. It needs to be 'application/zip', but was 'image/png'
   end
+
+  it "Should return nil if there is no pod" do
+    app = create(:app)
+    app.pod_public_url.should eq nil
+  end
 end
