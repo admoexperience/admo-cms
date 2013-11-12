@@ -1,3 +1,17 @@
+<div class="new-app-dialogue">
+  <div class="background"></div>
+  <div class="dialogue">
+    <h2>Create New App</h2>
+    <%= form_tag dashboard_add_template_to_apps_path do %>
+      <%= label_tag(:appname, "Please enter a name for your new application:") %>
+      <%= text_field_tag :app_name, "", class: 'app-name' %>
+      <%= hidden_field_tag(:template_id, "") %>
+      <%= submit_tag("Create App", class:'button') %>
+      <a href="#" class="button cancel">Cancel</a>
+    <% end %>
+  </div>
+</div>
+
 <div id="content" class="wide">
   <div id="templates">
     <h2 class="templates">Templates</h2>

@@ -28,23 +28,6 @@
     <![endif]-->
   </head>
   <body <%= current_user ? '' : 'class="login"'.html_safe %>>
-
-<% if current_user%>
-    <div class="new-app-dialogue">
-      <div class="background"></div>
-      <div class="dialogue">
-        <h2>Create New App</h2>
-        <%= form_tag dashboard_add_template_to_apps_path do %>
-          <%= label_tag(:appname, "Please enter a name for your new application:") %>
-          <%= text_field_tag :app_name, "", class: 'app-name' %>
-          <%= hidden_field_tag(:template_id, "") %>
-          <%= submit_tag("Create App", class:'button') %>
-          <a href="#" class="button cancel">Cancel</a>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-
     <% if current_user and @account %>
       <header>
         <div class="wrapper">
