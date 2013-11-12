@@ -116,7 +116,7 @@ class AdmoUnit
     PubnubPushJob.new.process(self.api_key, event.to_json)
   end
 
-  def push_update_pods
+  def publish_update_pods
     push_event('updatePods')
   end
 
