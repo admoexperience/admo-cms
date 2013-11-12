@@ -29,6 +29,19 @@
   </head>
   <body <%= current_user ? '' : 'class="login"'.html_safe %>>
 
+    <div class="new_app_dialogue">
+      <div class="background"></div>
+      <div class="dialogue">
+        <h2>Create New App</h2>
+        <%= form_tag("/search", method: "get") do %>
+          <%= label_tag(:name, "Please enter a name for your new application:") %>
+          <%= text_field_tag(:name) %>
+          <%= hidden_field_tag(:template_id, "") %>
+          <%= submit_tag("Create App", class:'button') %>
+        <% end %>
+      </div>
+    </div>
+
     <% if current_user and @account %>
       <header>
         <div class="wrapper">

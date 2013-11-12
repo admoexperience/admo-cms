@@ -39,6 +39,10 @@ FactoryGirl.define do
     admo_account
   end
 
+  factory :template do
+    name
+  end
+
   factory :content do
     key "key"
     app
