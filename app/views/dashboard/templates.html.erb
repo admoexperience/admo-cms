@@ -2,7 +2,7 @@
   <div id="templates">
     <h2 class="templates">Templates</h2>
     <div id="template-list">
-      <% @template_rows.each do |template_row| %>
+      <% split_templates_into_rows(@templates).each do |template_row| %>
         <%= render 'template_row', template_row: template_row %>
       <% end %>
     </div>

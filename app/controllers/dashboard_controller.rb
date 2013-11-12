@@ -18,21 +18,7 @@ class DashboardController < ApplicationController
   end
 
   def templates
-    # split the templates into rows of three for display.
-    @template_rows = []
-    i = 1
-
-    template_row = []
-    @template_rows << template_row
-
-    Template.all.each do |template|
-      template_row << template
-      i += 1
-      if i > 3
-        template_row = []
-        @template_rows << template_row
-      end
-    end
+    @templates = Template.all
   end
 
   def apps_old
