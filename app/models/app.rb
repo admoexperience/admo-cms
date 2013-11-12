@@ -28,8 +28,9 @@ class App
   has_many :contents
 
   validates_presence_of :name
-  validates_uniqueness_of :name, :scope => :admo_account
   validates_presence_of :admo_account
+  validates_uniqueness_of :name, :scope => :admo_account
+  validates_uniqueness_of :pod_name, :scope => :admo_account
 
   field :pod_uid, type: String
   field :pod_name, type: String
