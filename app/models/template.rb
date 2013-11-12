@@ -13,6 +13,14 @@ class Template
   field :pod_checksum, type: String
   file_accessor :pod
 
+  field :thumbnail_image_uid, type: String
+  field :thumbnail_image_name, type: String
+  image_accessor :thumbnail_image
+
+  field :preview_image_uid, type: String
+  field :preview_image_name, type: String
+  image_accessor :preview_image
+
   validates_size_of :pod, :maximum =>  25.megabytes
   validates_property :mime_type, :of => :pod, :in => %w(application/zip)
 
