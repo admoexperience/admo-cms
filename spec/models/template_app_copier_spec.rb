@@ -12,7 +12,9 @@ describe TemplateAppCopier do
       @app.should be_an(App)
 
       expect {
-        TemplateAppCopier.copy(@template, @account, "MyApp2")
+        template = create(:template, pod: File.new("#{Rails.root}/spec/dist-test.pod.zip"))
+        account = create(:admo_account)
+        TemplateAppCopier.copy(template, account, "MyApp2")
       }.to change(App, :count).by(1)
     end
 
