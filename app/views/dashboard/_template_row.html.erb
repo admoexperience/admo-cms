@@ -1,13 +1,13 @@
 <div class="template-row">
   <% template_row.each do |template| %>
-    <div class="template" data-details="details-<%= template[:id] %>">
+    <div class="template" data-template-id="<%= template[:id] %>">
       <%= image_tag("apps/four-structure.png") %>
       <h3><%= template[:name]%></h3>
     </div>
   <% end %>
 
   <% template_row.each do |template| %>
-    <div id="details-<%= template[:id] %>" class="details">
+    <div data-template-id="<%= template[:id] %>" class="details">
       <div class="admo-tv">
         <%= image_tag("apps/gif-large.png") %>
       </div>

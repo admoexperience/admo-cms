@@ -12,7 +12,7 @@
 <script>
   $(function() {
     $('.template').click(function(){
-      var selector = "#" + $(this).data('details');
+      var selector = $(".details[data-template-id=" + $(this).data("template-id") + "]");
       if ($(this).hasClass("active")){
         $(selector).slideUp();
         $(this).removeClass("active");
