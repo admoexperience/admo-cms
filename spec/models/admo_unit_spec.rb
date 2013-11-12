@@ -8,7 +8,7 @@ describe AdmoUnit do
   it "Should update the last check in to now once you check in" do
     @unit.last_checkin.should be_nil
     Timecop.freeze(Time.now) do
-      @unit.checkin('doesntmatter')
+      @unit.checkin
       @unit.last_checkin.should eq Time.now
     end
   end
@@ -83,7 +83,7 @@ describe AdmoUnit do
     @unit.last_checkin = 16.minutes.ago
     @unit.online?.should eq false
 
-    @unit.checkin('doesntmatter')
+    @unit.checkin
     @unit.online?.should eq true
   end
 
