@@ -16,10 +16,12 @@ class Template
   field :thumbnail_image_uid, type: String
   field :thumbnail_image_name, type: String
   image_accessor :thumbnail_image
+  validates_size_of :thumbnail_image, :maximum => 1.megabytes
 
   field :preview_image_uid, type: String
   field :preview_image_name, type: String
   image_accessor :preview_image
+  validates_size_of :preview_image, :maximum => 1.megabytes
 
   validates_size_of :pod, :maximum =>  25.megabytes
   validates_property :mime_type, :of => :pod, :in => %w(application/zip)
