@@ -14,7 +14,7 @@ AdmoCms::Application.routes.draw do
     get '/dashboard/devices' => 'dashboard#devices', as: 'dashboard_devices_post'
     post '/dashboard/devices' => 'dashboard#devices', as: 'dashboard_devices'
     get '/dashboard/templates' => 'dashboard#templates', as: 'dashboard_templates'
-    get '/dashboard/add_template_to_apps/:template_id' => 'dashboard#add_template_to_apps', as: 'dashboard_add_template_to_apps'
+    post '/dashboard/add_template_to_apps' => 'dashboard#add_template_to_apps', as: 'dashboard_add_template_to_apps'
     get '/dashboard/content/:app_id(/:content_id)' => 'dashboard#content', as: 'view_content'
     post '/dashboard/content/:app_id(/:content_id)' => 'dashboard#update_content', as: 'update_content'
     post '/dashboard/content/:app_id(/:content_id(/:content_item))' => 'dashboard#update_content_item', as: 'update_content_item'

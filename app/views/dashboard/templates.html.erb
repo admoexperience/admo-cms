@@ -23,5 +23,11 @@
         $(this).addClass("active");
       }
     });
+
+    $('.template-row .button').click(function(){
+      var template_id = $(this).data('template-id');
+      $('.new_app_dialogue #template_id').val(template_id);
+      $('.new_app_dialogue').fadeIn();
+    });
   });
 </script>

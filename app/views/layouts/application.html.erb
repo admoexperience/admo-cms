@@ -33,9 +33,9 @@
       <div class="background"></div>
       <div class="dialogue">
         <h2>Create New App</h2>
-        <%= form_tag("/search", method: "get") do %>
-          <%= label_tag(:name, "Please enter a name for your new application:") %>
-          <%= text_field_tag(:name) %>
+        <%= form_tag dashboard_add_template_to_apps_path do %>
+          <%= label_tag(:app_name, "Please enter a name for your new application:") %>
+          <%= text_field_tag(:app_name) %>
           <%= hidden_field_tag(:template_id, "") %>
           <%= submit_tag("Create App", class:'button') %>
         <% end %>
