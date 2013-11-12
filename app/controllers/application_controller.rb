@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  before_bugsnag_notify :add_user_info_to_bugsnag
+
 protected
 
   def users_app
@@ -32,5 +34,15 @@ private
 
   def rails_admin_path?
     controller_path =~ /admin/ && Rails.env.development?
+  end
+
+  def add_user_info_to_bugsnag(bug)
+    return unless current_user
+    # Add some app-specific data which will be displayed on a custom
+    # "User Info" tab on each error page on bugsnag.com
+    bug.add_tab(:user_info, {
+      email: current_user.email,
+      account: current_user.admo_account.name,
+    })
   end
 end
