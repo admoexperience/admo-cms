@@ -6,6 +6,7 @@ describe TemplateAppCopier do
       @template = create(:template, pod: File.new("#{Rails.root}/spec/dist-test.pod.zip"))
       @account = create(:admo_account)
       @app = TemplateAppCopier.copy(@template, @account, "MyApp1")
+      @app.save!
     end
 
     it 'takes a template, and creates and returns a new app' do
@@ -14,7 +15,8 @@ describe TemplateAppCopier do
       expect {
         template = create(:template, pod: File.new("#{Rails.root}/spec/dist-test.pod.zip"))
         account = create(:admo_account)
-        TemplateAppCopier.copy(template, account, "MyApp2")
+        app = TemplateAppCopier.copy(template, account, "MyApp2")
+        app.save!
       }.to change(App, :count).by(1)
     end
 

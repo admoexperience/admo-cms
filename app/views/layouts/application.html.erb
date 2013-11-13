@@ -28,6 +28,15 @@
     <![endif]-->
   </head>
   <body <%= current_user ? '' : 'class="login"'.html_safe %>>
+
+    <% unless flash.empty? %>
+      <div class="flash">
+        <% flash.each do |key, value| %>
+          <div class="text"><%= value %></div>
+        <% end %>
+      </div>
+    <% end %>
+
     <% if current_user and @account %>
       <header>
         <div class="wrapper">
@@ -74,13 +83,20 @@
           </ul>
         </nav>
     <% end %>
-    <% flash.each do |key, value| %>
-      <div class="flash <%= key %>"><%= value %></div>
-    <% end %>
+
     <%= yield %>
 
     <% if current_user %>
       </div> <!-- #page -->
     <% end %>
+
+<script>
+  $(function() {
+    $('.flash').slideDown();
+    window.setTimeout(function(){
+      $('.flash').slideUp();
+    }, 3000);
+  });
+</script>
   </body>
 </html>

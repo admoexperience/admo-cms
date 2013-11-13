@@ -6,11 +6,21 @@ class DashboardController < ApplicationController
   def add_template_to_apps
     template = Template.find(params[:template_id])
     @app = TemplateAppCopier.copy(template, current_user.admo_account, params[:app_name])
+    if @app.save
+      current_user.admo_account.publish_update_pods
+      flash[:message] = "Your new app has been created."
+      redirect_to :dashboard_devices
+    else
+      if @app.errors[:name].include?("can't be blank")
+        flash[:name] = "You need to provide a name for your application."
+      end
 
-    current_user.admo_account.publish_update_pods
+      if @app.errors[:pod_name].include?("is already taken")
+        flash[:error] = "You have already copied this template application."
+      end
 
-    flash[:message] = "Your new app has been created."
-    redirect_to :dashboard_devices
+      redirect_to :dashboard_templates
+    end
   end
 
   def home

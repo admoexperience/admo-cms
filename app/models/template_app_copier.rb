@@ -5,7 +5,6 @@ class TemplateAppCopier
     app.admo_account = account
     app.pod = template.pod
     app.pod_name = template.pod_name
-    app.save!
     app
   end
 end
