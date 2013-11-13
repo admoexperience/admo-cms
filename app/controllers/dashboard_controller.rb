@@ -122,23 +122,57 @@ class DashboardController < ApplicationController
 
   end
 
-  def analytics
-    analytics = get_account.analytics
-    if analytics.empty?
-      @analytics_not_present = true
-      return
+  def analytics_daily_interactions
+    daily_interactions_tmp = cache("daily_interactions") do
+      analytics_api.daily_interactions
     end
 
-    config = {api_key: analytics[:mixpanel_api_key], api_secret: analytics[:mixpanel_api_secret]}
+    daily_interactions_sorted = daily_interactions_tmp.sort_by {|k,v| k }
+    ########
+    daily = {}
+    @daily_interactions = daily_interactions_sorted.map do |key,value|
+      d = DateTime.parse(key)
+      tool_tip = d.strftime("%a %d %b")
+      {label: tool_tip.chars.first, tooltip: tool_tip, value: value, bold: tool_tip.start_with?("Sun")}
+    end
+    render :json => @daily_interactions
+  end
 
-    api = MixpanelApi.new(config)
+  def analytics_by_weekday
+    @days_of_week_interactions = analytics_get_daily.sort_by {|k,v| DateTime.parse(k).strftime("%u")}.map do |key,value|
+      {label: key[0..2], tooltip: key, value: value, bold: key.start_with?("Sun")}
+    end
+    render :json => @days_of_week_interactions
+  end
+
+  def analytics
     @total_interactions = cache("total_interactions") do
-      api.total_interactions
+      analytics_api.total_interactions
     end
     @daily_avg_interactions = @total_interactions / 30
 
-    daily_interactions_tmp = cache("daily_interactions") do
-      api.daily_interactions
+    daily = analytics_get_daily
+
+    @busiest_day_of_week =  daily.sort_by{|k,v| v}.last[0] unless daily.empty?
+
+
+    interactions_by_host  = cache("interactions_by_host") do
+      analytics_api.total_interactions_by_host
+    end
+
+    @interactions_by_host = interactions_by_host.sort_by{|k,v| v}.reverse.map do |key, value|
+      {host_name: key, total: value }
+    end
+
+    @last_updated = cache('laste_updated') do
+      Time.now.strftime("%H:%m")
+    end
+  end
+
+private
+  def analytics_get_daily
+     daily_interactions_tmp = cache("daily_interactions") do
+      analytics_api.daily_interactions
     end
 
     daily_interactions_sorted = daily_interactions_tmp.sort_by {|k,v| k }
@@ -157,34 +191,28 @@ class DashboardController < ApplicationController
       daily[day] = 0 unless daily.has_key? day
       daily[day] += value.to_i
     end
-
-    @days_of_week_interactions = daily.sort_by {|k,v| DateTime.parse(k).strftime("%u")}.map do |key,value|
-      {label: key[0..2], tooltip: key, value: value, bold: key.start_with?("Sun")}
-    end
-
-    @busiest_day_of_week =  daily.sort_by{|k,v| v}.last[0] unless daily.empty?
-
-
-    interactions_by_host  = cache("interactions_by_host") do
-      api.total_interactions_by_host
-    end
-
-    @interactions_by_host = interactions_by_host.sort_by{|k,v| v}.reverse.map do |key, value|
-      {host_name: key, total: value }
-    end
-
-
-
-    @last_updated = cache('laste_updated') do
-      Time.now.strftime("%H:%m")
-    end
+    daily
   end
 
-private
+
+  def analytics_api
+    return @api if @api
+    analytics = get_account.analytics
+    if analytics.empty?
+      @analytics_not_present = true
+      return
+    end
+
+    config = {api_key: analytics[:mixpanel_api_key], api_secret: analytics[:mixpanel_api_secret]}
+
+    @api = MixpanelApi.new(config)
+  end
+
+
   def cache(key, &block)
-    # Rails.cache.fetch(key+'_'+get_account.id+'_'+current_user.id, :expires_in => 5.minute) do
+     Rails.cache.fetch(key+'_'+get_account.id+'_'+current_user.id, :expires_in => 5.minute) do
         block.call
-     #end
+     end
   end
 
   def support_params

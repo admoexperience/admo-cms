@@ -21,6 +21,9 @@ AdmoCms::Application.routes.draw do
     get '/dashboard/support/' => 'dashboard#support',  as: 'support'
     post '/dashboard/support/' => 'dashboard#support', as: 'support_request'
     get '/dashboard/analytics' => 'dashboard#analytics', as: 'analytics'
+    get '/dashboard/analytics/daily_interactions' => 'dashboard#analytics_daily_interactions', as: 'analytics_daily_interactions'
+    get '/dashboard/analytics/by_weekday' => 'dashboard#analytics_by_weekday', as: 'analytics_by_weekday'
+
   end
 
 
