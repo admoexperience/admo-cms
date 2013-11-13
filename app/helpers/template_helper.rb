@@ -12,6 +12,7 @@ module TemplateHelper
       template_row << template
       i += 1
       if i > 3
+        i = 1
         template_row = []
         template_rows << template_row
       end
