@@ -50,6 +50,8 @@ class User
   field :first_name, :type => String, :default => ""
   field :last_name, :type => String, :default => ""
 
+  validates_presence_of :company_name, :on => :create
+
   before_save do |user|
     user.before_save_create_account
   end
