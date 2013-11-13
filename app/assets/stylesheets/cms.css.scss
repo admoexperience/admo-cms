@@ -249,9 +249,10 @@ header {
 #page {
   width: $pageWidth;
   margin: 0 auto;
-  position: fixed;
   top: $headerHeight; bottom: 0; left: 0; right: 0;
   background-color: $white;
+  position: absolute;
+  height: 550px;
 }
 
 nav {

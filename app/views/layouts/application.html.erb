@@ -78,8 +78,6 @@
             </li>
             <li><%= link_to analytics_path(@account), :class=>['analytics',active_class?(params[:action] == 'analytics')] do %> <span class="icon"></span>Analytics<%end%></li>
             <li><%= link_to support_path(@account), :class=>['support',active_class?(params[:action] == 'support')] do %> <span class="icon"></span>Support<%end%></li>
-            <% #view_content_path(@account,users_app,users_app.config.keys.first) %>
-            <li><%= link_to '#', :class=>['content',active_class?(params[:action] == 'content')] do %> <span class="icon"></span>Content <%end%></li>
           </ul>
         </nav>
     <% end %>
