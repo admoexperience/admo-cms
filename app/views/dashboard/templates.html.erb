@@ -1,0 +1,51 @@
+<div class="new-app-dialogue">
+  <div class="background"></div>
+  <div class="dialogue">
+    <h2>Create New App</h2>
+    <%= form_tag dashboard_add_template_to_apps_path do %>
+      <%= label_tag(:appname, "Please enter a name for your new application:") %>
+      <%= text_field_tag :app_name, "", class: 'app-name' %>
+      <%= hidden_field_tag(:template_id, "") %>
+      <%= submit_tag("Create App", class:'button') %>
+      <a href="#" class="button cancel">Cancel</a>
+    <% end %>
+  </div>
+</div>
+
+<div id="content" class="wide">
+  <div id="templates">
+    <h2 class="templates">Templates</h2>
+    <div id="template-list">
+      <% split_templates_into_rows(@templates).each do |template_row| %>
+        <%= render 'template_row', template_row: template_row %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    $('.template').click(function(){
+      var selector = $(".details[data-template-id=" + $(this).data("template-id") + "]");
+      if ($(this).hasClass("active")){
+        $(selector).slideUp();
+        $(this).removeClass("active");
+      } else {
+        $('.details').hide(); // hide all the other template details divs
+        $(selector).slideDown();
+        $('.template').removeClass("active");
+        $(this).addClass("active");
+      }
+    });
+
+    $('.template-row .button').click(function(){
+      var template_id = $(this).data('template-id');
+      $('.new-app-dialogue #template_id').val(template_id);
+      $('.new-app-dialogue').fadeIn();
+    });
+
+    $('.button.cancel').click(function(){
+      $('.new-app-dialogue').fadeOut();
+    });
+  });
+</script>

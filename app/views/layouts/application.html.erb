@@ -29,6 +29,14 @@
   </head>
   <body <%= current_user ? '' : 'class="login"'.html_safe %>>
 
+    <% unless flash.empty? %>
+      <div class="flash">
+        <% flash.each do |key, value| %>
+          <div class="text"><%= value %></div>
+        <% end %>
+      </div>
+    <% end %>
+
     <% if current_user and @account %>
       <header>
         <div class="wrapper">
@@ -59,8 +67,8 @@
               <%end%>
             </li>
             <li>
-              <%= link_to dashboard_apps_path(@account), :class=>['apps', active_class?(params[:action] == 'apps')] do %>
-              <span class="icon"></span>Apps
+              <%= link_to dashboard_templates_path(@account), :class=>['templates', active_class?(params[:action] == 'templates')] do %>
+              <span class="icon"></span>Templates
               <%end%>
             </li>
             <li>
@@ -70,18 +78,23 @@
             </li>
             <li><%= link_to analytics_path(@account), :class=>['analytics',active_class?(params[:action] == 'analytics')] do %> <span class="icon"></span>Analytics<%end%></li>
             <li><%= link_to support_path(@account), :class=>['support',active_class?(params[:action] == 'support')] do %> <span class="icon"></span>Support<%end%></li>
-            <% #view_content_path(@account,users_app,users_app.config.keys.first) %>
-            <li><%= link_to '#', :class=>['content',active_class?(params[:action] == 'content')] do %> <span class="icon"></span>Content <%end%></li>
           </ul>
         </nav>
     <% end %>
-    <% flash.each do |key, value| %>
-      <div class="flash <%= key %>"><%= value %></div>
-    <% end %>
+
     <%= yield %>
 
     <% if current_user %>
       </div> <!-- #page -->
     <% end %>
+
+<script>
+  $(function() {
+    $('.flash').slideDown();
+    window.setTimeout(function(){
+      $('.flash').slideUp();
+    }, 3000);
+  });
+</script>
   </body>
 </html>

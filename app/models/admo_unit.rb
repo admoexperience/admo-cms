@@ -116,6 +116,9 @@ class AdmoUnit
     PubnubPushJob.new.process(self.api_key, event.to_json)
   end
 
+  def publish_update_pods
+    push_event('updatePods')
+  end
 
   def publish_change
     push_event('updateConfig')
@@ -129,5 +132,16 @@ class AdmoUnit
     return false unless self.last_checkin
 
     self.last_checkin > 15.minutes.ago
+  end
+
+  #Gets the current pod file assosiated by means of the config file + urls
+  def get_current_pod_id
+    config = get_config['pod_file']
+    return nil unless config
+    apps = admo_account.apps
+    p = apps.select{|a| a.pod_name == config}
+    first = p.first
+    return first.id if first
+    return nil
   end
 end

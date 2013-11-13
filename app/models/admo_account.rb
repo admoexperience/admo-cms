@@ -26,6 +26,12 @@ class AdmoAccount
   index({ api_key: 1 }, { unique: true, name: "api_key_index" })
 
 
+  def publish_update_pods
+    self.admo_units.each do |unit|
+      unit.publish_update_pods
+    end
+  end
+
   def publish_change
     #If the account config changes publish it to all units
     self.admo_units.each do |unit|

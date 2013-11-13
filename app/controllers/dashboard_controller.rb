@@ -3,16 +3,53 @@ class DashboardController < ApplicationController
   before_filter :get_account
 
 
+  def add_template_to_apps
+    template = Template.find(params[:template_id])
+    @app = TemplateAppCopier.copy(template, current_user.admo_account, params[:app_name])
+    if @app.save
+      current_user.admo_account.publish_update_pods
+      flash[:message] = "Your new app has been created."
+      redirect_to :dashboard_devices
+    else
+      if @app.errors[:name].include?("can't be blank")
+        flash[:name] = "You need to provide a name for your application."
+      end
+
+      if @app.errors[:pod_name].include?("is already taken")
+        flash[:error] = "You have already copied this template application."
+      end
+
+      redirect_to :dashboard_templates
+    end
+  end
+
   def home
 
   end
 
-  def apps
+  def templates
+    @templates = Template.all
+  end
+
+  def apps_old
 
   end
 
   def devices
     @units = get_units
+    @apps = get_account.apps
+
+    if request.post?
+      unit = AdmoUnit.find(params[:admo_unit_id])
+      app = App.find(params[:app_id])
+      config = unit.config #JUST use the units config as to not override account settings
+      config[:pod_file] = app.pod_name
+      unit.config = config
+      unit.save!
+      unit.publish_change
+      flash[:notice] = "Unit successfully published"
+      redirect_to action: :devices
+    end
   end
 
   def content

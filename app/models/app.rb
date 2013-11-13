@@ -6,6 +6,7 @@ class App
 
   field :name,              type: String
   field :description,       type: String
+
   #This is yet another hack
   field :config,            type: Hash,  :default => {
     'key1'=>{
@@ -26,10 +27,10 @@ class App
   belongs_to :admo_account
   has_many :contents
 
-  validates_uniqueness_of :name
   validates_presence_of :name
-
   validates_presence_of :admo_account
+  validates_uniqueness_of :name, :scope => :admo_account
+  validates_uniqueness_of :pod_name, :scope => :admo_account
 
   field :pod_uid, type: String
   field :pod_name, type: String

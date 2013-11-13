@@ -11,8 +11,8 @@ dashboard:
   api_key: <%= ENV['DASHBOARD_API_KEY'] || 'YOUR_AUTH_TOKEN' %>
 
 general:
-  hostname: <%= ENV['GENERAL_HOSTNAME'] || 'localhost' %>
-  protocol: <%= ENV['GENERAL_PROTOCOL'] || 'https' %>
+  hostname: <%= ENV['GENERAL_HOSTNAME'] || 'localhost:3000' %>
+  protocol: <%= ENV['GENERAL_PROTOCOL'] || 'http' %>
 
 gmaps:
   api_key: AIzaSyAuEhwdsqjl8kjyCWrtZLkpvzOEJIulVtc
