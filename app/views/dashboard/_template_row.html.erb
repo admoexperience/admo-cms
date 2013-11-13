@@ -1,31 +1,36 @@
 <div class="template-row">
   <% template_row.each do |template| %>
-    <div class="template" data-template-id="<%= template[:id] %>">
+    <div class="template <%= template.status %>" data-template-id="<%= template[:id] %>">
       <% if template.thumbnail_image %>
         <%= image_tag(template.thumbnail_image.url) %>
       <% else %>
         <%= image_tag("apps/four-structure.png") %>
       <% end %>
       <h3><%= template[:name]%></h3>
+      <div class="coming-soon"></div>
     </div>
+
   <% end %>
 
+
   <% template_row.each do |template| %>
-    <div data-template-id="<%= template[:id] %>" class="details">
-      <div class="admo-tv">
-      <% if template.preview_image %>
-        <%= image_tag(template.preview_image.url) %>
-      <% else %>
-        <%= image_tag("apps/gif-large.png") %>
-      <% end %>
+    <% if template.enabled? %>
+      <div data-template-id="<%= template[:id] %>" class="details">
+        <div class="admo-tv">
+        <% if template.preview_image %>
+          <%= image_tag(template.preview_image.url) %>
+        <% else %>
+          <%= image_tag("apps/gif-large.png") %>
+        <% end %>
+        </div>
+        <div class="description">
+          <h2 class="catalog"><%= template[:name]%></h2>
+          <p><%= template[:description]%></p>
+          <span class="online">Online component</span>
+          <span class="avatar">Avatar</span>
+          <%= link_to "Add to My Apps", "#", class: "button", data: {template_id: template[:id].to_s} %>
+        </div>
       </div>
-      <div class="description">
-        <h2 class="catalog"><%= template[:name]%></h2>
-        <p><%= template[:description]%></p>
-        <span class="online">Online component</span>
-        <span class="avatar">Avatar</span>
-        <%= link_to "Add to My Apps", "#", class: "button", data: {template_id: template[:id].to_s} %>
-      </div>
-    </div>
+    <% end %>
   <% end %>
 </div>

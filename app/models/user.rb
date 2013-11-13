@@ -46,7 +46,6 @@ class User
 
   has_and_belongs_to_many :accounts, {class_name: 'AdmoAccount'}
 
-  field :admin, :type => Boolean, :default => false
   field :first_name, :type => String, :default => ""
   field :last_name, :type => String, :default => ""
 

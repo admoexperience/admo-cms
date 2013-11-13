@@ -28,7 +28,9 @@ class DashboardController < ApplicationController
   end
 
   def templates
-    @templates = Template.all
+    enabled_templates = Template.where status: 'enabled'
+    disabled_templates = Template.or({status: nil}, {status: 'disabled'})
+    @templates = enabled_templates.entries + disabled_templates.entries
   end
 
   def apps_old

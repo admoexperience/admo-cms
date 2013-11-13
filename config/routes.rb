@@ -23,8 +23,6 @@ AdmoCms::Application.routes.draw do
     get '/dashboard/analytics' => 'dashboard#analytics', as: 'analytics'
   end
 
-
-
   get '/html/login' => 'html#login'
   get '/html/home' => 'html#home'
   get '/html/content' => 'html#content'

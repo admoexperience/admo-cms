@@ -4,6 +4,7 @@ class Template
 
   field :name,              type: String
   field :description,       type: String
+  field :status,            type: String, default: 'disabled'
 
   validates_uniqueness_of :name
   validates_presence_of :name
@@ -31,5 +32,13 @@ class Template
     if document.pod && document.pod.tempfile
       document.pod_checksum = Digest::SHA256.file( document.pod.tempfile).hexdigest
     end
+  end
+
+  def status_enum
+    ['enabled', 'disabled']
+  end
+
+  def enabled?
+    status == 'enabled'
   end
 end
