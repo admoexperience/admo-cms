@@ -162,7 +162,7 @@ class DashboardController < ApplicationController
       {label: key[0..2], tooltip: key, value: value, bold: key.start_with?("Sun")}
     end
 
-    @busiest_day_of_week =  daily.sort_by{|k,v| v}.last[0]
+    @busiest_day_of_week =  daily.sort_by{|k,v| v}.last[0] unless daily.empty?
 
 
     interactions_by_host  = cache("interactions_by_host") do
@@ -182,9 +182,9 @@ class DashboardController < ApplicationController
 
 private
   def cache(key, &block)
-     Rails.cache.fetch(key+'_'+get_account.id+'_'+current_user.id, :expires_in => 5.minute) do
+    # Rails.cache.fetch(key+'_'+get_account.id+'_'+current_user.id, :expires_in => 5.minute) do
         block.call
-     end
+     #end
   end
 
   def support_params
