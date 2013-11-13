@@ -1,7 +1,11 @@
 <div class="template-row">
   <% template_row.each do |template| %>
     <div class="template" data-template-id="<%= template[:id] %>">
-      <%= image_tag("apps/four-structure.png") %>
+      <% if template.thumbnail_image %>
+        <%= image_tag(template.thumbnail_image.url) %>
+      <% else %>
+        <%= image_tag("apps/four-structure.png") %>
+      <% end %>
       <h3><%= template[:name]%></h3>
     </div>
   <% end %>
@@ -9,7 +13,11 @@
   <% template_row.each do |template| %>
     <div data-template-id="<%= template[:id] %>" class="details">
       <div class="admo-tv">
+      <% if template.preview_image %>
+        <%= image_tag(template.preview_image.url) %>
+      <% else %>
         <%= image_tag("apps/gif-large.png") %>
+      <% end %>
       </div>
       <div class="description">
         <h2 class="catalog"><%= template[:name]%></h2>
