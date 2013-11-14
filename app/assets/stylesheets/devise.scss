@@ -1,18 +1,18 @@
 /***** Login *****/
 .devise-box {
-  width: 600px;
+  width: 800px;
   position: absolute;
   left: 0; top: 100px; right: 0;
   margin: 0 auto;
-  padding: 30px;
+  padding: 50px 40px 40px 60px;
   box-sizing: border-box;
   background: $white;
-  border-top: 5px solid $blue;
+  border-top: 8px solid $blue;
 
   h1 {
       background: image-url("logo-login.png") center no-repeat;
-      width: 150px;
-      height: 36px;
+      width: 230px;
+      height: 50px;
       margin-top: 0;
       span {
         display: none;
@@ -20,12 +20,12 @@
     }
   h2 {
     color: $blue;
-    font-size: 15px;
-    line-height: 140%;
+    font-size: 22px;
   }
   .auth-block, .border-form-div {
     background: $white;
-    width: 270px;
+    width: 320px;
+    margin-right: 30px;
     /*height: 250px;*/
     border-right: 1px solid #e6e7e8;
     float:left;
@@ -52,7 +52,7 @@
         background-color: $backgroundgrey;
         border: none;
         height: 40px;
-        width: 178px;
+        width: 200px;
         float: left;
         padding: 2px 10px 0 10px;
         line-height: 40px;
@@ -64,23 +64,25 @@
       background: $blue;
       color: $white;
       border: none;
-      width: 240px;
+      width: 262px;
       height: 42px;
-      line-height: 40px;
+      line-height: 32px;
       font-size: 14px;
     }
   }
   .hero {
-    width: 265px;
-    height: 220px;
+    width: 320px;
+    height: 300px;
     float:left;
     box-sizing: border-box;
-    padding-left: 30px;
     background-image: image-url("login-laptop.png");
     background-repeat: no-repeat;
-    background-position: 40px 80px;
+
   }
+
   .shared-links{
+    display: none;
     margin-top: 20px;
+
   }
 }
