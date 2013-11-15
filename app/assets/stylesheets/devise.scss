@@ -1,15 +1,25 @@
 /***** Login *****/
 .devise-box {
-  width: 800px;
-  position: absolute;
-  left: 0; top: 100px; right: 0;
-  margin: 0 auto;
-  padding: 50px 40px 40px 60px;
-  box-sizing: border-box;
-  background: $white;
-  border-top: 8px solid $blue;
+    width: 800px;
+    position: absolute;
+    left: 0; top: 100px; right: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border-top: 8px solid $blue;
 
-  h1 {
+    .links{
+      padding-top: 15px;
+      a{
+        color: $blue;
+      }
+    }
+
+
+  .auth-block-position, {
+    padding: 50px 40px 40px 60px;
+    box-sizing: border-box;
+    background: $white;
+      h1 {
       background: image-url("logo-login.png") center no-repeat;
       width: 230px;
       height: 50px;
@@ -18,60 +28,64 @@
         display: none;
       }
     }
-  h2 {
-    color: $blue;
-    font-size: 22px;
-  }
-  .auth-block, .border-form-div {
-    background: $white;
-    width: 320px;
-    margin-right: 30px;
-    /*height: 250px;*/
-    border-right: 1px solid #e6e7e8;
-    float:left;
-    div.input-block {
-      clear: both;
-      margin: 15px 0;
-      height: 42px;
+    h2 {
+      color: $blue;
+      font-size: 22px;
+    }
 
-      label {
-        background: $lightgrey center no-repeat;
+    .auth-block{
+      background: $white;
+      width: 320px;
+      margin-right: 20px;
+      /*height: 250px;*/
+      border-right: 1px solid #e6e7e8;
+      float:left;
+      div.input-block {
+        clear: both;
+        margin: 15px 0;
         height: 42px;
-        width: 42px;
-        float: left;
-        overflow: hidden;
-        text-indent: 100px;
 
-        &.first_name { background-image: image-url("login-email.png"); }
-        &.last_name { background-image: image-url("login-email.png"); }
-        &.company_name { background-image: image-url("login-email.png"); }
-        &.email { background-image: image-url("login-email.png"); }
-        &.password { background-image: image-url("login-password.png"); }
+        label {
+          background: $lightgrey center no-repeat;
+          height: 42px;
+          width: 42px;
+          float: left;
+          overflow: hidden;
+          text-indent: 100px;
+
+          &.first_name { background-image: image-url("login-name.png"); }
+          &.last_name { background-image: image-url("login-name.png"); }
+          &.company_name { background-image: image-url("login-company.png"); }
+          &.email { background-image: image-url("login-email.png"); }
+          &.password { background-image: image-url("login-password.png"); }
+        }
+        input {
+          background-color: $backgroundgrey;
+          border: none;
+          height: 40px;
+          width: 200px;
+          float: left;
+          padding: 2px 10px 0 10px;
+          line-height: 40px;
+          font-size: 14px;
+        }
       }
-      input {
-        background-color: $backgroundgrey;
+
+      .button {
+        background: $blue;
+        color: $white;
         border: none;
-        height: 40px;
-        width: 200px;
-        float: left;
-        padding: 2px 10px 0 10px;
-        line-height: 40px;
+        width: 262px;
+        height: 42px;
+        line-height: 32px;
         font-size: 14px;
       }
     }
-
-    .button {
-      background: $blue;
-      color: $white;
-      border: none;
-      width: 262px;
-      height: 42px;
-      line-height: 32px;
-      font-size: 14px;
-    }
   }
+
   .hero {
-    width: 320px;
+    padding-left: 20px;
+    width: 350px;
     height: 300px;
     float:left;
     box-sizing: border-box;
