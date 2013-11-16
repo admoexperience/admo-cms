@@ -21,14 +21,18 @@ describe TemplateAppCopier do
     end
 
     describe 'the returned app' do
-      it 'has the name that was passed into the copier' do
+      it 'has the name that was passed in' do
         @app.name.should == "MyApp1"
       end
 
-      it 'belongs to the account passed in to TemplateAppCopier' do
+      it 'belongs to the account that was passed in' do
         @app.admo_account.should == @account
       end
 
+      it 'belongs to the template that was passed in' do
+        @app.template.should == @template
+        @template.apps.should include(@app)
+      end
     end
 
     describe 'the pod file do' do
