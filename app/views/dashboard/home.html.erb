@@ -26,7 +26,9 @@
             <div class="download-block">
               <div class="image">
                 <%= image_tag("tutorial/admo-app-icon.png") %>
-                <a id="download-admo-button" href="#" class="button">...</a>
+                <a target="_blank" id="download-admo-button" href="#" class="button">...</a><br />
+                <a target="_blank" href="https://chrome.google.com/" class="button">Google Chrome</a><br />
+                <a target="_blank" href="https://s3-eu-west-1.amazonaws.com/admo-downloads/unit-installers/KinectRuntime-v1.8-Setup.exe" class="button">Kinect Runtime</a>
               </div>
               <div class="copy">
                 <h1>Admo Player</h1>
@@ -36,10 +38,10 @@
                 </p>
                 <h3>Minimum PC Specs</h3>
                 <p>
-                  <strong>CPU</strong>  |  i5, Quad core 3.4ghz<br/>
-                  <strong>Motherboard</strong>  |  LGA1155, 6x USB<br/>
-                  <strong>RAM</strong>  |  4GB DDR3-1333 ( PC3-10666 )<br/>
-                  <strong>OS</strong>  |  Windows 7<br/>
+                  CPU | i5, Quad core 3.4ghz<br/>
+                  Motherboard | LGA1155, 6x USB<br/>
+                  RAM | 4GB DDR3-1333 ( PC3-10666 )<br/>
+                  OS | Windows 7<br/>
                 </p>
                 <!-- <a href="online">Buy Online</a> -->
 
@@ -76,7 +78,7 @@
      function( data ) {
       console.log(data);
       $("#download-admo-button").attr('href',DOWNLOAD_URL+data.filename);
-      $("#download-admo-button").text("Download");
+      $("#download-admo-button").text("Download Admo");
     });
   });
 </script>

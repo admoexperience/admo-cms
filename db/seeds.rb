@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 unless Admin.first
-  Admin.create!(email: 'david@fireid.com', password: '1234')
+  Admin.create!(email: 'david@fireid.com', password: '1234', company_name: 'admincorp')
 end
 
 account = AdmoAccount.first
@@ -66,7 +66,7 @@ User.destroy_all
 
 user = User.first
 unless user
-  user = User.new(email:'demo@admoexperience.com', password:'demo12345', admo_account: account)
+  user = User.new(email:'demo@admoexperience.com', password:'demo12345', admo_account: account, company_name: 'usercorp')
   user.accounts << account
   user.skip_confirmation!
   user.save!
