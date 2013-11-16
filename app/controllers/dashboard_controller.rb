@@ -5,9 +5,9 @@ class DashboardController < ApplicationController
 
   def add_template_to_apps
     template = Template.find(params[:template_id])
-    @app = TemplateAppCopier.copy(template, current_user.admo_account, params[:app_name])
+    @app = TemplateAppCopier.copy(template, @account, params[:app_name])
     if @app.save
-      current_user.admo_account.publish_update_pods
+      @account.publish_update_pods
       flash[:message] = "Your new app has been created."
       redirect_to :dashboard_devices
     else
