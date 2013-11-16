@@ -43,4 +43,13 @@ class Template
   def enabled?
     status == 'enabled'
   end
+
+  def copied_by_user?(user)
+    raise "Expected User but got #{user.inspect}" unless user.is_a?(User)
+
+    user.admo_account.apps.each do |app|
+      return true if app.template == self
+    end
+    return false
+  end
 end
