@@ -148,6 +148,13 @@ class DashboardController < ApplicationController
   end
 
   def analytics
+    analytics = get_account.analytics
+    if analytics.empty?
+      @analytics_not_present = true
+      return
+    end
+
+
     @total_interactions = cache("total_interactions") do
       analytics_api.total_interactions
     end
@@ -200,11 +207,6 @@ private
   def analytics_api
     return @api if @api
     analytics = get_account.analytics
-    if analytics.empty?
-      @analytics_not_present = true
-      return
-    end
-
     config = {api_key: analytics[:mixpanel_api_key], api_secret: analytics[:mixpanel_api_secret]}
 
     @api = MixpanelApi.new(config)
