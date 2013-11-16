@@ -47,45 +47,14 @@
 </div>
 
 <script type="text/javascript">
-  var values = [
-    //{ value: 0.43, name: "Mauritius"},
-    //{ value: 0.17, name: "Thailand"},
-    //{ value: 0.18, name: "Europe"},
-    //{ value: 0.12, name: "USA"}
-  ];
-  drawDonutCharts(values, "#donut-charts");
-
-  var values = [
-    {name: 'Start', value: 10},
-    {name: 'Menu', value: 4},
-    {name: 'Carousel', value: 10},
-    {name: 'Item', value: 4}
-  ];
-  drawFunnelChart(values, "#funnel");
-
-  var values = <%= @daily_interactions.to_json.html_safe %>;
-
-  drawBarChart(values, "#interactions-per-day");
-
-  var values = <%= @days_of_week_interactions.to_json.html_safe %>;
-  drawBarChart(values, "#interactions-by-weekday");
-
-  var values = [
-    {label: '00:00', tooltip: '00:00', value: 0},
-    {label: '', tooltip: '02:00', value: 0},
-    {label: '04:00', tooltip: '04:00', value: 0},
-    {label: '', tooltip: '06:00', value: 0},
-    {label: '08:00', tooltip: '08:00', value: 0},
-    {label: '', tooltip: '10:00', value: 0},
-    {label: '12:00', tooltip: '12:00', value: 0},
-    {label: '', tooltip: '14:00', value: 0},
-    {label: '16:00', tooltip: '16:00', value: 0},
-    {label: '', tooltip: '18:00', value: 0},
-    {label: '20:00', tooltip: '20:00', value: 0},
-    {label: '', tooltip: '22:00', value: 0},
-  ]
-  drawBarChart(values, "#interactions-during-day");
-
+  $(function(){
+    $.get("<%= analytics_daily_interactions_path(format:'json')%>",function(data){
+      drawBarChart(data, "#interactions-per-day");
+    });
+    $.get("<%= analytics_by_weekday_path(format:'json')%>",function(data){
+      drawBarChart(data, "#interactions-by-weekday");
+    });
+  });
 </script>
 
 <%end%>
