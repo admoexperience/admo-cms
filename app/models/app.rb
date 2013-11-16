@@ -25,6 +25,7 @@ class App
   end
 
   belongs_to :admo_account
+  belongs_to :template
   has_many :contents
 
   validates_presence_of :name

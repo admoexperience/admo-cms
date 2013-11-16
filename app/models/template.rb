@@ -27,6 +27,8 @@ class Template
   validates_size_of :pod, :maximum =>  25.megabytes
   validates_property :mime_type, :of => :pod, :in => %w(application/zip)
 
+  has_many :apps
+
   #Automatically set the checksum of the pod file
   before_save do |document|
     if document.pod && document.pod.tempfile
