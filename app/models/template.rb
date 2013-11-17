@@ -43,4 +43,8 @@ class Template
   def enabled?
     status == 'enabled'
   end
+
+  def publish_change
+    SyncTemplatesJob.new.process(self)
+  end
 end
