@@ -44,6 +44,10 @@ class Template
     status == 'enabled'
   end
 
+  def publish_change
+    SyncTemplatesJob.new.process(self)
+  end
+
   def copied_by_user?(user)
     raise "Expected User but got #{user.inspect}" unless user.is_a?(User)
 
