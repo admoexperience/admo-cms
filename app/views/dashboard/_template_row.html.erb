@@ -28,7 +28,12 @@
           <p><%= template[:description]%></p>
           <span class="online">Online component</span>
           <span class="avatar">Avatar</span>
-          <%= link_to "Add to My Apps", "#", class: "button", data: {template_id: template[:id].to_s} %>
+
+          <% if template.copied_by_user?(current_user) %>
+            <%= link_to "Already Added to Apps", "#", class: "button gray" %>
+          <% else %>
+            <%= link_to "Add to My Apps", "#", class: "button add", data: {template_id: template[:id].to_s} %>
+          <% end %>
         </div>
       </div>
     <% end %>
