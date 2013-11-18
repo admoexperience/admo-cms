@@ -6,6 +6,7 @@ class MixpanelApi
 
   def total_interactions
     data = daily_interactions
+    return 0 if data.blank?
     total = data.values.inject(:+)
     total
   end
@@ -19,7 +20,8 @@ class MixpanelApi
       unit:      'day',
       interval:   30,
     }).with_indifferent_access[:data]
-    data[:values][:undefined]
+    #if there aren't any return a blank list
+    data[:values][:undefined] || {}
   end
 
   def total_interactions_by_host

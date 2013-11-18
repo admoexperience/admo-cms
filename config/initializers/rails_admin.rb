@@ -156,6 +156,23 @@ end
       field :admo_account
       field :name
       field :config
+      field :template
+    end
+    edit do
+      configure :pod_checksum do
+        read_only true
+      end
+    end
+  end
+
+  config.model Template do
+    edit do
+      configure :apps do
+        hide
+      end
+      configure :pod_checksum do
+        read_only true
+      end
     end
   end
 

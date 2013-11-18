@@ -3,15 +3,6 @@ class AdmoUnit
   include Mongoid::Timestamps
   include Mongoid::Extensions::Hash::IndifferentAccess
 
-  CONFIG_KEYS = %w(
-    app
-    kinect_elevation
-    environment
-    web_ui_server
-    pod_file
-  ).freeze
-
-
   field :api_key,          type: String,   :default => lambda {SecureRandom.uuid}
   field :name,             type: String
   field :dropbox_session_info,   type: String,   :default=> ''
@@ -69,7 +60,6 @@ class AdmoUnit
   end
 
   def set_config(key,value)
-    raise "Invalid config key please use allowed values" unless CONFIG_KEYS.include? key
     hash = self.config
     hash[key] = value
     self.config = hash
