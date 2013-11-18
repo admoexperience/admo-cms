@@ -1044,6 +1044,10 @@ a.button, button, input.button {
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
+
+  &.gray, &.gray:hover {
+    background: lightgray;
+  }
 }
 
 a.button:hover {
