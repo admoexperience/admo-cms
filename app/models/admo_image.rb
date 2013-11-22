@@ -38,7 +38,7 @@ class AdmoImage
 
   def upload_to_facebook(auth_token)
     @page_api = Koala::Facebook::API.new(auth_token)
-    url = self.image.remote_url
+    url = self.image.remote_url(expires: 5.hours.from_now, scheme: 'https')
     @page_api.put_picture(url)
   end
 end
