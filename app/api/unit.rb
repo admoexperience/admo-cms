@@ -133,8 +133,9 @@ class Unit < Grape::API
       end
 
       auth_token = @unit.get_config['facebook_auth_token']
-      unless auth_token.blank?
-        img.upload_to_facebook(auth_token)
+      fb_album_id = @unit.get_config['facebook_album_id']
+      unless auth_token.blank? or fb_album_id.blank?
+        img.upload_to_facebook(auth_token,fb_album_id)
       end
 
       @screenshot = img
