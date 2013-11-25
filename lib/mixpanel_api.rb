@@ -25,6 +25,8 @@ class MixpanelApi
   end
 
   def total_interactions_by_host
+    #Depricated use of hostname
+    #TODO(david) upgrade this when we no longer need to display legacy data
     data = @client.request('events/properties', {
       event:     'startInteractionSelected',
       name: 'hostName', #hostName
@@ -36,7 +38,20 @@ class MixpanelApi
     data[:values].each do |key, value|
       values_by_host[key] = value.values.inject(:+)
     end
-    values_by_host
+
+    data = @client.request('events/properties', {
+      event:     'startInteractionSelected',
+      name: 'unitName', #hostName
+      type:      'unique',
+      unit:      'day',
+      interval:   30,
+    }).with_indifferent_access[:data]
+    data[:values].each do |key, value|
+      values_by_host[key] = value.values.inject(:+)
+    end
+
+    #Values should have record values that either have unitName or hostName never both
+    values_by_host.reject {|key,v| key == 'undefined'}
   end
 
 end
