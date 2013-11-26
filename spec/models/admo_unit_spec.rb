@@ -153,4 +153,37 @@ mixpanel_api_token: 'mixpanel_api_token'}
     config['mixpanel_api_token'].should eq "mixpanel_api_token"
   end
 
+  it 'Updating the version number should create a new value' do
+    version = @unit.update_client_version('1.1.1.1')
+    version.number.should eq('1.1.1.1')
+  end
+
+  it 'Updating the version number should simply return a value if older' do
+    version = @unit.update_client_version('1.1.1.1')
+    version.number.should eq('1.1.1.1')
+
+    version = @unit.update_client_version('1.1.1.1')
+    version.should eq(@unit.client_versions.first)
+    @unit.client_versions.count eq(1)
+  end
+
+  it 'Updating the version number should add new one if even if one exsists' do
+    @unit.client_versions << create(:client_version, number:'1.3.3.4')
+    new_ver_number = '1.2.3.5'
+    version = @unit.update_client_version(new_ver_number)
+    version.number.should eq(new_ver_number)
+    @unit.client_versions.count eq(2)
+  end
+
+  it 'Updating the version number should set last set at' do
+    ver = create(:client_version)
+    ver.last_set_at = 5.hours.ago
+    ver.last_set_at.should_not eq(Time.now)
+    @unit.client_versions << ver
+    Timecop.freeze(Time.now) do
+      new_version = @unit.update_client_version(ver.number)
+      new_version.number.should eq(ver.number)
+      new_version.last_set_at.should eq(Time.now)
+    end
+  end
 end

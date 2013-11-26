@@ -148,7 +148,17 @@ class Unit < Grape::API
     get "apps" , :rabl => "apps" do
       authenticate!
       @apps = @unit.admo_account.apps
+    end
 
+    desc "Sets the current running version of the client software of this unit", :notes=> <<-NOTE
+
+    NOTE
+    params do
+      requires :number, type: String, desc: "Softwares Version number formate (1.1.1.1+)"
+    end
+    post "client_version" , :rabl => "client_version" do
+      authenticate!
+      @client_version  = @unit.update_client_version(params[:number])
     end
   end
 end

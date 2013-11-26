@@ -29,6 +29,8 @@ class AdmoUnit
   validates_uniqueness_of :name, :scope=> :admo_account
   validates_presence_of :name
 
+  has_many :client_versions
+
   #Indexes
   index({ api_key: 1 }, { unique: true, name: "api_key_index" })
 
@@ -133,5 +135,14 @@ class AdmoUnit
     first = p.first
     return first.id if first
     return nil
+  end
+
+  def update_client_version(version)
+    puts client_versions.inspect
+
+    ver = client_versions.find_or_create_by(number: version)
+    ver.last_set_at = Time.now
+    ver.save!
+    ver
   end
 end

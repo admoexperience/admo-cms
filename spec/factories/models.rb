@@ -3,6 +3,10 @@ FactoryGirl.define do
       "name_#{n}"
   end
 
+  sequence :number do |n|
+      "1.#{n}"
+  end
+
   sequence :first_name do |n|
       "first_name_#{n}"
   end
@@ -54,5 +58,10 @@ FactoryGirl.define do
     email
     password "1234"
     company_name
+  end
+
+  factory :client_version do
+    number
+    admo_unit
   end
 end

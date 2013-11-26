@@ -212,6 +212,11 @@ end
         map_width '500px'
         map_height '400px'
       end
+
+      configure :client_versions do
+        hide
+      end
+
     end
   end
 end
