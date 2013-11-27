@@ -3,7 +3,7 @@ class ClientVersion
   include Mongoid::Timestamps
 
   field :number,              type: String
-  field :last_set_at,         type: Time#,     default: lambda {Time.now}
+  field :last_reported_at,         type: Time,     default: lambda {Time.now}
 
   belongs_to :admo_unit
 

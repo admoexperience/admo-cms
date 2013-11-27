@@ -141,7 +141,7 @@ class AdmoUnit
     puts client_versions.inspect
 
     ver = client_versions.find_or_create_by(number: version)
-    ver.last_set_at = Time.now
+    ver.last_reported_at = Time.now
     ver.save!
     ver
   end

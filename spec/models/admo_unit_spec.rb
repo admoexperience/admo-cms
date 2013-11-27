@@ -177,13 +177,13 @@ mixpanel_api_token: 'mixpanel_api_token'}
 
   it 'Updating the version number should set last set at' do
     ver = create(:client_version)
-    ver.last_set_at = 5.hours.ago
-    ver.last_set_at.should_not eq(Time.now)
+    ver.last_reported_at = 5.hours.ago
+    ver.last_reported_at.should_not eq(Time.now)
     @unit.client_versions << ver
     Timecop.freeze(Time.now) do
       new_version = @unit.update_client_version(ver.number)
       new_version.number.should eq(ver.number)
-      new_version.last_set_at.should eq(Time.now)
+      new_version.last_reported_at.should eq(Time.now)
     end
   end
 end

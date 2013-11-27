@@ -5,7 +5,7 @@ describe ClientVersion do
     it 'Default value for last_set_at time.now' do
       Timecop.freeze(Time.now) do
         version = create(:client_version)
-        version.last_set_at.should eq(Time.now)
+        version.last_reported_at.should eq(Time.now)
       end
     end
 
