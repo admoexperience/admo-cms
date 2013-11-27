@@ -92,7 +92,6 @@ describe AdmoUnit do
     @unit.admo_screenshots << first
     @unit.admo_screenshots.count.should eq 1
     6.times do |count|
-      puts count
       @unit.admo_screenshots << create(:admo_screenshot)
       @unit.admo_screenshots.count.should eq(count+2) #Count starts at 0
     end
@@ -153,12 +152,14 @@ mixpanel_api_token: 'mixpanel_api_token'}
     config['mixpanel_api_token'].should eq "mixpanel_api_token"
   end
 
-  it 'Updating the version number should create a new value' do
+  it 'creates a new version number if one didnt exsist' do
+    @unit.client_versions.count eq(0)
     version = @unit.update_client_version('1.1.1.1')
     version.number.should eq('1.1.1.1')
+    @unit.client_versions.count eq(1)
   end
 
-  it 'Updating the version number should simply return a value if older' do
+  it 'simply returns current version if already set' do
     version = @unit.update_client_version('1.1.1.1')
     version.number.should eq('1.1.1.1')
 
@@ -167,7 +168,7 @@ mixpanel_api_token: 'mixpanel_api_token'}
     @unit.client_versions.count eq(1)
   end
 
-  it 'Updating the version number should add new one if even if one exsists' do
+  it 'updates the version number when a new version is passed in' do
     @unit.client_versions << create(:client_version, number:'1.3.3.4')
     new_ver_number = '1.2.3.5'
     version = @unit.update_client_version(new_ver_number)
@@ -175,7 +176,7 @@ mixpanel_api_token: 'mixpanel_api_token'}
     @unit.client_versions.count eq(2)
   end
 
-  it 'Updating the version number should set last set at' do
+  it 'updates the reported at field to current time when unit reports in' do
     ver = create(:client_version)
     ver.last_reported_at = 5.hours.ago
     ver.last_reported_at.should_not eq(Time.now)

@@ -138,8 +138,6 @@ class AdmoUnit
   end
 
   def update_client_version(version)
-    puts client_versions.inspect
-
     ver = client_versions.find_or_create_by(number: version)
     ver.last_reported_at = Time.now
     ver.save!

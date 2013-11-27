@@ -3,10 +3,6 @@ FactoryGirl.define do
       "name_#{n}"
   end
 
-  sequence :number do |n|
-      "1.#{n}"
-  end
-
   sequence :first_name do |n|
       "first_name_#{n}"
   end
@@ -61,7 +57,7 @@ FactoryGirl.define do
   end
 
   factory :client_version do
-    number
+    sequence(:number) {|n| "1.#{n}" }
     admo_unit
   end
 end
