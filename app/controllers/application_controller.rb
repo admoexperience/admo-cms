@@ -23,7 +23,7 @@ protected
 
 private
   def reload_rails_admin
-    models = %W(AdmoUnit AdmoScreenshot AdmoImage AdmoAccount Content App User Template)
+    models = %W(AdmoUnit AdmoScreenshot AdmoImage AdmoAccount Content App User Template ClientVersion)
     models.each do |m|
       RailsAdmin::Config.reset_model(m)
     end

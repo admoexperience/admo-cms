@@ -55,4 +55,9 @@ FactoryGirl.define do
     password "1234"
     company_name
   end
+
+  factory :client_version do
+    sequence(:number) {|n| "1.#{n}" }
+    admo_unit
+  end
 end
