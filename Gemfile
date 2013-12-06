@@ -4,7 +4,6 @@ ruby '2.0.0'
 gem 'rails', '~> 4.0.2'
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'foreman'
   gem 'pry'
   gem 'rb-fsevent'
@@ -16,7 +15,6 @@ group :development, :test do
 end
 
 group :production do
-  gem 'pg'
   #Used by heroku to enable logging and other magic
   gem 'rails_12factor'
   #Assets are served in production mode, and cached

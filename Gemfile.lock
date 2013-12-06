@@ -45,34 +45,41 @@ GEM
     addressable (2.3.5)
     arel (4.0.1)
     atomic (1.1.14)
-    backports (3.3.3)
-    bcrypt-ruby (3.1.1)
-    bootstrap-sass (2.3.2.1)
+    axiom-types (0.0.5)
+      descendants_tracker (~> 0.0.1)
+      ice_nine (~> 0.9)
+    backports (3.3.5)
+    bcrypt-ruby (3.1.2)
+    bootstrap-sass (2.3.2.2)
       sass (~> 3.2)
-    bson (1.9.1)
-    bson_ext (1.9.1)
-      bson (~> 1.9.1)
-    bugsnag (1.4.0)
+    bson (1.9.2)
+    bson_ext (1.9.2)
+      bson (~> 1.9.2)
+    bugsnag (1.6.4)
       httparty (>= 0.6, < 1.0)
       multi_json (~> 1.0)
     builder (3.1.4)
-    celluloid (0.14.1)
-      timers (>= 1.0.0)
+    celluloid (0.15.2)
+      timers (~> 1.1.0)
     coderay (1.0.9)
-    coffee-rails (4.0.0)
+    coercible (0.2.0)
+      backports (~> 3.0, >= 3.1.0)
+      descendants_tracker (~> 0.0.1)
+    coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
-      railties (>= 4.0.0.beta, < 5.0)
+      railties (>= 4.0.0, < 5.0)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
     cookiejar (0.3.0)
     daemons (1.1.9)
-    descendants_tracker (0.0.1)
-    devise (3.0.2)
+    descendants_tracker (0.0.3)
+    devise (3.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
+      thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.4)
     dotenv (0.8.0)
@@ -81,7 +88,7 @@ GEM
       rack
     dropbox-sdk (1.6.1)
       json
-    em-http-request (1.1.0)
+    em-http-request (1.1.1)
       addressable (>= 2.3.4)
       cookiejar
       em-socksify (>= 0.3)
@@ -92,14 +99,14 @@ GEM
     em-websocket (0.3.8)
       addressable (>= 2.1.1)
       eventmachine (>= 0.12.9)
+    equalizer (0.0.8)
     erubis (2.7.0)
     ethon (0.5.12)
       ffi (>= 1.3.0)
       mime-types (~> 1.18)
     eventmachine (1.0.3)
     excon (0.25.3)
-    execjs (1.4.0)
-      multi_json (~> 1.0)
+    execjs (2.0.2)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
     faraday (0.8.8)
@@ -115,13 +122,14 @@ GEM
       net-ssh (>= 2.1.3)
       nokogiri (~> 1.5)
       ruby-hmac
-    font-awesome-rails (3.2.1.2)
+    font-awesome-rails (3.2.1.3)
       railties (>= 3.2, < 5.0)
     foreman (0.63.0)
       dotenv (>= 0.7)
       thor (>= 0.13.6)
     formatador (0.2.4)
-    grape (0.5.0)
+    gene_pool (1.3.1)
+    grape (0.6.1)
       activesupport
       builder
       hashie (>= 1.2.0)
@@ -130,9 +138,9 @@ GEM
       rack (>= 1.3.0)
       rack-accept
       rack-mount
-      virtus
-    grape-rabl (0.2.0)
-      grape (~> 0.3)
+      virtus (>= 1.0.0)
+    grape-rabl (0.2.2)
+      grape
       i18n
       rabl
       tilt
@@ -149,25 +157,25 @@ GEM
       em-websocket (>= 0.2.0)
       guard (>= 1.5.0)
       multi_json (~> 1.0)
-    haml (4.0.3)
+    haml (4.0.4)
       tilt
     hashie (2.0.5)
     hike (1.2.3)
     hipchat (0.11.0)
       httparty
     http_parser.rb (0.6.0.beta.2)
-    httparty (0.11.0)
-      multi_json (~> 1.0)
+    httparty (0.12.0)
+      json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.6.9)
+    ice_nine (0.10.0)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (4.0.3)
-      jquery-rails
+    jquery-ui-rails (4.1.0)
       railties (>= 3.1.0)
-    json (1.8.0)
-    kaminari (0.14.1)
+    json (1.8.1)
+    kaminari (0.15.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     koala (1.8.0rc1)
@@ -187,7 +195,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.25.1)
-    mini_portile (0.5.1)
+    mini_portile (0.5.2)
     minitest (4.7.5)
     mixpanel_client (3.1.2)
       typhoeus (~> 0.5.4)
@@ -198,7 +206,7 @@ GEM
       stringex (~> 1.4)
     moped (1.5.0)
     multi_json (1.8.2)
-    multi_xml (0.5.4)
+    multi_xml (0.5.5)
     multipart-post (1.2.0)
     nested_form (0.3.2)
     net-scp (1.1.2)
@@ -217,21 +225,25 @@ GEM
       oauth
       omniauth (~> 1.0)
     origin (1.1.0)
-    orm_adapter (0.4.0)
-    pg (0.15.1)
+    orm_adapter (0.5.0)
+    persistent_http (1.0.6)
+      gene_pool (>= 1.3)
+    persistent_httparty (0.1.1)
+      httparty (~> 0.9)
+      persistent_http
     polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
-    pubnub (3.3.0.7)
-      activesupport
+    pubnub (3.4)
       em-http-request
       eventmachine
+      httparty
       json
+      persistent_httparty
       uuid (~> 2.3.5)
-      yajl-ruby
-    rabl (0.8.6)
+    rabl (0.9.3)
       activesupport (>= 2.3.14)
     rack (1.5.2)
     rack-accept (0.4.5)
@@ -301,10 +313,10 @@ GEM
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
     ruby-hmac (0.4.0)
-    safe_yaml (0.9.5)
-    sass (3.2.9)
-    sass-rails (4.0.0)
-      railties (>= 4.0.0.beta, < 5.0)
+    safe_yaml (0.9.7)
+    sass (3.2.12)
+    sass-rails (4.0.1)
+      railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
     simple_status (0.0.2)
@@ -323,10 +335,9 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sqlite3 (1.3.7)
     stringex (1.5.1)
-    sucker_punch (1.0.1)
-      celluloid (~> 0.14.1)
+    sucker_punch (1.0.2)
+      celluloid (~> 0.15.1)
     systemu (2.5.2)
     thin (1.5.1)
       daemons (>= 1.0.9)
@@ -349,12 +360,13 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     uuid (2.3.7)
       macaddr (~> 1.0)
-    virtus (0.5.5)
-      backports (~> 3.3)
+    virtus (1.0.0)
+      axiom-types (~> 0.0.5)
+      coercible (~> 0.2)
       descendants_tracker (~> 0.0.1)
+      equalizer (~> 0.0.7)
     warden (1.2.3)
       rack (>= 1.0)
-    yajl-ruby (1.1.0)
 
 PLATFORMS
   ruby
@@ -383,7 +395,6 @@ DEPENDENCIES
   newrelic_rpm
   omniauth
   omniauth-dropbox
-  pg
   pry
   pubnub
   rack-livereload
@@ -396,7 +407,6 @@ DEPENDENCIES
   rspec-rails (~> 2.0)
   sass-rails (~> 4.0.0)
   simple_status
-  sqlite3
   sucker_punch (~> 1.0.1)
   thin
   timecop
