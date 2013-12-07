@@ -33,7 +33,6 @@ gem 'simple_status'
 
 
 gem 'sucker_punch', '~> 1.0.1'
-gem 'bson_ext'
 gem 'mongoid', github: 'mongoid/mongoid'
 
 gem 'grape'
@@ -49,7 +48,7 @@ gem 'bugsnag'
 
 gem 'hipchat', '~> 0.11.0'
 
-gem 'rails_admin', '~> 0.5.0'
+gem 'rails_admin', '~> 0.6.0'
 
 gem 'mongoid_slug'
 

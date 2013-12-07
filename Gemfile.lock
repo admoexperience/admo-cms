@@ -7,13 +7,13 @@ GIT
 
 GIT
   remote: git://github.com/mongoid/mongoid.git
-  revision: 5d8397e24b673724f4b70ca2923a62bfe20e6e79
+  revision: bbc0df51f9c1fec19dd15e4c5d478d6474adefdc
   specs:
-    mongoid (4.0.0)
+    mongoid (4.0.0.alpha1)
       activemodel (~> 4.0.0)
-      moped (~> 1.5)
+      moped (~> 2.0.beta4)
       origin (~> 1.0)
-      tzinfo (~> 0.3.22)
+      tzinfo (~> 0.3.37)
 
 GEM
   remote: https://rubygems.org/
@@ -50,11 +50,7 @@ GEM
       ice_nine (~> 0.9)
     backports (3.3.5)
     bcrypt-ruby (3.1.2)
-    bootstrap-sass (2.3.2.2)
-      sass (~> 3.2)
-    bson (1.9.2)
-    bson_ext (1.9.2)
-      bson (~> 1.9.2)
+    bson (2.0.0)
     bugsnag (1.6.4)
       httparty (>= 0.6, < 1.0)
       multi_json (~> 1.0)
@@ -72,6 +68,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    connection_pool (1.2.0)
     cookiejar (0.3.0)
     daemons (1.1.9)
     descendants_tracker (0.0.3)
@@ -122,7 +119,7 @@ GEM
       net-ssh (>= 2.1.3)
       nokogiri (~> 1.5)
       ruby-hmac
-    font-awesome-rails (3.2.1.3)
+    font-awesome-rails (4.0.3.0)
       railties (>= 3.2, < 5.0)
     foreman (0.63.0)
       dotenv (>= 0.7)
@@ -201,10 +198,13 @@ GEM
       typhoeus (~> 0.5.4)
     mongoid-indifferent-access (1.0.0)
       mongoid
-    mongoid_slug (3.1.2)
+    mongoid_slug (3.2.0)
       mongoid (> 3.0)
-      stringex (~> 1.4)
-    moped (1.5.0)
+      stringex (~> 2.0)
+    moped (2.0.0.beta4)
+      bson (~> 2.0)
+      connection_pool (~> 1.2)
+      optionable (~> 0.2.0)
     multi_json (1.8.2)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
@@ -224,6 +224,7 @@ GEM
     omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
+    optionable (0.2.0)
     origin (1.1.0)
     orm_adapter (0.5.0)
     persistent_http (1.0.6)
@@ -270,11 +271,10 @@ GEM
     rails_12factor (0.0.2)
       rails_serve_static_assets
       rails_stdout_logging
-    rails_admin (0.5.0)
-      bootstrap-sass (~> 2.3)
+    rails_admin (0.6.0)
       builder (~> 3.1)
       coffee-rails (~> 4.0)
-      font-awesome-rails (~> 3.0)
+      font-awesome-rails (>= 3.0)
       haml (~> 4.0)
       jquery-rails (~> 3.0)
       jquery-ui-rails (~> 4.0)
@@ -335,7 +335,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    stringex (1.5.1)
+    stringex (2.1.2)
     sucker_punch (1.0.2)
       celluloid (~> 0.15.1)
     systemu (2.5.2)
@@ -372,7 +372,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bson_ext
   bugsnag
   coffee-rails (~> 4.0.0)
   devise
@@ -400,7 +399,7 @@ DEPENDENCIES
   rack-livereload
   rails (~> 4.0.2)
   rails_12factor
-  rails_admin (~> 0.5.0)
+  rails_admin (~> 0.6.0)
   rails_admin_map_field!
   rails_config (~> 0.3.3)
   rb-fsevent
