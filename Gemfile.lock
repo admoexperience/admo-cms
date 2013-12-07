@@ -83,7 +83,7 @@ GEM
     dragonfly (0.9.15)
       multi_json (~> 1.0)
       rack
-    dropbox-sdk (1.6.1)
+    dropbox-sdk (1.6.2)
       json
     em-http-request (1.1.1)
       addressable (>= 2.3.4)
@@ -104,7 +104,7 @@ GEM
     eventmachine (1.0.3)
     excon (0.25.3)
     execjs (2.0.2)
-    factory_girl (4.2.0)
+    factory_girl (4.3.0)
       activesupport (>= 3.0.0)
     faraday (0.8.8)
       multipart-post (~> 1.2.0)
@@ -211,8 +211,8 @@ GEM
     nested_form (0.3.2)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
-    net-ssh (2.6.8)
-    newrelic_rpm (3.6.5.130)
+    net-ssh (2.7.0)
+    newrelic_rpm (3.7.0.177)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     oauth (0.4.7)
