@@ -176,14 +176,6 @@ end
     end
   end
 
-  config.model Content do
-    list do
-      field :app
-      field :key
-      field :value
-    end
-  end
-
   config.model AdmoUnit do
     list do
       field :name

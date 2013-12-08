@@ -15,6 +15,15 @@ unless account
   account = AdmoAccount.create!(name: 'Demo')
 end
 
+App.destroy_all
+
+app = App.first
+unless app
+  app = App.create!(name: 'DemoApp',pod_name:'dist-demo-app.pod.zip', admo_account: account)
+  app = App.create!(name: 'DemoApp2',pod_name:'dist-demo-app2.pod.zip', admo_account: account)
+end
+
+
 #AdmoUnit.destroy_all
 unless AdmoUnit.all.count >= 5
   image_file =File.new("#{Rails.root}/app/assets/images/demo-screenshot.png")
