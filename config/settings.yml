@@ -1,21 +1,28 @@
 pubnub:
-  publish_key: <%= ENV['PUBNUB_PUBLISH_KEY'] || "pub-c-806ef41c-8fdb-45c9-8ddd-da053b45a04a" %>
-  subscribe_key: <%= ENV['PUBNUB_SUBSCRIBE_KEY'] || "sub-c-5811c59e-bbce-11e2-846b-02ee2ddab7fe" %>
+  publish_key: <%= ENV['PUBNUB_PUBLISH_KEY'] %>
+  subscribe_key: <%= ENV['PUBNUB_SUBSCRIBE_KEY'] %>
 
 hipchat:
   api_key: <%= ENV['HIPCHAT_API_KEY'] %>
   room: <%= ENV['HIPCHAT_ROOM'] || 'Admo Dev' %>
+
+bugsnag:
+  api_key: <%= ENV['BUGSNAG_API_KEY'] %>
+
+devise:
+  secret_key: "not a valid key for production, but overriden in production"
 
 dashboard:
   uri: <%= ENV['DASHBOARD_URI'] || 'http://localhost:3030/widgets/' %>
   api_key: <%= ENV['DASHBOARD_API_KEY'] || 'YOUR_AUTH_TOKEN' %>
 
 general:
+  secret_key_base: 'not so secret'
   hostname: <%= ENV['GENERAL_HOSTNAME'] || 'localhost:3000' %>
   protocol: <%= ENV['GENERAL_PROTOCOL'] || 'http' %>
 
 gmaps:
-  api_key: AIzaSyAuEhwdsqjl8kjyCWrtZLkpvzOEJIulVtc
+  api_key: <%= ENV['GMAPS_API_KEY']%>
 
 support:
   email: support@admo.co

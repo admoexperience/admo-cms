@@ -1,0 +1,2 @@
+devise:
+  secret_key: "not a valid key in production just for development"

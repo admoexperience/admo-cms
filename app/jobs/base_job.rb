@@ -17,7 +17,8 @@ class BaseJob
 
       log_error "Unexpected error processing #{self.class.to_s}: #{e.inspect}, #{e.backtrace}"
     ensure
-      Mongoid.default_session.disconnect
+      # Trying to remove error
+      #Mongoid.default_session.disconnect
     end
   end
 

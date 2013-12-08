@@ -1,7 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
 # Pick the frameworks you want:
-require "active_record/railtie"
 require "action_controller/railtie"
 require "action_mailer/railtie"
 require "sprockets/railtie"
@@ -58,7 +57,7 @@ module AdmoCms
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    config.assets.initialize_on_precompile = false
+    config.assets.initialize_on_precompile = true
 
     #Fixes journey unable to handle chunked encoding.
     config.middleware.insert_after ActionDispatch::DebugExceptions, Rack::ContentLength

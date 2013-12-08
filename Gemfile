@@ -4,7 +4,6 @@ ruby '2.0.0'
 gem 'rails', '~> 4.0.2'
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'foreman'
   gem 'pry'
   gem 'rb-fsevent'
@@ -16,7 +15,6 @@ group :development, :test do
 end
 
 group :production do
-  gem 'pg'
   #Used by heroku to enable logging and other magic
   gem 'rails_12factor'
   #Assets are served in production mode, and cached
@@ -24,8 +22,7 @@ group :production do
 end
 
 gem 'sass-rails',   '~> 4.0.0'
-gem 'coffee-rails', '~> 4.0.0'
-gem 'uglifier', '~> 2.1.2'
+gem 'uglifier', '~> 2.3.2'
 
 gem 'newrelic_rpm'
 gem 'jquery-rails'
@@ -35,7 +32,6 @@ gem 'simple_status'
 
 
 gem 'sucker_punch', '~> 1.0.1'
-gem 'bson_ext'
 gem 'mongoid', github: 'mongoid/mongoid'
 
 gem 'grape'
@@ -45,13 +41,13 @@ gem 'grape-rabl'
 gem 'pubnub'
 
 gem 'fog'
-gem 'dragonfly'
+gem 'dragonfly', '~> 0.9'
 
 gem 'bugsnag'
 
-gem 'hipchat', '~> 0.11.0'
+gem 'hipchat', '~> 0.14.0'
 
-gem 'rails_admin', '~> 0.5.0'
+gem 'rails_admin', '~> 0.6.0'
 
 gem 'mongoid_slug'
 
