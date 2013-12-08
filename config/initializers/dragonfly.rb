@@ -6,7 +6,7 @@ app.configure_with(:rails)
 app.configure do |c|
   c.url_host = Settings.general.protocol+'://'+Settings.general.hostname
   c.log = Logger.new($stdout)
-  if Rails.env.production?
+  if Settings.s3.region and Settings.s3.bucket_name and Settings.s3.access_key_id and Settings.s3.secret_access_key
     c.datastore = Dragonfly::DataStorage::S3DataStore.new(
       #Mark the files as private by default.
       #NO idea why this isn't the default
