@@ -1,7 +1,7 @@
 class PubnubPushJob < BaseJob
 
   def perform(chanel_token, message)
-    unless Settings.pubnub.publish_key.empty? or Settings.pubnub.subscribe_key.empty?
+    unless Settings.pubnub.publish_key.blank? or Settings.pubnub.subscribe_key.blank?
       pubnub = Pubnub.new(
         :publish_key=> Settings.pubnub.publish_key,
         :subscribe_key=> Settings.pubnub.subscribe_key,
