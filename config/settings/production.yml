@@ -1,0 +1,4 @@
+devise:
+  secret_key: "<%= (ENV['DEVISE_SECRET_KEY'] || raise('ENV[DEVISE_SECRET_KEY] not set add it via `heroku config:set DEVISE_SECRET_KEY=`')) %>"
+general:
+  secret_key_base: "<%= (ENV['GENERAL_SECRET_KEY'] || raise('ENV[GENERAL_SECRET_KEY] not set add it via `heroku config:set GENERAL_SECRET_KEY=`')) %>"
