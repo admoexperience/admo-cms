@@ -53,3 +53,17 @@ defaults:
 
 This runs `rails s -p 3000` and `guard`
 
+## Api docs ##
+Once the server is running you can view the api docs at http://localhost:3000/docs/ which should contain all the configruation options.
+
+Also note the api has been made with [Grape](https://github.com/intridea/grape), [Swagger](https://developers.helloreverb.com/swagger/), [Grape-swagger](https://github.com/tim-vandecasteele/grape-swagger)
+
+
+## Running on Heroku ##
+
+heroku create
+heroku addons:add mongohq
+#Some reason production assets are needed
+heroku labs:enable user-env-compile 
+heroku config:set DEVISE_SECRET_KEY=random36pluscharstring GENERAL_SECRET_KEY=random36pluscharstring
+

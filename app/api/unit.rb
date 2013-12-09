@@ -7,7 +7,7 @@ class Unit < Grape::API
 
   helpers do
     def authenticate!
-      error!('Unauthorized. Invalid or expired token.', 401) unless current_user
+      error!('Unauthorized. Invalid or expired ApiKey.', 401) unless current_user
     end
 
     def current_user
@@ -22,12 +22,12 @@ class Unit < Grape::API
     header "Access-Control-Allow-Origin", "*"
   end
 
-  desc "My system api"
+  desc "Unit API to control and manage a single unit"
   resource :unit do
 
     desc "Ping", :nickname => 'ping', :notes => <<-NOTE
     Method simply returns a hash with a single key __ping => pong__ .
-    This method is not authenticated and such can be used for testing access to the api
+    This method is __not authenticated__ and such can be used for testing communication access to the api
     NOTE
     get :ping do
       { :ping => "pong" }
@@ -36,25 +36,47 @@ class Unit < Grape::API
 
     desc "Checkin", :nickname => 'checkin',:notes => <<-NOTE
     Used to inform the CMS of the online status of the unit.
-    Should be called every 5mins.
+    Should be called every +-5mins.
     NOTE
     get :checkin, :rabl => "checkin" do
       authenticate!
       @unit.checkin
     end
 
-    desc "Sets an config option", :nickname => 'config', :notes => <<-NOTE
-    Allows updating of configuration options for AdmoUnits
-    a change here will be pushed down (in close to real time) to the spesific unit provided it is online
 
-    Configration options include the following options. Trying to set any thing else will fail.
+    CONFIG_HELP_TABLE = <<-NOTE
+    Configration options include the following options.
 
-    |Key                  |DefaultValue|Description|
-    |**app**              |demo        |The current AdmoApp this unit should run|
-    |**kinect_elevation** |1           |The elevation of the kinnect used to configure correct angle|
-    |||
-
+|Key                         |DefaultValue|Description|
+|----------------------------|------------|-----------|
+|**environment**             |production                  |Environment the unit should run in [production,development]|
+|**web_ui_server**           |https://localhost:5001      |Which url to launch at start up, ie where the html5 appliation is hosted|
+|**web_server_base_path**    |`%APP_DATA%/Admo/webserver/`|The folder on disk where the webserver content is actually hosted from. Used for watching for file changes|
+|**pod_file**                |na                          |File path to ziped html5 application, which will be extracted into `web_server_base_path/current`. file can either relative path to `%APP_DATA%/Admo/Pods/` or an absolute path to any where on disk|
+|**kinect_elevation**        | -9                         |The elevation of the kinnect used to configure correct angle|
+|**pubnub_subscribe_key**    |Server configed default     |Subscribe key used to connect to pubnub. The publish/subscribe channel. Each unit runs on a unique channel|
+|**screenshot_interval**     |1800                        |Number of seconds between taking a screenshot and uploading it to the CMS       |
+|**calibration_active**      |false                       |If the unit should re-set its FOV calibration settings|
+|**name**                    |PC hostname                 |Hostname of the pc|
+|**transform_smoothing_type**|avatar                      |Application type [avatar,cursor]|
+|**fov_crop_top**            |0                           |Used to line up HD-webcam and kinect FOV so they are in sync|
+|**fov_crop_left**           |0                           |Used to line up HD-webcam and kinect FOV so they are in sync|
+|**fov_crop_width**          |0                           |Used to line up HD-webcam and kinect FOV so they are in sync|
+|**silhouette_enabled**      |true                        |If the service should send through silhouette info to html5 app|
+|**dropbox_img_path**        |na                          |When uploading content to dropbox, where to put it|
+|**facebook_auth_token**     |na                          |Facebook Auth Token, for api requests, see [Facebook link](https://developers.facebook.com/docs/facebook-login/access-tokens/) |
+|**facebook_album_id**       |me                          |Where to push the facebook image default is to the wall|
+|**dashboard_enabled**       |false                       |If this unit should be monitored via the dashboard|
+|||
     NOTE
+
+
+
+
+    desc "Updates a config option", :nickname => 'config', :notes =>
+    "Allows updating of configuration options for an unit.\n"+
+    "the change will be pushed down via publish/subscribe to the specific unit provided it is online."+
+    CONFIG_HELP_TABLE
      params do
         requires :key, type: String, desc: "Config Key"
         requires :value, type: String, desc: "Config Value"
@@ -69,21 +91,23 @@ class Unit < Grape::API
       @config = @unit.get_config
     end
 
-    desc "Gets configuration for the unit", :nickname => 'config'
+    desc "Gets configuration for the unit", :nickname => 'config', :notes=>
+    "Retrives the current configuration of this unit. See PUT `config`"+
+    CONFIG_HELP_TABLE
     get :config, :rabl => "config" do
       authenticate!
       @config = @unit.get_config
     end
 
     desc "Pushes an event down to the unit", :nickname => 'event',:notes => <<-NOTE
-    Allows sending ONE time events down to the units.
+    Allows sending one time events down to the units via the publish/subscribe channel
 
     **Note** if the unit is offline the event will be ignored!
 
     |Command          |Description|
-    |**checkin**      |Tells the unit to checkin now, mostly can be used as a ping|
-    |**screenshot**   |Tells the unit to take a screenshot and send it to the cms|
-    |**updateConfig** |Tells the unit to update its config|
+    |**checkin**      |Checkin now, mostly can be used as a ping|
+    |**screenshot**   |Take a screenshot and send it to the cms|
+    |**updateConfig** |Config has been updated go and fetch a new version|
     |**calibrate**    |Calibrate the unit|
     |||
     NOTE
@@ -97,6 +121,7 @@ class Unit < Grape::API
 
 
     desc "Uploads a screenshot to a unit", :notes=> <<-NOTE
+    Uploads and links a screenshot.
     This method can NOT be called from swagger you need to do something like
 
         curl --form image_file=image.jpg http://$server/$baseUrl/screenshot
@@ -109,7 +134,10 @@ class Unit < Grape::API
     end
 
 
-    desc "Uploads a content", :notes=> <<-NOTE
+    desc "Uploads a an image", :notes=> <<-NOTE
+    Uploads and links a image to a unit. Useful for taking pictures.
+
+
     This method can NOT be called from swagger you need to do something like
 
         curl --form image=@image.jpg --form tags=testing,mytag,newtag  http://$server/$baseUrl/image
@@ -151,7 +179,7 @@ class Unit < Grape::API
     end
 
     desc "Sets the current running version of the client software of this unit", :notes=> <<-NOTE
-
+    Should be called at application start up.
     NOTE
     params do
       requires :number, type: String, desc: "Softwares Version number formate (1.1.1.1+)"

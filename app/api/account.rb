@@ -7,7 +7,7 @@ class Account < Grape::API
 
   helpers do
     def authenticate!
-      error!('Unauthorized. Invalid or expired token.', 401) unless current_account
+      error!('Incorrect username and or password', 401) unless current_account
     end
 
     def current_account
@@ -27,11 +27,11 @@ class Account < Grape::API
     header "Access-Control-Allow-Origin", "*"
   end
 
-  desc "My system api"
+  desc "Account Managment API"
   resource :account do
 
     desc "Register Unit", :nickname => 'register_unit', :notes => <<-NOTE
-    Registers a unit on our system
+    Registers a new unit, and links it to your default account.
     NOTE
     params do
       requires :email, type: String, desc: "Email address used to authenticate"
