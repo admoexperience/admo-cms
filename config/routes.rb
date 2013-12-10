@@ -20,17 +20,10 @@ AdmoCms::Application.routes.draw do
     get '/dashboard/analytics' => 'dashboard#analytics', as: 'analytics'
     get '/dashboard/analytics/daily_interactions' => 'dashboard#analytics_daily_interactions', as: 'analytics_daily_interactions'
     get '/dashboard/analytics/by_weekday' => 'dashboard#analytics_by_weekday', as: 'analytics_by_weekday'
-
   end
 
-  get '/html/login' => 'html#login'
-  get '/html/home' => 'html#home'
-  get '/html/content' => 'html#content'
-  get '/html/analytics' => 'html#analytics'
-  get '/html/support' => 'html#support'
-  get '/html/tutorial' => 'html#tutorial'
-  get '/html/devices' => 'html#devices'
-  get '/html/apps' => 'html#apps'
+  get '/docs/' => 'api_docs#index'
+
 
   mount RootApi => '/api/'
 

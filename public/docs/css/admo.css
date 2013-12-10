@@ -1,105 +1,41 @@
-body {
-    font-family: "Verdana", sans-serif;
-
+#header {
+  background-color: transparent !important;
+}
+.main-docs{
+  margin-top: 150px;
 }
 
-h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
-    text-decoration: none;
-    font-family: Ruda;
-    font-weight: 700;
+#api_selector .hidden{
+  display:none;
 }
 
-body #header {
-    background: transparent;
-    padding: 0px 14px;
-}
-
-body #header a#logo {
-	display: inline-block;
-    font-size: 2em;
-    font-weight: lighter;
-    text-decoration: none;
-    background: transparent url(../images/logo.png) no-repeat left center;
-    background-size: contain;
-    padding: 20px 0 20px 40px;
-    color: #555555;
-    width: 150px;
-    height: 30px;
+header .wrapper h1 {
+  height: 50px;
 }
 
 body #header form#api_selector {
-    display: inline-block;
+    display: block;
     clear: none;
     float: right;
-    padding: 30px 0px 0px 0px;
 }
 
-body #header form#api_selector #input_baseUrl {
-    display: none;
+body #header form#api_selector .input {
+    display: block;
     clear: none;
     float: left;
     margin: 0 10px 0 0;
+    padding: 6px 20px;;
 }
 
-body #header form#api_selector .input a#explore {
-    display: block;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 6px 8px;
+body #header form#api_selector .input input {
     font-size: 0.9em;
-    color: white;
-    background-color: #0099ff;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -o-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -khtml-border-radius: 4px;
-    border-radius: 4px;
+    margin: 0;
 }
 
-body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.get div.heading h3 span.http_method a {
-    text-transform: uppercase;
-    background-color: #0099FF;
-    text-decoration: none;
-    color: white;
-    display: inline-block;
-    width: 50px;
-    font-size: 0.8em;
-    text-align: center;
-    padding: 7px 0 4px 0;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -o-border-radius: 2px;
-    -ms-border-radius: 2px;
-    -khtml-border-radius: 2px;
-    border-radius: 2px;
-}
-body ul#resources li.resource ul.endpoints li.endpoint ul.operations li.operation.put div.heading h3 span.http_method a {
-    text-transform: uppercase;
-    background-color: #333333;
-    text-decoration: none;
-    color: white;
-    display: inline-block;
-    width: 50px;
-    font-size: 0.8em;
-    text-align: center;
-    padding: 7px 0 4px;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    -o-border-radius: 2px;
-    -ms-border-radius: 2px;
-    -khtml-border-radius: 2px;
-    border-radius: 2px;
+body #header form#api_selector .input input#input_baseUrl {
+    width: 400px;
 }
 
-body #header form#api_selector .input a#explore:hover {
-    background-color: #547f00;
-}
-
-pre {
-	border-radius: 5px;
-}
-
-.footer {
-	display: none;
+body #header form#api_selector .input input#input_apiKey {
+    width: 200px;
 }
