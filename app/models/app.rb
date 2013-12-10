@@ -7,13 +7,6 @@ class App
   field :name,              type: String
   field :description,       type: String
 
-  #This is yet another hack
-  field :config,            type: Hash,  :default => {
-    'key1'=>{
-      'subkey1'=>'value1'
-    }
-  }
-
   field :last_published_at, type: Time
   field :base_path, type: String
 
@@ -26,7 +19,6 @@ class App
 
   belongs_to :admo_account
   belongs_to :template
-  has_many :contents
 
   validates_presence_of :name
   validates_presence_of :admo_account
@@ -47,34 +39,6 @@ class App
     if document.pod && document.pod.tempfile
       document.pod_checksum = Digest::SHA256.file( document.pod.tempfile).hexdigest
     end
-  end
-
-  def publish_change
-    ContentUploaderJob.new.process(self)
-  end
-
-  def config_as_json
-    JSON.pretty_generate(self.config)
-  end
-
-  def upload_worker
-    tempfile = StringIO.open(config_as_json)
-    dbox = DropboxUploader.new(self.admo_account.dropbox_session_info)
-    dbox.upload(File.join(self.base_path,'data','data.json'),tempfile)
-    self.last_published_at = Time.now
-    self.save!
-    self.last_published_at = Time.now
-    self.contents.each do |m|
-      m.publish_change if m.last_published_at < m.last_edited_at
-    end
-  end
-
-  def find_image(key)
-    contents.all.select{|c| c.key.match(key) && c.is_image}.first
-  end
-
-  def find_video(key)
-    contents.all.select{|c| c.key.match(key) && !c.is_image}.first
   end
 
   def pod_public_url

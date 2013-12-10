@@ -33,10 +33,6 @@ class DashboardController < ApplicationController
     @templates = enabled_templates.entries + disabled_templates.entries
   end
 
-  def apps_old
-
-  end
-
   def devices
     @units = get_units
     @apps = get_account.apps
@@ -54,42 +50,6 @@ class DashboardController < ApplicationController
     end
   end
 
-  def content
-    @app = get_account.apps.find(params[:app_id])
-    @current_content = params[:content_id]
-  end
-
-  def update_content
-    @app = get_account.apps.find(params[:app_id])
-    @current_content = params[:content_id]
-    content = params[:content]
-    config = @app.config
-    config[@current_content]= content
-    @app.config = config
-    @app.save!
-    #should always publish on content saving.
-    @app.publish_change
-    redirect_to view_content_path(@app,@current_content)
-  end
-
-  def update_content_item
-    @app = get_account.apps.find(params[:app_id])
-    @cont = @app.contents.find(params[:content_item])
-    @cont.value = params[:upload]
-    @cont.last_edited_at = Time.now
-    @cont.save!
-    respond_to do |format|
-      format.html {
-        render :json => [@cont.to_jq_upload].to_json,
-        :content_type => 'text/html',
-        :layout => false
-      }
-      format.json {
-        render :json => [@cont.to_jq_upload].to_json
-      }
-    end
-  end
-
   def support
     if request.post?
       email = {
@@ -101,27 +61,6 @@ class DashboardController < ApplicationController
       }
       SupportMailer.help(support_params.merge(email)).deliver
     end
-  end
-
-  def update
-    #TODO: Figure out rails4 mass assignment provention,
-    #but this is only for the hash it is should be ok
-    @app.config =  params.require(:app)[:config]
-    if  @app.save
-     #@app.publish_change
-      flash[:notice] = 'App was successfully updated.'
-      redirect_to :action=> :show
-    else
-      render action: "edit"
-    end
-  end
-
-  def show
-   @template = @app.config_as_json
-  end
-
-  def edit
-
   end
 
   def analytics_daily_interactions
