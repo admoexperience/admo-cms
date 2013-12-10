@@ -9,6 +9,10 @@
   display:none;
 }
 
+header .wrapper h1 {
+  height: 50px;
+}
+
 body #header form#api_selector {
     display: block;
     clear: none;
