@@ -155,7 +155,6 @@ end
     list do
       field :admo_account
       field :name
-      field :config
       field :template
     end
     edit do
